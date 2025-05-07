@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- 
+	수정일                 수정자                          수정내용
+  =========     =======    =================================================
+  2011.09.21    서준식              NTT_ID를 IDGENT서비스를 사용해서 생성하므로 selectMaxNttId문은 실제 사용하지 않음
+-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="OpenApiSQL">
+
+	<resultMap id="openApiList" type="com.esoom.cmstest.common.ConfigVO">
+		<result property="cfgCode" column="CFG_CODE"/>
+		<result property="cfgName" column="CFG_NAME"/>
+		<result property="cfgValue" column="CFG_VALUE"/>
+	</resultMap>
+	
+	<select id="openApiList" parameterType="com.esoom.cmstest.common.ConfigVO" resultMap="openApiList">
+		
+			SELECT * FROM CMSCONFIG
+			WHERE
+			CFG_CODE = 'openapi'
+						
+	</select>	
+	
+ 	<update id="updateOpenApi" parameterType="com.esoom.cmstest.common.ConfigVO">
+ 			UPDATE CMSCONFIG SET 
+				CFG_VALUE = #{cfgValue} 
+			WHERE CFG_CODE = 'openapi'
+			AND CFG_NAME = #{cfgName}
+ 	</update>
+ 	
+	
+</mapper>

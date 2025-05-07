@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 27.9.6, SVG Export Plug-In . SVG Version: 9.03 Build 54986)  -->
+<svg version="1.1" id="naver" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 40 40" style="enable-background:new 0 0 40 40;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#SVGID_1_);}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+</style>
+<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="20" y1="40" x2="20" y2="-9.094947e-13">
+	<stop  offset="0" style="stop-color:#03B565"/>
+	<stop  offset="1" style="stop-color:#03EC66"/>
+</linearGradient>
+<path class="st0" d="M5,0h30c2.8,0,5,2.2,5,5v30c0,2.8-2.2,5-5,5H5c-2.8,0-5-2.2-5-5V5C0,2.2,2.2,0,5,0z"/>
+<path class="st1" d="M23.5,20.1L17.2,11H12v17h5.5v-9.1l6.3,9.1H29V11h-5.5V20.1z"/>
+</svg>

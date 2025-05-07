@@ -1,0 +1,49 @@
+/* layout */
+html, body, #login{height:100%}
+html{overflow:auto;}
+body {font-family: 'Open Sans', 'Noto Sans KR', sans-serif;}
+* {box-sizing: border-box; letter-spacing: -0.025em;}
+body {background: var(--color-gray);}
+#login {position:relative; min-width:1200px; /*min-height:1080px;*/ transform: translateZ(0); display: grid; grid-template-areas: "logo" "content" "footer"; grid-template-columns: 1fr; grid-template-rows: min-content 1fr min-content;}
+#login::after {content: ""; position: absolute; left: 0; top: 0; height: 52.7778%; width: 100%; background-color:#000; /*background: url(../../images/img/bg_login.jpg) no-repeat center/cover;*/ z-index: -1; pointer-events: none;}
+
+/* login */
+.logo {grid-area: logo; height: 112px; display: flex; align-items: center;}
+.con_login {grid-area: content; padding-bottom: 108px;}
+.con_login .tit{margin-bottom: 50px; font-size: 40px; line-height: 1; font-weight: 700; color: #fff; letter-spacing: -0.01em;}
+.con_login .tit .sm {font-size: 24px; line-height: 1; display: block; font-weight: 600; margin-top: 21px; }
+.con_login .box{width: 460px; background-color:#fff; box-shadow: 0.5px 0px 10px rgba(0, 0, 0, 0.12);}
+.con_login .frm{position:relative; padding:40px 50px 50px;}
+.con_login .frmlabel {display: block; font-size: 15px; line-height: 1; font-weight: 300; color: #666; }
+.con_login .frmbox {width: 100%; border: none; border-bottom: 1px solid #d9d9d9; text-indent: 0; font-size: 18px; } 
+.con_login .frmbox.on,
+.con_login .frmbox:focus {border-color: var(--color-point); color: var(--color-point);}
+.con_login .frmbox::-webkit-input-placeholder {color: #ccc;}
+.con_login .frmbox::-moz-placeholder {color: #ccc;}
+.con_login .frmbox::placeholder {color: #ccc;}
+.con_login .item + .item {margin-top: 40px;}
+.con_login .frm_el {margin-top:20px}
+.con_login .frm_el label {font-size: 14px;  color: #666; height: 1em; line-height: 1; padding-left: 20px;}
+.con_login .frm_el span {letter-spacing: inherit;}
+.con_login .frm_el span::before {width: 1em; height: 1em; border: 1px solid #666; border-radius: 3px;}
+.con_login .frm_el input:checked + span::after {top: 1.5px; left: 1.5px;}
+.con_login .btn_login {width: 100%; height: 54px; background: var(--color-point); border-radius: 27px; font-size: 18px; font-weight: 700; color: #fff; padding-top: .15em; margin-top: 30px;}
+.con_login .note {--mg: -.2em; font-size: 13px; line-height: 1.3846; color: #333; margin: var(--mg) 0; margin-top: calc(var(--mg) + 20px);}
+
+/* tab list */
+.tablist {display: flex; position: relative; transform: translateZ(0);}
+.tablist::after {content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 1px; background: var(--line3); z-index: -1;}
+.tablist .tab {flex: 0 0 auto; min-width: 155px; height: 46px; font-size: 16px; font-weight: 700; display: inline-flex; margin-right: -11px;}
+.tablist .tab::before,
+.tablist .tab::after {content: ""; display: block; height: 100%; background-repeat: no-repeat; flex-shrink: 0;}
+.tablist .tab::before {width: 9px; background-image: url(../../images/esoom/common/tab_lt.png);}
+.tablist .tab::after {width: 20px; background-image: url(../../images/esoom/common/tab_rt.png); position: relative; z-index: 1;}
+.tablist .tab > span {flex-grow: 1; display: inline-flex; justify-content: center; align-items: center; height: 100%; box-sizing: border-box; color: #999; background: #fff; border-top: 1px solid var(--line3); border-bottom: 1px solid var(--line3); padding: 0 20px;}
+.tablist .tab .num {font-size: 14px; display: inline-block; font-weight: 400; margin-right: 8px;}
+.tablist .tab.active > span {background: var(--color-point); border-color: var(--color-point); color: #fff;}
+.tablist .tab.active::before {background-image: url(../../images/esoom/common/tab_lt_on.png);}
+.tablist .tab.active::after {background-image: url(../../images/esoom/common/tab_rt_on.png);}
+
+.footer {grid-area: footer; height: 70px; display: flex; align-items: center;}
+.footer .copy {font-size: 12px; font-weight: 400; line-height: 1; color: #999; letter-spacing: -0.01em;}
+.footer .copy .Pret {font-weight: 300; letter-spacing: inherit;}
