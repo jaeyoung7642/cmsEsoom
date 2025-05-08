@@ -97,7 +97,7 @@ function chk_all(val) {
                                                     <i class="ri-space-ship-line display-6 text-muted cfs-22"></i>
                                                 </div>
                                                 <div class="flex-grow-1 ms-3">
-                                                    <h2 class="mb-0 cfs-22"><span class="counter-value" data-target="197">0</span></h2>
+                                                    <h2 class="mb-0 cfs-22"><span class="counter-value" data-target="0">0</span></h2>
                                                 </div>
                                             </div>
                                         </div>
