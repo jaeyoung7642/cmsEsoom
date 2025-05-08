@@ -79,14 +79,14 @@ public class EgovComUtlController {
 		return link;
 	}
 	
-    /**
+	/**
 	 * 모달조회
 	 * @return String
 	 * @exception Exception
 	 */
     @RequestMapping(value="/EgovModal.do")
     public String selectUtlJsonInquire()  throws Exception {
-        return "egovframework/com/cmm/EgovModal";
+        return "cmmn/EgovModal";
     }
     
     /**
@@ -94,7 +94,7 @@ public class EgovComUtlController {
 	 */
 	@RequestMapping("/validator.do")
 	public String validate(){
-		return "egovframework/com/cmm/validator";
+		return "cmmn/validator";
 	}
 
 }

@@ -2,13 +2,13 @@ package egovframework.com.cmm.web;
 
 import java.net.URLDecoder;
 import java.net.URLEncoder;
-import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.codec.binary.Base64;
 import org.egovframe.rte.fdl.cryptography.EgovEnvCryptoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,18 +47,19 @@ import org.egovframe.rte.fdl.access.service.EgovUserDetailsHelper;
 @Controller
 public class EgovFileMngController {
 
+	/** 로그설정 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(EgovFileMngController.class);
-	
+
 	/** 암호화서비스 */
 	private static EgovEnvCryptoService cryptoService;
-
-	@Resource(name = "EgovFileMngService")
-	private EgovFileMngService fileService;
 
 	@Resource(name = "egovEnvCryptoService")
 	public void setEgovEnvCryptoService(EgovEnvCryptoService cryptoService) {
 		this.cryptoService = cryptoService;
 	}
+
+	@Resource(name = "EgovFileMngService")
+	private EgovFileMngService fileService;
 	
 	/**
 	 * 첨부파일에 대한 목록을 조회한다.
@@ -71,17 +72,16 @@ public class EgovFileMngController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/cmm/fms/selectFileInfs.do")
-	public String selectFileInfs(@ModelAttribute("searchVO") FileVO fileVO,
-			HttpServletRequest request,
+	public String selectFileInfs(@ModelAttribute("searchVO") FileVO fileVO, HttpServletRequest request,
 			@RequestParam Map<String, Object> commandMap, ModelMap model) throws Exception {
-		
 		String param_atchFileId = (String) commandMap.get("param_atchFileId");
+		param_atchFileId = param_atchFileId.replaceAll(" ", "+");
 		String decodedAtchFileId = "";
-		
+
 		if (param_atchFileId != null && !"".equals(param_atchFileId) ) {
 			decodedAtchFileId = cryptoService.decrypt(param_atchFileId);
 		}
-		
+
 		fileVO.setAtchFileId(decodedAtchFileId);
 		List<FileVO> result = fileService.selectFileInfs(fileVO);
 
@@ -89,7 +89,7 @@ public class EgovFileMngController {
 		for (FileVO file : result) {
 			String sessionId = request.getSession().getId();
 			String toEncrypt = sessionId + "|" + file.atchFileId;
-			file.setAtchFileId(Base64.getEncoder().encodeToString(cryptoService.encrypt(toEncrypt).getBytes()));
+			file.setAtchFileId(Base64.encodeBase64String(cryptoService.encrypt(toEncrypt).getBytes()));
 		}
 
 		model.addAttribute("fileList", result);
@@ -97,7 +97,7 @@ public class EgovFileMngController {
 		model.addAttribute("fileListCnt", result.size());
 		model.addAttribute("atchFileId", URLDecoder.decode(param_atchFileId));
 
-		return "egovframework/com/cmm/fms/EgovFileList";
+		return "cmmn/EgovFileList";
 	}
 
 	/**
@@ -114,12 +114,12 @@ public class EgovFileMngController {
 	public String selectFileInfsForUpdate(@ModelAttribute("searchVO") FileVO fileVO,
 			@RequestParam Map<String, Object> commandMap,
 			// SessionVO sessionVO,
-			HttpServletRequest request,
-			ModelMap model) throws Exception {
+			HttpServletRequest request, ModelMap model) throws Exception {
 
 		String param_atchFileId = (String) commandMap.get("param_atchFileId");
+		param_atchFileId = param_atchFileId.replaceAll(" ", "+");
 		String decodedAtchFileId = "";
-		
+
 		if (param_atchFileId != null && !"".equals(param_atchFileId) ) {
 			decodedAtchFileId = cryptoService.decrypt(param_atchFileId);
 		}
@@ -132,7 +132,7 @@ public class EgovFileMngController {
 		for (FileVO file : result) {
 			String sessionId = request.getSession().getId();
 			String toEncrypt = sessionId + "|" + file.atchFileId;
-			file.setAtchFileId(Base64.getEncoder().encodeToString(cryptoService.encrypt(toEncrypt).getBytes()));
+			file.setAtchFileId(Base64.encodeBase64String(cryptoService.encrypt(toEncrypt).getBytes()));
 		}
 
 		model.addAttribute("fileList", result);
@@ -140,7 +140,94 @@ public class EgovFileMngController {
 		model.addAttribute("fileListCnt", result.size());
 		model.addAttribute("atchFileId", URLDecoder.decode(param_atchFileId));
 
-		return "egovframework/com/cmm/fms/EgovFileList";
+		return "cmmn/EgovFileList";
+	}
+	/**
+	 * 첨부파일 변경을 위한 수정페이지로 이동한다.
+	 *
+	 * @param fileVO
+	 * @param atchFileId
+	 * @param sessionVO
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/cmm/fms/selectFileInfsForUpdate2.do")
+	public String selectFileInfsForUpdate2(@ModelAttribute("searchVO") FileVO fileVO,
+			@RequestParam Map<String, Object> commandMap,
+			// SessionVO sessionVO,
+			HttpServletRequest request, ModelMap model) throws Exception {
+		
+		String param_atchFileId = (String) commandMap.get("param_atchFileId");
+		param_atchFileId = param_atchFileId.replaceAll(" ", "+");
+		String decodedAtchFileId = "";
+		
+		if (param_atchFileId != null && !"".equals(param_atchFileId) ) {
+			decodedAtchFileId = cryptoService.decrypt(param_atchFileId);
+		}
+		
+		fileVO.setAtchFileId(decodedAtchFileId);
+		
+		List<FileVO> result = fileService.selectFileInfs(fileVO);
+		
+		// FileId를 유추하지 못하도록 세션ID와 함께 암호화하여 표시한다. (2022.12.06 추가) - 파일아이디가 유추 불가능하도록 조치
+		for (FileVO file : result) {
+			String sessionId = request.getSession().getId();
+			String toEncrypt = sessionId + "|" + file.atchFileId;
+			file.setAtchFileId(Base64.encodeBase64String(cryptoService.encrypt(toEncrypt).getBytes()));
+		}
+		
+		model.addAttribute("fileList", result);
+		model.addAttribute("updateFlag", "Y");
+		model.addAttribute("fileListCnt", result.size());
+		model.addAttribute("thumFileId", URLDecoder.decode(param_atchFileId));
+		
+		return "cmmn/EgovFileList2";
+	}
+	/**
+	 * 첨부파일 변경을 위한 수정페이지로 이동한다.
+	 *
+	 * @param fileVO
+	 * @param atchFileId
+	 * @param sessionVO
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/cmm/fms/selectFileInfsList.do")
+	public String selectFileInfsList(@ModelAttribute("searchVO") FileVO fileVO,
+			@RequestParam Map<String, Object> commandMap,
+			// SessionVO sessionVO,
+			HttpServletRequest request, ModelMap model) throws Exception {
+
+		String param_atchFileId = (String) commandMap.get("param_atchFileId");
+		param_atchFileId = param_atchFileId.replaceAll(" ", "+");
+		String param_part = (String) commandMap.get("param_part");
+		String decodedAtchFileId = "";
+
+		if (param_atchFileId != null && !"".equals(param_atchFileId) ) {
+			decodedAtchFileId = cryptoService.decrypt(param_atchFileId);
+		}
+
+		fileVO.setAtchFileId(decodedAtchFileId);
+
+		List<FileVO> result = fileService.selectFileInfs(fileVO);
+
+		// FileId를 유추하지 못하도록 세션ID와 함께 암호화하여 표시한다. (2022.12.06 추가) - 파일아이디가 유추 불가능하도록 조치
+		for (FileVO file : result) {
+			String sessionId = request.getSession().getId();
+			String toEncrypt = sessionId + "|" + file.atchFileId;
+			file.setAtchFileId(Base64.encodeBase64String(cryptoService.encrypt(toEncrypt).getBytes()));
+		}
+
+		model.addAttribute("fileList", result);
+		model.addAttribute("updateFlag", "Y");
+		model.addAttribute("fileListCnt", result.size());
+		model.addAttribute("encAtchFileId", URLDecoder.decode(param_atchFileId));
+		model.addAttribute("atchFileId", decodedAtchFileId);
+		model.addAttribute("part",param_part);
+
+		return "cmmn/EgovSelectFileList";
 	}
 
 	/**
@@ -158,27 +245,30 @@ public class EgovFileMngController {
 			// SessionVO sessionVO,
 			HttpServletRequest request, ModelMap model) throws Exception {
 
-		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
-
-		if (isAuthenticated) {
+//		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+		System.out.println("?????????????????????????");
+//		if (isAuthenticated) {
+			System.out.println("dddddddddddd");
+			System.out.println(fileVO.getAtchFileId());
+			System.out.println(fileVO.getFileSn());
 			fileService.deleteFileInf(fileVO);
-		}
+//		}
 
 		return "blank";
 
 		// --------------------------------------------
 		// contextRoot가 있는 경우 제외 시켜야 함
 		// --------------------------------------------
-		//// return "forward:/cmm/fms/selectFileInfs.do";
-		// return "forward:" + returnUrl;
+		//// return "redirect:/cmm/fms/selectFileInfs.do";
+		// return "redirect:" + returnUrl;
 		/*
 		 * ******************************************************* modify by jdh
 		 *******************************************************
 		 * if ("".equals(request.getContextPath()) ||
-		 * "/".equals(request.getContextPath())) { return "forward:" + returnUrl; }
+		 * "/".equals(request.getContextPath())) { return "redirect:" + returnUrl; }
 		 * 
-		 * if (returnUrl.startsWith(request.getContextPath())) { return "forward:" +
-		 * returnUrl.substring(returnUrl.indexOf("/", 1)); } else { return "forward:" +
+		 * if (returnUrl.startsWith(request.getContextPath())) { return "redirect:" +
+		 * returnUrl.substring(returnUrl.indexOf("/", 1)); } else { return "redirect:" +
 		 * returnUrl; }
 		 */
 		//// ------------------------------------------
@@ -186,37 +276,34 @@ public class EgovFileMngController {
 
 	/**
 	 * 원본 문자열을 암호화 하는 메서드.
+	 * 
 	 * @param source 원본 문자열
 	 * @return 암호화 문자열
 	 */
 	public static String encrypt(String atchFileId) {
-		String returnVal = "";
-		if (atchFileId!=null && !"".equals(atchFileId)) {
-			returnVal = cryptoService.encrypt(atchFileId);
-		}
+		String returnVal = "-";
+		returnVal = cryptoService.encrypt(atchFileId);
 		return returnVal;
 	}
 
-	
 	/**
 	 * 원본 문자열을 암호화 하는 메서드.
+	 * 
 	 * @param source 원본 문자열
 	 * @return 암호화 문자열
 	 */
 	public static String encryptSession(String atchFileId, String sessionId) {
-		String returnVal = "";
-		if (atchFileId!=null && !"".equals(atchFileId)) {
-			String toEncrypt = sessionId + "|" + atchFileId;
-			returnVal = Base64.getEncoder().encodeToString(cryptoService.encrypt(toEncrypt).getBytes());
-		}
+		String returnVal = "-";
+		String toEncrypt = sessionId + "|" + atchFileId;
+		returnVal = Base64.encodeBase64String(cryptoService.encrypt(toEncrypt).getBytes());
 		return returnVal;
+
 	}
 
-	
 	/**
-	 * 암호화 문자열을 복호화 하는 메서드.
-	 * @param source 암호화 문자열
-	 * @return 원본 문자열
+	 * 원본 문자열을 암호화 하는 메서드.
+	 * @param source 원본 문자열
+	 * @return 암호화 문자열
 	 */
 	public static String decrypt(String base64AtchFileId) {
 		String returnVal = "FILE_ID_DECRIPT_EXCEPTION_02";
