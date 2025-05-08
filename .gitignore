@@ -1,0 +1,10 @@
+# Eclipse IDE-specific files
+/.metadata/
+/.classpath
+/.project
+/.settings/
+/bin/
+/target/
+target/
+**/target
+*.log
