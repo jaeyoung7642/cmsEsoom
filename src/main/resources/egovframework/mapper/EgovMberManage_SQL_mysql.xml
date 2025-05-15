@@ -89,6 +89,7 @@ FROM(
                     ESNTL_ID          ,
                     MBER_ID          ,
                     MBER_NM          ,
+                    DI 				 ,
                     PASSWORD         ,
                     PASSWORD_HINT    ,
                     PASSWORD_CNSR    ,
@@ -110,6 +111,7 @@ FROM(
                     #{uniqId},
                     #{mberId},
                     #{mberNm},
+                    #{di},
                     #{password},
                     #{passwordHint},
                     #{passwordCnsr},
@@ -227,5 +229,14 @@ FROM(
 			     ,  LOCK_LAST_PNTTM = NULL 
             WHERE  ESNTL_ID  = #{uniqId}
     </update>
-
+	
+	<select id="duplicateDi" resultType="int">
+            SELECT COUNT(1) usedCnt
+                FROM(
+                SELECT
+                    DI
+                FROM    COMTNGNRLMBER
+                ) A
+            WHERE DI = #{di}
+    </select>
 </mapper>

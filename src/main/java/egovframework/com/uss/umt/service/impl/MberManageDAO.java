@@ -115,5 +115,10 @@ public class MberManageDAO extends EgovComAbstractDAO{
     public void updateLockIncorrect(MberManageVO mberManageVO) {
         update("mberManageDAO.updateLockIncorrect", mberManageVO);
     }
+    
+    
+    public int duplicateDi(String di) {
+    	return (Integer)selectOne("mberManageDAO.duplicateDi", di);
+    }
 
 }

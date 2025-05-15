@@ -18,6 +18,22 @@
 <link href="${pageContext.request.contextPath }/_assets/user/css/member.css" rel="stylesheet" type="text/css" />
 <script src="${pageContext.request.contextPath}/_assets/user/js/jquery-3.6.0.min.js"></script>
 </head>
+<script>
+window.name="Parent_window";
+var popupWindow = null;
+function fnPopup(){
+	popupWindow = window.open('', 'popupChk', 'width=480, height=812, top=100, fullscreen=no, menubar=no, status=no, toolbar=no,titlebar=yes, location=no, scrollbar=no');
+    document.form_chk.action = "https://nice.checkplus.co.kr/CheckPlusSafeModel/checkplus.cb";
+    document.form_chk.target = "popupChk";
+    document.form_chk.submit();
+}
+function closePopup() {
+    if (popupWindow) {
+        popupWindow.close();
+        location.href="/esoomCms/user/joinForm4.do"
+    }
+}
+</script>
 <body class="page-sub"> <!-- 서브에서 page-sub 클래스 추가 -->
 	<div id="wrap">
 		<!-- skip navigation -->
@@ -109,52 +125,61 @@
 					</section>
 
 					<ol class="member_steps">
-						<li class="item"><span class="dot"></span><span class="txt">가입인증</span></li>
-						<li class="item" aria-current="step"><span class="dot"></span><span class="txt">약관동의</span></li>
+						<li class="item"><span class="dot"></span><span class="txt">약관동의</span></li>
+						<li class="item" aria-current="dot"><span class="step"><span class="dot"></span></span><span class="txt">가입인증</span></li>
 						<li class="item"><span class="dot"></span><span class="txt">회원정보입력</span></li>
 						<li class="item"><span class="dot"></span><span class="txt">가입완료</span></li>
 					</ol>
 
 					<section class="member_content">
-						<form class="agree_form" data-forms="checkAll">
-							<article class="row">
-								<h4 class="el_heading lv1 mb_md">통합회원 이용약관(필수사항)</h4>
-								<div class="terms_area txt_preline scrollbar_sm"><div data-include="../inc/agree_01.html"></div></div>
-								<label class="frm_checkbox type2">
-									<input type="checkbox" aria-label="통합회원 이용약관 동의" class="check_each" required>
-									<span class="txt">이용약관에 동의합니다 (필수)</span>
-								</label>
-							</article>
-
-							<article class="row">
-								<h4 class="el_heading lv1 mb_md">개인정보 수집·이용 동의(필수사항)</h4>
-								<div class="terms_area txt_preline scrollbar_sm"><div data-include="../inc/agree_02.html"></div></div>
-								<label class="frm_checkbox type2">
-									<input type="checkbox" aria-label="개인정보 수집·이용 동의" class="check_each" required>
-									<span class="txt">개인정보 수집ㆍ이용 동의 (필수)</span>
-								</label>
-							</article>
-
-							<article class="row">
-								<h4 class="el_heading lv1 mb_md">수집한 개인정보 제3자 제공 동의(필수사항)</h4>
-								<div class="terms_area txt_preline scrollbar_sm"><div data-include="../inc/agree_03.html"></div></div>
-								<label class="frm_checkbox type2">
-									<input type="checkbox" aria-label="수집한 개인정보 제3자 제공 동의" class="check_each" required>
-									<span class="txt">수집한 개인정보의 제3자 제공 동의 (필수)</span>
-								</label>
-							</article>
-
-							<div class="row line txt_ct">
-								<label class="frm_checkbox type2">
-									<input type="checkbox" aria-label="전체 필수 약관 및 이용제공에 동의" class="check_all">
-									<span class="txt">전체 필수 약관 및 이용제공에 동의합니다.</span>
-								</label>
-
-								<div class="btn_area mt33">
-									<a href="<c:url value='/user/joinForm4.do'/>" class="el_btn btn2 point w140">다음</a>
+						<article class="row">
+							<h4 class="el_heading lv1 mb_sm">일반회원</h4>
+							<p class="txt_16-14 desc_dot"><strong class="txt_blue"><c-icon name="dot" size="8"></c-icon> 크롬 및 엣지에서 본인인증서비스 시 오류가 발생하오니 인터넷 익스플로러(버전8 이상)를 이용해 주시기 바랍니다.</strong></p>
+							
+							
+							<div class="member_mbAuth_box">
+								<!-- 아이핀 인증 -->
+								<div class="mbAuth_box bl_box line">
+									<div class="box_header">
+										<h5 class="tit lg">아이핀 인증</h5>
+										<p class="desc2">주민등록번호 대체수단인 아이핀 인증</p>
+									</div>
+									<div class="box_img" style="--imgH: 77.7778%;">
+										<img src="../images/img/member_ipinAuth_img.svg" alt="">
+									</div>
+									<div class="box_footer">
+										<div class="btn_area inline">
+											<a href="#" class="el_btn btn2 point thin md w180" target="_blank" rel="noreferrer">I-PIN 본인인증<span class="blind">(새창열림)</span></a>
+										</div>
+										<p class="tel">SCI평가정보 문의 : 1577-1006</p>
+									</div>
 								</div>
+								<!-- //아이핀 인증 -->
+	
+								<!-- 휴대폰 인증 -->
+								<div class="mbAuth_box bl_box line">
+									<div class="box_header">
+										<h5 class="tit lg">휴대폰 인증</h5>
+										<p class="desc2">본인 명의의 휴대폰으로 인증</p>
+									</div>
+									<div class="box_img" style="--imgH: 86.6667%;">
+										<img src="../images/img/member_phoneAuth_img.svg" alt="">
+									</div>
+									<div class="box_footer">
+										<div class="btn_area inline">
+											<a href="javascript:fnPopup();" class="el_btn btn2 point thin md w180" rel="noreferrer">휴대폰 본인인증<span class="blind">(새창열림)</span></a>
+										</div>
+										<p class="tel">문의 : 1577-1006</p>
+									</div>
+								</div>
+								<!-- //휴대폰 인증 -->
 							</div>
-						</form>
+	
+							<p class="txt_16 txt_inst mt22"><strong class="txt_point">※문의전화 : SCI평가정보(주) 1577-1006</strong></p>
+							<p class="txt_16-14">이숨시는 사용자의 개인정보 보호를 위해 최선을 다하고 있습니다.<br class="m_hide">
+								귀하의 개인정보는 동의없이 공개되지 않으며, <span class="txt_point">개인정보보호정책</span>에 의해 보호받고 있습니다.</p>
+						</article>
+
 					</section>
 					
 
@@ -215,7 +240,33 @@
 				<!-- //content -->
 			</div>
 		</main>
-		<!-- //container -->
+		<!-- //container -->	
+		<form name="form_chk" method="post">
+			<div class="btn_area member_age_select mt18">
+				<div class="frm_radio_age">
+					<div class="box">
+						<p class="tit">만 14세 <strong>이상</strong></p>
+						<div class="icon">
+							<span class="el_ico">
+								<svg viewBox="0 0 100 100"><use href="#member_14over"></use></svg>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<p class="el_desc_lg mt40">※ 만 14세 이상부터 회원가입이 가능합니다.</p>
+
+			<div class="member_footer type2 mt40">
+				<div class="btn_area">
+					<input type="hidden" name="m" value="service"/>
+			        <input type="hidden" name="token_version_id" value="${token_version_id }"/>
+			        <input type="hidden" name="enc_data" value="${enc_data }"/>
+			        <input type="hidden" name="integrity_value" value="${integrity_value }"/>
+					<a href="javascript:fnPopup();" class="el_btn frm_btn blue">인증하기</a>
+				</div>
+			</div>
+		</form>
 
 		<!-- footer -->
 		<footer id="footer" class="ly_footer">

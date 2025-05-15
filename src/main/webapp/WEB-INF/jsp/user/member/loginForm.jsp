@@ -17,7 +17,24 @@
 <link href="${pageContext.request.contextPath }/_assets/user/css/sub.css" rel="stylesheet" type="text/css" />
 <link href="${pageContext.request.contextPath }/_assets/user/css/member.css" rel="stylesheet" type="text/css" />
 <script src="${pageContext.request.contextPath}/_assets/user/js/jquery-3.6.0.min.js"></script>
+<script src="${pageContext.request.contextPath}/_assets/user/js/jquery.nice-select.min.js"></script>
 </head>
+<script>
+window.name="Parent_window";
+var popupWindow = null;
+function fnPopup(){
+	popupWindow = window.open('', 'popupChk', 'width=480, height=812, top=100, fullscreen=no, menubar=no, status=no, toolbar=no,titlebar=yes, location=no, scrollbar=no');
+    document.form_chk.action = "https://nice.checkplus.co.kr/CheckPlusSafeModel/checkplus.cb";
+    document.form_chk.target = "popupChk";
+    document.form_chk.submit();
+}
+function closePopup() {
+    if (popupWindow) {
+        popupWindow.close();
+        location.href="/esoomCms/user/joinForm4.do"
+    }
+}
+</script>
 <body class="page-sub"> <!-- 서브에서 page-sub 클래스 추가 -->
 	<div id="wrap">
 		<!-- skip navigation -->
@@ -163,8 +180,8 @@
 										<p class="desc">본인 명의의 휴대폰으로 인증</p>
 									</div>
 									<div class="box_footer">
-										<div class="btn_area inline">
-											<a href="#" class="el_btn btn2 line_point thin lg w200" target="_blank">휴대폰 본인인증</a>
+										<div class="btn_area inline"> 
+											<a href="javascript:fnPopup();" class="el_btn btn2 line_point thin lg w200">휴대폰 본인인증</a>
 										</div>
 										<p class="tel">문의 : 1577-1006</p>
 									</div>
@@ -361,7 +378,32 @@
 					</div>
 				</div>
 			</div>
+			<form name="form_chk" method="post">
+							<div class="btn_area member_age_select mt18">
+								<div class="frm_radio_age">
+									<div class="box">
+										<p class="tit">만 14세 <strong>이상</strong></p>
+										<div class="icon">
+											<span class="el_ico">
+												<svg viewBox="0 0 100 100"><use href="#member_14over"></use></svg>
+											</span>
+										</div>
+									</div>
+								</div>
+							</div>
 
+							<p class="el_desc_lg mt40">※ 만 14세 이상부터 회원가입이 가능합니다.</p>
+
+							<div class="member_footer type2 mt40">
+								<div class="btn_area">
+									<input type="hidden" name="m" value="service"/>
+							        <input type="hidden" name="token_version_id" value="${token_version_id }"/>
+							        <input type="hidden" name="enc_data" value="${enc_data }"/>
+							        <input type="hidden" name="integrity_value" value="${integrity_value }"/>
+									<a href="javascript:fnPopup();" class="el_btn frm_btn blue">인증하기</a>
+								</div>
+							</div>
+						</form>
 			<a href="#wrap" class="el_btn gotoTop" aria-label="맨 위로 이동">
 				<c-icon name="arrUp" class="arr"></c-icon>
 			</a>

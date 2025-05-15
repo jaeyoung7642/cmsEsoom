@@ -109,61 +109,52 @@
 					</section>
 
 					<ol class="member_steps">
-						<li class="item" aria-current="step"><span class="dot"></span><span class="txt">가입인증</span></li>
-						<li class="item"><span class="dot"></span><span class="txt">약관동의</span></li>
+						<li class="item" aria-current="dot"><span class="step"><span class="dot"></span></span><span class="txt">약관동의</span></li>
+						<li class="item"><span class="dot"></span><span class="txt">가입인증</span></li>
 						<li class="item"><span class="dot"></span><span class="txt">회원정보입력</span></li>
 						<li class="item"><span class="dot"></span><span class="txt">가입완료</span></li>
 					</ol>
 
 					<section class="member_content">
-						<article class="row">
-							<h4 class="el_heading lv1 mb_sm">일반회원</h4>
-							<p class="txt_16-14 desc_dot"><strong class="txt_blue"><c-icon name="dot" size="8"></c-icon> 크롬 및 엣지에서 본인인증서비스 시 오류가 발생하오니 인터넷 익스플로러(버전8 이상)를 이용해 주시기 바랍니다.</strong></p>
-							
-							
-							<div class="member_mbAuth_box">
-								<!-- 아이핀 인증 -->
-								<div class="mbAuth_box bl_box line">
-									<div class="box_header">
-										<h5 class="tit lg">아이핀 인증</h5>
-										<p class="desc2">주민등록번호 대체수단인 아이핀 인증</p>
-									</div>
-									<div class="box_img" style="--imgH: 77.7778%;">
-										<img src="../images/img/member_ipinAuth_img.svg" alt="">
-									</div>
-									<div class="box_footer">
-										<div class="btn_area inline">
-											<a href="#" class="el_btn btn2 point thin md w180" target="_blank" rel="noreferrer">I-PIN 본인인증<span class="blind">(새창열림)</span></a>
-										</div>
-										<p class="tel">SCI평가정보 문의 : 1577-1006</p>
-									</div>
-								</div>
-								<!-- //아이핀 인증 -->
-	
-								<!-- 휴대폰 인증 -->
-								<div class="mbAuth_box bl_box line">
-									<div class="box_header">
-										<h5 class="tit lg">휴대폰 인증</h5>
-										<p class="desc2">본인 명의의 휴대폰으로 인증</p>
-									</div>
-									<div class="box_img" style="--imgH: 86.6667%;">
-										<img src="../images/img/member_phoneAuth_img.svg" alt="">
-									</div>
-									<div class="box_footer">
-										<div class="btn_area inline">
-											<a href="<c:url value='/user/joinForm3.do'/>" class="el_btn btn2 point thin md w180" target="_blank" rel="noreferrer">휴대폰 본인인증<span class="blind">(새창열림)</span></a>
-										</div>
-										<p class="tel">문의 : 1577-1006</p>
-									</div>
-								</div>
-								<!-- //휴대폰 인증 -->
-							</div>
-	
-							<p class="txt_16 txt_inst mt22"><strong class="txt_point">※문의전화 : SCI평가정보(주) 1577-1006</strong></p>
-							<p class="txt_16-14">이숨시는 사용자의 개인정보 보호를 위해 최선을 다하고 있습니다.<br class="m_hide">
-								귀하의 개인정보는 동의없이 공개되지 않으며, <span class="txt_point">개인정보보호정책</span>에 의해 보호받고 있습니다.</p>
-						</article>
+						<form class="agree_form" data-forms="checkAll">
+							<article class="row">
+								<h4 class="el_heading lv1 mb_md">통합회원 이용약관(필수사항)</h4>
+								<div class="terms_area txt_preline scrollbar_sm"><div data-include="../inc/agree_01.html"></div></div>
+								<label class="frm_checkbox type2">
+									<input type="checkbox" aria-label="통합회원 이용약관 동의" class="check_each" required>
+									<span class="txt">이용약관에 동의합니다 (필수)</span>
+								</label>
+							</article>
 
+							<article class="row">
+								<h4 class="el_heading lv1 mb_md">개인정보 수집·이용 동의(필수사항)</h4>
+								<div class="terms_area txt_preline scrollbar_sm"><div data-include="../inc/agree_02.html"></div></div>
+								<label class="frm_checkbox type2">
+									<input type="checkbox" aria-label="개인정보 수집·이용 동의" class="check_each" required>
+									<span class="txt">개인정보 수집ㆍ이용 동의 (필수)</span>
+								</label>
+							</article>
+
+							<article class="row">
+								<h4 class="el_heading lv1 mb_md">수집한 개인정보 제3자 제공 동의(필수사항)</h4>
+								<div class="terms_area txt_preline scrollbar_sm"><div data-include="../inc/agree_03.html"></div></div>
+								<label class="frm_checkbox type2">
+									<input type="checkbox" aria-label="수집한 개인정보 제3자 제공 동의" class="check_each" required>
+									<span class="txt">수집한 개인정보의 제3자 제공 동의 (필수)</span>
+								</label>
+							</article>
+
+							<div class="row line txt_ct">
+								<label class="frm_checkbox type2">
+									<input type="checkbox" aria-label="전체 필수 약관 및 이용제공에 동의" class="check_all">
+									<span class="txt">전체 필수 약관 및 이용제공에 동의합니다.</span>
+								</label>
+
+								<div class="btn_area mt33">
+									<a href="<c:url value='/user/joinForm3.do'/>" class="el_btn btn2 point w140">다음</a>
+								</div>
+							</div>
+						</form>
 					</section>
 					
 

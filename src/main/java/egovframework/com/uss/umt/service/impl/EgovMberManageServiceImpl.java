@@ -183,5 +183,10 @@ public class EgovMberManageServiceImpl extends EgovAbstractServiceImpl implement
 	public void updateLockIncorrect(MberManageVO mberManageVO) throws Exception {
 		mberManageDAO.updateLockIncorrect(mberManageVO);
 	}
+	
+	@Override
+	public int duplicateDi(String di) throws Exception {
+		return mberManageDAO.duplicateDi(di);
+	}
 
 }

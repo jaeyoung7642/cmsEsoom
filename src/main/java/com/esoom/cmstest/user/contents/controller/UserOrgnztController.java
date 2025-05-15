@@ -46,21 +46,21 @@ public class UserOrgnztController {
     public String orgChart(@ModelAttribute("deptManageVO") DeptManageVO deptManageVO, ModelMap model) throws Exception {
     	
     	//type 100
-    	model.addAttribute("orgChart100", egovDeptManageService.selectOrganChart("100"));
+    	model.addAttribute("orgChart100", egovDeptManageService.selectOrganChart("ORG100"));
     	//type 101
-    	model.addAttribute("orgChart101", egovDeptManageService.selectOrganChart("101"));
+    	model.addAttribute("orgChart101", egovDeptManageService.selectOrganChart("ORG101"));
     	//type 110
-    	model.addAttribute("orgChart110", egovDeptManageService.selectOrganChart("110"));
+    	model.addAttribute("orgChart110", egovDeptManageService.selectOrganChart("ORG110"));
     	//type 111
-    	model.addAttribute("orgChart111", egovDeptManageService.selectOrganChart("111"));
+    	model.addAttribute("orgChart111", egovDeptManageService.selectOrganChart("ORG111"));
     	//type 200
-    	model.addAttribute("orgChart200", egovDeptManageService.selectOrganChart("200"));
+    	model.addAttribute("orgChart200", egovDeptManageService.selectOrganChart("ORG200"));
     	//type 210
-    	model.addAttribute("orgChart210", egovDeptManageService.selectOrganChart("210"));
+    	model.addAttribute("orgChart210", egovDeptManageService.selectOrganChart("ORG210"));
     	//type 220
-    	model.addAttribute("orgChart220", egovDeptManageService.selectOrganChart("220"));
+    	model.addAttribute("orgChart220", egovDeptManageService.selectOrganChart("ORG220"));
     	//type 310
-    	model.addAttribute("orgChart310", egovDeptManageService.selectOrganChart("310"));
+    	model.addAttribute("orgChart310", egovDeptManageService.selectOrganChart("ORG310"));
     	
     	MenuManageVO menuVO = new MenuManageVO();
 		List<MenuManageVO> list = menuService.menuList(menuVO);

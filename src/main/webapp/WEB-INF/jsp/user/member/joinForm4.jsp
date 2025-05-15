@@ -260,8 +260,8 @@ function duplicateId2(){
 					</section>
 
 					<ol class="member_steps">
-						<li class="item"><span class="dot"></span><span class="txt">가입인증</span></li>
 						<li class="item"><span class="dot"></span><span class="txt">약관동의</span></li>
+						<li class="item"><span class="dot"></span><span class="txt">가입인증</span></li>
 						<li class="item" aria-current="step"><span class="dot"></span><span class="txt">회원정보입력</span></li>
 						<li class="item"><span class="dot"></span><span class="txt">가입완료</span></li>
 					</ol>
@@ -280,11 +280,11 @@ function duplicateId2(){
 									<tbody>
 										<tr>
 											<th scope="row">이름</th>
-											<td><input type="text" name="mberNm" value="조재영" required></td>
+											<td><input type="text" name="mberNm" value="${name}" required></td>
 										</tr>
 										<tr>
 											<th scope="row">생년월일</th>
-											<td>1990년 01월 01일</td>
+											<td>${yyyy}년 ${mm}월 ${dd}일</td>
 										</tr>
 										<tr>
 											<th scope="row">아이디 <span class="req"></span></th>
@@ -314,11 +314,9 @@ function duplicateId2(){
 											<th scope="row">휴대전화번호 <span class="req"></span></th>
 											<td>
 												<div class="frm_group frm_phone">
-													<select class="frm_select type2 select" name="areaNo" data-forms="select" aria-label="휴대전화 앞자리 선택">
-														<option value="010" selected>010</option>
-													</select>
-													<input type="number" name="middleTelno" id="middleTelno" class="frm_input input1">
-													<input type="number" name="endTelno" id="endTelno" class="frm_input input2">
+													<input type="number" name="areaNo" id="areaNo" value="${fistNum}" readonly class="frm_input input1">
+													<input type="number" name="middleTelno" id="middleTelno" value="${middleNum }" readonly class="frm_input input1">
+													<input type="number" name="endTelno" id="endTelno" value="${lastNum}" readonly class="frm_input input2">
 												</div>
 											</td>
 										</tr>
@@ -370,6 +368,12 @@ function duplicateId2(){
 									<button type="button" class="el_btn btn2 point w140" onclick="joinCheck()">확인</button>
 								</div>	
 							</article>
+							<c:if test="${gender=='1' }">
+								<input type="hidden" name="sexdstnCode" value="M">
+							</c:if>
+							<c:if test="${gender=='0' }">
+								<input type="hidden" name="sexdstnCode" value="F">
+							</c:if>
 						</form>
 					</section>
 

@@ -23,7 +23,10 @@ public class MberManageVO extends UserDefaultVO{
 
 	/** 이전비밀번호 - 비밀번호 변경시 사용*/
     private String oldPassword = "";
-
+    /**
+	 * 사용자 휴대폰인증 di
+	 */
+    private String di = "";
     /**
 	 * 사용자고유아이디
 	 */
@@ -421,5 +424,11 @@ public class MberManageVO extends UserDefaultVO{
 	public void setMberEmailAdres(String mberEmailAdres) {
 		this.mberEmailAdres = mberEmailAdres;
 	}
-
+	public String getDi() {
+		return di;
+	}
+	public void setDi(String di) {
+		this.di = di;
+	}
+	
 }

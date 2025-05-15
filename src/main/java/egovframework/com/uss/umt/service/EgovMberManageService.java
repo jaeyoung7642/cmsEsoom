@@ -97,5 +97,8 @@ public interface EgovMberManageService {
 	 * @throws Exception
 	 */
 	public void updateLockIncorrect(MberManageVO mberManageVO) throws Exception;
+	
+	
+	public int duplicateDi(String di)throws Exception;
 
 }
