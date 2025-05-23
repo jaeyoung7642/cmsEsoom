@@ -27,4 +27,5 @@
 		</property>
 	</bean>
 	
+	<bean id="egovBbsStatsScheduling" class="egovframework.com.sts.bst.service.EgovBbsStatsScheduling" />
 </beans>

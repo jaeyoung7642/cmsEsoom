@@ -139,25 +139,25 @@ public class EgovLoginController {
 	@RequestMapping(value = "/uat/uia/actionLogin.do")
 	public String actionLogin(@ModelAttribute("loginVO") LoginVO loginVO, HttpServletRequest request, ModelMap model) throws Exception {
 		System.out.println("/uat/uia/actionLogin.do");
-//		// 1. 로그인인증제한 활성화시 
-//		if( egovLoginConfig.isLock()){
-//		    Map<?,?> mapLockUserInfo = (EgovMap)loginService.selectLoginIncorrect(loginVO);
-//		    if(mapLockUserInfo != null){			
-//				//2.1 로그인인증제한 처리
-//				String sLoginIncorrectCode = loginService.processLoginIncorrect(loginVO, mapLockUserInfo);
-//				if(!sLoginIncorrectCode.equals("E")){
-//					if(sLoginIncorrectCode.equals("L")){
+		// 1. 로그인인증제한 활성화시 
+		if( egovLoginConfig.isLock()){
+		    Map<?,?> mapLockUserInfo = (EgovMap)loginService.selectLoginIncorrect(loginVO);
+		    if(mapLockUserInfo != null){			
+				//2.1 로그인인증제한 처리
+				String sLoginIncorrectCode = loginService.processLoginIncorrect(loginVO, mapLockUserInfo);
+				if(!sLoginIncorrectCode.equals("E")){
+					if(sLoginIncorrectCode.equals("L")){
 //						model.addAttribute("message", egovMessageSource.getMessageArgs("fail.common.loginIncorrect", new Object[] {egovLoginConfig.getLockCount(),request.getLocale()}));
-//					}else if(sLoginIncorrectCode.equals("C")){
+					}else if(sLoginIncorrectCode.equals("C")){
 //						model.addAttribute("message", egovMessageSource.getMessage("fail.common.login",request.getLocale()));
-//					}
-//					return "egovframework/com/uat/uia/EgovLoginUsr";
-//				}
-//		    }else{
+					}
+					return "login/EgovLoginUsr";
+				}
+		    }else{
 //		    	model.addAttribute("message", egovMessageSource.getMessage("fail.common.login",request.getLocale()));
-//		    	return "egovframework/com/uat/uia/EgovLoginUsr";
-//		    }
-//		}
+		    	return "login/EgovLoginUsr";
+		    }
+		}
 		System.out.println("1");
 		// 2. 로그인 처리
 		LoginVO resultVO = loginService.actionLogin(loginVO);
@@ -175,7 +175,7 @@ public class EgovLoginController {
 
 		} else {
 			model.addAttribute("message", "");
-			return "egovframework/com/uat/uia/EgovLoginUsr";
+			return "login/EgovLoginUsr";
 		}
 	}
 
