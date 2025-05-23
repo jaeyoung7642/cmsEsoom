@@ -2,6 +2,7 @@ package com.esoom.cmstest.contents.service.impl;
 
 import java.util.List;
 
+import org.egovframe.rte.psl.dataaccess.EgovAbstractMapper;
 import org.springframework.stereotype.Repository;
 
 import com.esoom.cmstest.common.ConfigVO;
@@ -12,7 +13,7 @@ import egovframework.com.cop.bbs.service.Board;
 
 
 @Repository("ContentsDAO")
-public class ContentsDAO extends EgovComAbstractDAO {
+public class ContentsDAO extends EgovAbstractMapper {
 
 	public List<?> seoList(ConfigVO configVO) {
 		return list("ContentsSQL.seoList", configVO);
