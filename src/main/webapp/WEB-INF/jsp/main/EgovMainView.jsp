@@ -58,7 +58,11 @@ function chk_all(val) {
 													<div>
 														<h4 class="fw-bold">Velzon - Admin & Dashboard</h4>
 														<div class="hstack gap-3 flex-wrap">
-															<div><i class="ri-building-line align-bottom me-1"></i> Themesbrand</div>
+															<div>
+																<a href="/esoomCms/user/userMain.do" target="_blank">
+																	<i class="ri-building-line align-bottom me-1"></i> 사이트 바로가기
+																</a>
+															</div>
 															<div class="vr"></div>
 															<div>Create Date : <span class="fw-medium">2025-01-01</span></div>
 															<div class="vr"></div>
@@ -66,8 +70,8 @@ function chk_all(val) {
 															
 															<div>Due Date : <span class="fw-medium"><fmt:formatDate value="${today}" pattern="yyyy-MM-dd" /></span></div>
 															<div class="vr"></div>
-															<div class="badge rounded-pill bg-info fs-12">New</div>
-															<div class="badge rounded-pill bg-danger fs-12">High</div>
+															<!-- <div class="badge rounded-pill bg-info fs-12">New</div>
+															<div class="badge rounded-pill bg-danger fs-12">High</div> -->
 														</div>
 													</div>
 												</div>
@@ -91,65 +95,65 @@ function chk_all(val) {
                                 <div class="row row-cols-xxl-5 row-cols-md-3 row-cols-1 g-0">
                                     <div class="col">
                                         <div class="py-4 px-3">
-                                            <h5 class="text-muted text-uppercase fs-13">Campaign Sent <i class="ri-arrow-up-circle-line text-success fs-18 float-end align-middle"></i></h5>
+                                            <h5 class="text-muted text-uppercase fs-13">전체 회원수 </h5>
                                             <div class="d-flex align-items-center">
                                                 <div class="flex-shrink-0">
-                                                    <i class="ri-space-ship-line display-6 text-muted cfs-22"></i>
+                                                    <i class="ri-group-line display-6 text-muted cfs-22"></i>
                                                 </div>
                                                 <div class="flex-grow-1 ms-3">
-                                                    <h2 class="mb-0 cfs-22"><span class="counter-value" data-target="0">0</span></h2>
+                                                    <h2 class="mb-0 cfs-22"><span class="counter-value" data-target="${totalMberCnt }">0</span></h2>
                                                 </div>
                                             </div>
                                         </div>
                                     </div><!-- end col -->
                                     <div class="col">
                                         <div class="mt-3 mt-md-0 py-4 px-3">
-                                            <h5 class="text-muted text-uppercase fs-13">Annual Profit <i class="ri-arrow-up-circle-line text-success fs-18 float-end align-middle"></i></h5>
+                                            <h5 class="text-muted text-uppercase fs-13">신규 회원수 </h5>
                                             <div class="d-flex align-items-center">
                                                 <div class="flex-shrink-0">
-                                                    <i class="ri-exchange-dollar-line display-6 text-muted cfs-22"></i>
+                                                    <i class="ri-user-add-line display-6 text-muted cfs-22"></i>
                                                 </div>
                                                 <div class="flex-grow-1 ms-3">
-                                                    <h2 class="mb-0 cfs-22">$<span class="counter-value" data-target="489.4">0</span>k</h2>
+                                                    <h2 class="mb-0 cfs-22"><span class="counter-value" data-target="${recentMberCnt }">0</span></h2>
                                                 </div>
                                             </div>
                                         </div>
                                     </div><!-- end col -->
                                     <div class="col">
                                         <div class="mt-3 mt-md-0 py-4 px-3">
-                                            <h5 class="text-muted text-uppercase fs-13">Lead Conversation <i class="ri-arrow-down-circle-line text-danger fs-18 float-end align-middle"></i></h5>
+                                            <h5 class="text-muted text-uppercase fs-13">어제 방문자 수</h5>
                                             <div class="d-flex align-items-center">
                                                 <div class="flex-shrink-0">
                                                     <i class="ri-pulse-line display-6 text-muted cfs-22"></i>
                                                 </div>
                                                 <div class="flex-grow-1 ms-3">
-                                                    <h2 class="mb-0 cfs-22"><span class="counter-value" data-target="32.89">0</span>%</h2>
+                                                    <h2 class="mb-0 cfs-22"><span class="counter-value" data-target="${recentVisitCnt }">0</span></h2>
                                                 </div>
                                             </div>
                                         </div>
                                     </div><!-- end col -->
                                     <div class="col">
                                         <div class="mt-3 mt-lg-0 py-4 px-3">
-                                            <h5 class="text-muted text-uppercase fs-13">Daily Average Income <i class="ri-arrow-up-circle-line text-success fs-18 float-end align-middle"></i></h5>
+                                            <h5 class="text-muted text-uppercase fs-13">전체 게시물</h5>
                                             <div class="d-flex align-items-center">
                                                 <div class="flex-shrink-0">
-                                                    <i class="ri-trophy-line display-6 text-muted cfs-22"></i>
+                                                    <i class="ri-archive-drawer-line display-6 text-muted cfs-22"></i>
                                                 </div>
                                                 <div class="flex-grow-1 ms-3">
-                                                    <h2 class="mb-0 cfs-22">$<span class="counter-value" data-target="1596.5">0</span></h2>
+                                                    <h2 class="mb-0 cfs-22"><span class="counter-value" data-target="${totalArticleCnt}">0</span></h2>
                                                 </div>
                                             </div>
                                         </div>
                                     </div><!-- end col -->
                                     <div class="col">
                                         <div class="mt-3 mt-lg-0 py-4 px-3">
-                                            <h5 class="text-muted text-uppercase fs-13">Annual Deals <i class="ri-arrow-down-circle-line text-danger fs-18 float-end align-middle"></i></h5>
+                                            <h5 class="text-muted text-uppercase fs-13">신규 게시물</h5>
                                             <div class="d-flex align-items-center">
                                                 <div class="flex-shrink-0">
-                                                    <i class="ri-service-line display-6 text-muted cfs-22"></i>
+                                                    <i class="ri-message-2-line display-6 text-muted cfs-22"></i>
                                                 </div>
                                                 <div class="flex-grow-1 ms-3">
-                                                    <h2 class="mb-0 cfs-22"><span class="counter-value" data-target="2659">0</span></h2>
+                                                    <h2 class="mb-0 cfs-22"><span class="counter-value" data-target="${recentArticleCnt}">0</span></h2>
                                                 </div>
                                             </div>
                                         </div>
@@ -164,77 +168,30 @@ function chk_all(val) {
                     <div class="col-xxl-6">
                         <div class="card card-height-100">
                             <div class="card-header align-items-center d-flex">
-                                <h4 class="card-title mb-0 flex-grow-1">Balance Overview</h4>
+                                <h4 class="card-title mb-0 flex-grow-1">최근 게시물</h4>
                             </div><!-- end card header -->
                             <div class="card-body">
                                 <div class="table-responsive table-card">
                                     <table class="table table-borderless table-hover table-nowrap align-middle mb-0">
                                         <thead class="table-light">
                                             <tr class="text-muted">
-                                                <th scope="col">Name</th>
-                                                <th scope="col" style="width: 20%;">Last Contacted</th>
-                                                <th scope="col">Sales Representative</th>
-                                                <th scope="col" style="width: 16%;">Status</th>
-                                                <th scope="col" style="width: 12%;">Deal Value</th>
+                                                <th scope="col">게시판</th>
+                                                <th scope="col">제목</th>
+                                                <th scope="col">작성일</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                        	<c:forEach items="${recentArticleList}" var="bbs" varStatus="status">
                                             <tr>
-                                                <td>Absternet LLC</td>
-                                                <td>Sep 20, 2021</td>
+                                                <td><c:out value='${bbs.bbsNm}'/></td>
                                                 <td>
-                                                    <a href="#javascript: void(0);" class="text-body fw-medium">Donald Risher</a>
+                                                    <a href="#javascript: void(0);" class="text-body fw-medium"><c:out value='${bbs.nttSj}'/></a>
                                                 </td>
                                                 <td>
-                                                	<span class="badge bg-success-subtle text-success p-2">Deal Won</span></td>
-                                                <td>
-                                                    <div class="text-nowrap">$100.1K</div>
+                                                    <c:out value='${bbs.frstRegisterPnttm}'/>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>Raitech Soft</td>
-                                                <td>Sep 23, 2021</td>
-                                                <td>
-                                                    <a href="#javascript: void(0);" class="text-body fw-medium">Sofia Cunha</a>
-                                                </td>
-                                                <td><span class="badge bg-warning-subtle text-warning p-2">Intro Call</span></td>
-                                                <td>
-                                                    <div class="text-nowrap">$150K</div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>William PVT</td>
-                                                <td>Sep 27, 2021</td>
-                                                <td>
-                                                    <a href="#javascript: void(0);" class="text-body fw-medium">Luis Rocha</a>
-                                                </td>
-                                                <td><span class="badge bg-danger-subtle text-danger p-2">Stuck</span></td>
-                                                <td>
-                                                    <div class="text-nowrap">$78.18K</div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Loiusee LLP</td>
-                                                <td>Sep 30, 2021</td>
-                                                <td>
-                                                    <a href="#javascript: void(0);" class="text-body fw-medium">Vitoria Rodrigues</a>
-                                                </td>
-                                                <td><span class="badge bg-success-subtle text-success p-2">Deal Won</span></td>
-                                                <td>
-                                                    <div class="text-nowrap">$180K</div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Apple Inc.</td>
-                                                <td>Sep 30, 2021</td>
-                                                <td>
-                                                    <a href="#javascript: void(0);" class="text-body fw-medium">Vitoria Rodrigues</a>
-                                                </td>
-                                                <td><span class="badge bg-info-subtle text-info p-2">New Lead</span></td>
-                                                <td>
-                                                    <div class="text-nowrap">$78.9K</div>
-                                                </td>
-                                            </tr>
+                                            </c:forEach>
                                         </tbody><!-- end tbody -->
                                     </table><!-- end table -->
                                 </div><!-- end table responsive -->
@@ -245,10 +202,10 @@ function chk_all(val) {
                     <div class="col-xxl-6">
                         <div class="card card-height-100">
                             <div class="card-header align-items-center d-flex">
-                                <h4 class="card-title mb-0 flex-grow-1">Balance Overview</h4>
+                                <h4 class="card-title mb-0 flex-grow-1">방문자 현황</h4>
                             </div><!-- end card header -->
                             <div class="card-body px-0">
-                                <ul class="list-inline main-chart text-center mb-0">
+                               <!--  <ul class="list-inline main-chart text-center mb-0">
                                     <li class="list-inline-item chart-border-left me-0 border-0">
                                         <h4 class="text-primary">$584k <span class="text-muted d-inline-block fs-13 align-middle ms-2">Revenue</span></h4>
                                     </li>
@@ -260,9 +217,9 @@ function chk_all(val) {
                                     <li class="list-inline-item chart-border-left me-0">
                                         <h4><span data-plugin="counterup">3.6</span>%<span class="text-muted d-inline-block fs-13 align-middle ms-2">Profit Ratio</span></h4>
                                     </li>
-                                </ul>
+                                </ul> -->
 
-                                <div id="revenue-expenses-charts" data-colors='["--vz-success", "--vz-danger"]' data-colors-minimal='["--vz-primary", "--vz-info"]' data-colors-interactive='["--vz-info", "--vz-primary"]' data-colors-galaxy='["--vz-primary", "--vz-secondary"]' data-colors-classic='["--vz-primary", "--vz-secondary"]' class="apex-charts" dir="ltr"></div>
+                                <div id="visit-chart" data-colors='["--vz-success", "--vz-danger"]' data-colors-minimal='["--vz-primary", "--vz-info"]' data-colors-interactive='["--vz-info", "--vz-primary"]' data-colors-galaxy='["--vz-primary", "--vz-secondary"]' data-colors-classic='["--vz-primary", "--vz-secondary"]' class="apex-charts" dir="ltr"></div>
                             </div>
                         </div><!-- end card -->
                     </div><!-- end col -->
@@ -386,6 +343,39 @@ $(document).ready(function() {
 
 <!-- App js -->
 <script src="${pageContext.request.contextPath}/_assets/js/app.js"></script>
+<script>
+//chart 20250508
+var options = {
+	series: [{
+		name: '방문자수',
+		data: [<c:forEach items="${visitStat}" var="visit" varStatus="status">${visit.count},</c:forEach>]
+	}],
+	chart: {
+		type: 'area',
+		toolbar: false
+	},
+	dataLabels: {
+		enabled: false
+	},
+	stroke: {
+		curve: 'smooth',width:2
+	},
+	xaxis: {
+		categories: [<c:forEach items="${visitStat}" var="visit" varStatus="status">'${visit.date}',</c:forEach>]
+	},
+	colors: getChartColorsArray("visit-chart"),
+	tooltip: {
+		x: {
+			format: 'dd/MM/yy HH:mm'
+		},
+	},
+};
+
+var chart = new ApexCharts(document.querySelector("#visit-chart"), options);
+chart.render();
+
+</script>
+
 </body>
 
 </html>

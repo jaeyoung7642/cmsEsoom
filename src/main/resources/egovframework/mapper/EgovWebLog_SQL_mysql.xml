@@ -132,4 +132,16 @@
 		]]>
 	</delete>
 	
+	<select id="selectWebLogRecentCnt" resultType="int">
+			SELECT IFNULL(SUM(RDCNT),0)
+			FROM COMTSWEBLOGSUMMARY
+			WHERE OCCRRNC_DE = DATE_FORMAT(ADDDATE(SYSDATE(), -1), '%Y%m%d')
+	</select>
+	
+	<select id="selectWebLogCntByDay" parameterType="string" resultType="int">
+			SELECT IFNULL(SUM(RDCNT),0)
+			FROM COMTSWEBLOGSUMMARY
+			WHERE OCCRRNC_DE = #{_parameter}
+	</select>
+	
 </mapper>

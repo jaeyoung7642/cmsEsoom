@@ -29,6 +29,7 @@
 		<result property="secretAt" column="SECRET_AT"/>
 		<result property="commentCo" column="COMMENT_CO"/>
 		<result property="ytubeSrc" column="YTUBE_SRC" />
+		<result property="bbsNm" column="BBS_NM" />
 	</resultMap>
 
 	<resultMap id="boardDetail" type="egovframework.com.cop.bbs.service.BoardVO">
@@ -630,6 +631,41 @@
 				AND a.USE_AT = 'Y'
 				ORDER BY a.SORT_ORDR DESC, NTT_NO ASC
 						
+	</select>
+	
+	<select id="selectArticleTotalCnt" resultType="java.lang.Integer">
+			SELECT
+				COUNT(*)
+			FROM COMTNBBS a
+			WHERE a.USE_AT = 'Y'
+	</select>
+	
+	<select id="selectArticleRecentCnt" resultType="java.lang.Integer">
+			SELECT
+				COUNT(*)
+			FROM COMTNBBS a
+			WHERE a.USE_AT = 'Y'
+			AND a.FRST_REGIST_PNTTM >= DATE_ADD(NOW(), INTERVAL -1 DAY)
+	</select>
+	
+	<select id="selectArticleRecentList" resultMap="boardList">
+			SELECT
+				a.NTT_ID, a.NTT_SJ, a.NTT_CN, a.FRST_REGISTER_ID, IFNULL(b.USER_NM, a.NTCR_NM) as FRST_REGISTER_NM,
+				DATE_FORMAT(a.FRST_REGIST_PNTTM, '%Y-%m-%d') as FRST_REGIST_PNTTM,
+				a.RDCNT, a.PARNTSCTT_NO, a.ANSWER_AT, a.ANSWER_LC, a.USE_AT, a.ATCH_FILE_ID,a.THUM_FILE_ID,
+				a.BBS_ID, c.BBS_NM, a.NTCE_BGNDE, a.NTCE_ENDDE, a.SJ_BOLD_AT, a.NOTICE_AT, a.SECRET_AT, a.YTUBE_SRC
+			FROM
+				COMTNBBS a
+			LEFT OUTER JOIN 
+				COMVNUSERMASTER b
+			ON a.FRST_REGISTER_ID = b.ESNTL_ID 
+			LEFT OUTER JOIN
+				COMTNBBSMASTER c
+			ON a.BBS_ID = c.BBS_ID
+			WHERE
+				a.USE_AT = 'Y'
+			ORDER BY a.FRST_REGIST_PNTTM DESC
+			LIMIT 7 OFFSET 0
 	</select>
 	
 </mapper>

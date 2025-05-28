@@ -106,90 +106,83 @@ function fncShowMessg(){
 							<div class="card-body">
 
 <form:form modelAttribute="cmmnCodeVO" action="${pageContext.request.contextPath}/sym/ccm/cca/RegistCcmCmmnCode.do" method="post" onSubmit="fn_egov_regist_code(document.forms[0]); return false;"> 
-<div class="wTableFrm">
-	<!-- 타이틀 -->
-	<h2>${pageTitle} <spring:message code="title.create" /></h2>
-	
-	<!-- 등록폼 -->
-	<table class="wTable" summary="<spring:message code="common.summary.list" arguments="${pageTitle}" />">
-	<caption>${pageTitle } <spring:message code="title.create" /></caption>
-	<colgroup>
-		<col style="width: 20%;"><col style="width: ;">
-	</colgroup>
-	<tbody>
-		<!-- 입력/선택 -->
-		<c:set var="inputTxt"><spring:message code="input.input" /></c:set>
-		<c:set var="inputSelect"><spring:message code="input.select"/></c:set>
-		<c:set var="inputYes"><spring:message code="input.yes" /></c:set>
-		<c:set var="inputNo"><spring:message code="input.no" /></c:set>
-		<!-- 분류코드명 -->
-		<c:set var="title"><spring:message code="comSymCcmCca.cmmnCodeVO.clCodeNm"/> </c:set>
-		<tr>
-			<th><label for="clCode">${title} <span class="pilsu">*</span></label></th>
-			<td class="left">
-			    <form:select path="clCode" title="${title} ${inputSelect }" >
-			    			<form:option value="" label="${inputSelect}"/>
- 							<form:options items="${clCodeList}"  itemValue="clCode" itemLabel="clCodeNm"/>
-				</form:select>
-   				<div><form:errors path="clCode" cssClass="error" /></div>     
-			</td>
-		</tr>
-				
-		<!-- 코드ID -->
-		<c:set var="title"><spring:message code="comSymCcmCca.cmmnCodeVO.codeId"/> </c:set>
-		<tr>
-			<th><label for="codeId">${title} <span class="pilsu">*</span></label></th>
-			<td class="left">
-			    <form:input path="codeId" title="${title} ${inputTxt}" size="70" maxlength="70" />
-   				<div><form:errors path="codeId" cssClass="error" /></div>     
-			</td>
-		</tr>
-
-		<!-- 코드ID명 -->
-		<c:set var="title"><spring:message code="comSymCcmCca.cmmnCodeVO.codeIdNm"/> </c:set>
-		<tr>
-			<th><label for="codeIdNm">${title} <span class="pilsu">*</span></label></th>
-			<td class="left">
-			    <form:input path="codeIdNm" title="${title} ${inputTxt}" size="70" maxlength="70" />
-   				<div><form:errors path="codeIdNm" cssClass="error" /></div>     
-			</td>
-		</tr>
+	<div class="row align-items-center g-3 mb-3">
+		<div class="col-xxl-12">
+			<div class="row">
+				<!-- 입력 -->
+				<c:set var="inputTxt"><spring:message code="input.input" /></c:set>
+				<c:set var="inputSelect"><spring:message code="input.select"/></c:set>
+				<c:set var="inputYes"><spring:message code="input.yes" /></c:set>
+				<c:set var="inputNo"><spring:message code="input.no" /></c:set>
+				<!-- 분류코드 -->
+				<c:set var="title"><spring:message code="comSymCcmCca.cmmnCodeVO.clCodeNm"/> </c:set>
+				<label for="codeId" class="col-sm-2 col-form-label">${title} <span class="pilsu">*</span></label>
+				<div class="col-sm-10">
+					<form:select path="clCode" title="${title} ${inputSelect }" class="form-select">
+			    		<form:option value="" label="${inputSelect}"/>
+ 						<form:options items="${clCodeList}"  itemValue="clCode" itemLabel="clCodeNm"/>
+					</form:select>
+   					<div><form:errors path="clCode" cssClass="error" /></div>    
+				</div>
+			</div>
+		</div>
+		<div class="col-xxl-12">
+			<div class="row">
+				<!-- 코드ID -->
+				<c:set var="title"><spring:message code="comSymCcmCca.cmmnCodeVO.codeId"/> </c:set>
+				<label for="codeId" class="col-sm-2 col-form-label">${title} <span class="pilsu">*</span></label>
+				<div class="col-sm-10">
+					<form:input path="codeId" title="${title} ${inputTxt}" class="form-control" />
+   					<div><form:errors path="codeId" cssClass="error" /></div>     
+				</div>
+			</div>
+		</div>
+		<div class="col-xxl-12">
+			<div class="row">
+				<!-- 코드ID명 -->
+				<c:set var="title"><spring:message code="comSymCcmCca.cmmnCodeVO.codeIdNm"/> </c:set>
+				<label for="codeIdNm" class="col-sm-2 col-form-label">${title} <span class="pilsu">*</span></label>
+				<div class="col-sm-10">
+					<form:input path="codeIdNm" title="${title} ${inputTxt}" class="form-control" />
+   					<div><form:errors path="codeIdNm" cssClass="error" /></div>     
+				</div>
+			</div>
+		</div>
+		<div class="col-xxl-12">
+			<div class="row">
+				<!-- 코드ID설명 -->
+				<c:set var="title"><spring:message code="comSymCcmCca.cmmnCodeVO.codeIdDc"/> </c:set>
+				<label for="codeIdDc" class="col-sm-2 col-form-label">${title} <span class="pilsu">*</span></label>
+				<div class="col-sm-10">
+					<form:textarea path="codeIdDc" title="${title} ${inputTxt}" class="form-control" />   
+					<div><form:errors path="codeIdDc" cssClass="error" /></div>     
+				</div>
+			</div>
+		</div>
+		<div class="col-xxl-12">
+			<div class="row">
+				<!-- 사용여부 -->
+				<c:set var="title"><spring:message code="comSymCcmCca.cmmnCodeVO.useAt"/> </c:set>
+				<label for="useAt" class="col-sm-2 col-form-label">${title} <span class="pilsu">*</span></label>
+				<div class="col-sm-10">
+					<form:select path="useAt" title="${title} ${inputTxt}" cssClass="form-select" style="width: auto;">
+						<form:option value="Y"  label=" ${inputYes}"/>
+						<form:option value="N" label=" ${inputNo}"/>
+					</form:select>
+					<div><form:errors path="useAt" cssClass="error" /></div>     
+				</div>
+			</div>
+		</div>
 		
-		<!-- 코드ID설명 -->
-		<c:set var="title"><spring:message code="comSymCcmCca.cmmnCodeVO.codeIdDc"/> </c:set>
-		<tr>
-			<th><label for="codeIdDc">${title } <span class="pilsu">*</span></label></th>
-			<td class="nopd">
-				<form:textarea path="codeIdDc" title="${title} ${inputTxt}" cols="300" rows="20" />   
-				<div><form:errors path="codeIdDc" cssClass="error" /></div>  
-			</td>
-		</tr>
+		<!-- 하단 버튼 -->
+		<div class="text-end">
+			<input type="submit" class="btn btn-primary" value="<spring:message code="button.create" />" title="<spring:message code="button.create" /> <spring:message code="input.button" />" />
+			<span class="btn_s"><a href="<c:url value='/sym/ccm/cca/SelectCcmCmmnCodeList.do' />" class="btn btn-success" title="<spring:message code="button.list" />  <spring:message code="input.button" />"><spring:message code="button.list" /></a></span>
+		</div>
 		
-		<!-- 사용여부 -->
-		<c:set var="title"><spring:message code="comSymCcmCca.cmmnCodeVO.useAt"/> </c:set>
-		<tr>
-			<th>${title } <span class="pilsu">*</span></th>
-			<td class="left">
-				<form:select path="useAt" title="${title} ${inputTxt }" cssClass="txt">
-					<form:option value="Y"  label=" ${inputYes}"/>
-					<form:option value="N" label=" ${inputNo}"/>
-				</form:select>
-				<div><form:errors path="useAt" cssClass="error" /></div>       
-			</td>
-		</tr>
-		
-	</tbody>
-	</table>
+	</div>
 
-	<!-- 하단 버튼 -->
-	<div class="btn">
-		<input type="submit" class="s_submit" value="<spring:message code="button.create" />" title="<spring:message code="button.create" /> <spring:message code="input.button" />" />
-		<span class="btn_s"><a href="<c:url value='/sym/ccm/cca/SelectCcmCmmnCodeList.do' />" title="<spring:message code="button.list" />  <spring:message code="input.button" />"><spring:message code="button.list" /></a></span>
-	</div><div style="clear:both;"></div>
-	
-</div>
-
-<input name="cmd" type="hidden" value="<c:out value='save'/>">
+	<input name="cmd" type="hidden" value="<c:out value='save'/>">
 </form:form>
 
 							</div>

@@ -83,4 +83,12 @@ public class WebLogDAO extends EgovComAbstractDAO {
 		return (Integer)selectOne("WebLog.selectWebLogInfCnt", webLog);
 	}
 
+	//대시보드용 esoom 20250502
+	public int selectWebLogRecentCnt() throws Exception{
+		return (Integer) selectOne("WebLog.selectWebLogRecentCnt");
+	}
+	public int selectWebLogCntByDay(String logDay) {
+		return (Integer) selectOne("WebLog.selectWebLogCntByDay", logDay);
+	}
+
 }

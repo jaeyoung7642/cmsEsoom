@@ -168,4 +168,17 @@ public class EgovArticleServiceImpl extends EgovAbstractServiceImpl implements E
 		return map;
 	}
 
+	@Override
+	public int selectArticleTotalCnt() {
+		return egovArticleDao.selectArticleTotalCnt();
+	}
+	@Override
+	public int selectArticleRecentCnt() {
+		return egovArticleDao.selectArticleRecentCnt();
+	}
+	@Override
+	public List<BoardVO> selectArticleRecentList() {
+		return egovArticleDao.selectArticleRecentList();
+	}
+
 }

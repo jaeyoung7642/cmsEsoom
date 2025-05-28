@@ -52,9 +52,9 @@
                             <li class="nav-item">
                                 <a href="${pageContext.request.contextPath}/sym/mnu/mpm/EgovMenuManageSelect.do" class="nav-link" data-key="t-menu-manage"> 전체메뉴관리 </a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a href="${pageContext.request.contextPath}/sym/mnu/mcm/EgovMenuCreatManageSelect.do" class="nav-link" data-key="t-menu-create-manage"> 그룹별 메뉴관리 </a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </li>
@@ -193,9 +193,6 @@
                             <li class="nav-item">
                                 <a href="${pageContext.request.contextPath}/sec/gmt/EgovGroupList.do" class="nav-link" data-key="t-member-group">회원그룹관리</a>
                             </li>
-                            <li class="nav-item">
-                                <a href="${pageContext.request.contextPath}/uat/uap/selectLoginPolicyList.do" class="nav-link" data-key="t-login-policy">사용자로그인제한</a>
-                            </li>
                         </ul>
                     </div>
                 </li>
@@ -220,9 +217,12 @@
                                         <li class="nav-item">
                                             <a href="${pageContext.request.contextPath}/sec/rgm/EgovAuthorGroupList.do" class="nav-link" data-key="t-author-group"> 권한그룹관리 </a>
                                         </li>
-                                        <li class="nav-item">
+										<li class="nav-item">
+                                			<a href="${pageContext.request.contextPath}/uat/uap/selectLoginPolicyList.do" class="nav-link" data-key="t-login-policy">사용자로그인제한</a>
+                            			</li>
+                                        <!-- <li class="nav-item">
                                             <a href="${pageContext.request.contextPath}/sec/rmt/EgovRoleList.do" class="nav-link" data-key="t-role-list"> 역할관리 </a>
-                                        </li>
+                                        </li> -->
                                     </ul>
                                 </div>
                             </li>
@@ -325,23 +325,23 @@
                                         <li class="nav-item">
                                             <a href="${pageContext.request.contextPath}/sym/ccm/cde/SelectCcmCmmnDetailCodeList.do" class="nav-link" data-key="t-cmmn-detail-code"> 공통상세코드관리 </a>
                                         </li>
-                                        <li class="nav-item">
+                                        <!-- <li class="nav-item">
                                             <a href="${pageContext.request.contextPath}/sym/ccm/adc/EgovCcmAdministCodeList.do" class="nav-link" data-key="t-admin-code"> 행정코드관리 </a>
                                         </li>
                                         <li class="nav-item">
                                             <a href="${pageContext.request.contextPath}/sym/ccm/icr/getInsttCodeRecptnList.do" class="nav-link" data-key="t-instt-code"> 기관코드수신목록 </a>
-                                        </li>
+                                        </li> -->
                                     </ul>
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link menu-link" href="${pageContext.request.contextPath}<c:out value="/user/userMain.do"/>">
                         <span data-key="t-systems">사용자페이지 메인</span>
                     </a>
-                </li>
+                </li> -->
 
             </ul>
         </div>

@@ -1,5 +1,8 @@
 package egovframework.com.sym.log.wlg.service.impl;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -93,6 +96,38 @@ public class EgovWebLogServiceImpl extends EgovAbstractServiceImpl implements
 		_map.put("resultCnt", Integer.toString(_cnt));
 
 		return _map;
+	}
+
+	//대시보드용 esoom 20250502
+	@Override
+	public int selectWebLogRecentCnt() throws Exception {
+		return webLogDAO.selectWebLogRecentCnt();		
+	}
+	public int selectWebLogCntByDay(String logDay) {
+		return webLogDAO.selectWebLogCntByDay(logDay);
+	}
+	public List<Map<String, Object>> getVisitorStats() {
+	    
+		List<LocalDate> dateList = new ArrayList<>();
+		LocalDate today = LocalDate.now();
+		for (int i = 10; i >= 1; i--) {
+		    dateList.add(today.minusDays(i));
+		}
+		
+		List<Map<String, Object>> resultList = new ArrayList<>();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+
+		for (LocalDate date : dateList) {
+			String dateStr = date.format(formatter);
+		    int count = selectWebLogCntByDay(dateStr); // yyyy-MM-dd 형식
+		    Map<String, Object> map = new HashMap<>();
+		    map.put("date", date.toString().substring(5));
+		    map.put("count", count);
+		    resultList.add(map);
+		}
+		System.out.print(resultList);
+		
+		return resultList;
 	}
 
 }

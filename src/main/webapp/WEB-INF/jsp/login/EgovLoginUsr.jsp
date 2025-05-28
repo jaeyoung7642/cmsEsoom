@@ -165,7 +165,8 @@ function fnInit() {
     
     getid(document.loginForm);
     
-    fnLoginTypeSelect("typeGnr");
+    //fnLoginTypeSelect("typeGnr");
+    fnLoginTypeSelect("typeUsr");
 
     <c:if test="${not empty fn:trim(loginMessage) &&  loginMessage ne ''}">
     alert("loginMessage:<c:out value='${loginMessage}'/>");
@@ -260,7 +261,7 @@ function fnOnepassLogin() {
                             <!-- Nav tabs -->
                             <ul id="ulLoginType" class="nav nav-tabs nav-justified nav-border-top nav-border-top-success mb-3" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-bs-toggle="tab" href="#" onclick="fnLoginTypeSelect('typeGnr');" id="typeGnr" role="tab" aria-selected="false">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#" onclick="fnLoginTypeSelect('typeGnr');" id="typeGnr" role="tab" aria-selected="false">
                                     <spring:message code="comUatUia.loginForm.GNR"/>
                                     </a>
                                 </li>
@@ -270,7 +271,7 @@ function fnOnepassLogin() {
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#" onclick="fnLoginTypeSelect('typeUsr');" id="typeUsr" role="tab" aria-selected="false">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#" onclick="fnLoginTypeSelect('typeUsr');" id="typeUsr" role="tab" aria-selected="false">
                                         <spring:message code="comUatUia.loginForm.USR"/>
                                     </a>
                                 </li>
@@ -316,7 +317,7 @@ function fnOnepassLogin() {
                                             <button class="btn btn-success w-100" type="submit" onclick="actionLogin()"><spring:message code="comUatUia.loginForm.login"/></button>
                                         </div>
 
-                                        <div class="mt-4 text-center">
+                                        <div class="mt-4 text-center" style="display:none;">
                                             <div class="signin-other-title">
                                                 <h5 class="fs-13 mb-4 title">Sign In with</h5>
                                             </div>
@@ -357,11 +358,11 @@ function fnOnepassLogin() {
 											</ul>
 										</div>
 										
-										<input name="userSe" type="hidden" value="GNR"/>
+										<input name="userSe" type="hidden" value="USR"/>
 										<input name="j_username" type="hidden"/>
                                     </form>
 									<!-- 2021.05.30, 정진오, 디지털원패스 로그인 추가 -->
-									<div style="border:2px solid #e6e6e6; margin-top:20px;">
+									<div style="border:2px solid #e6e6e6; margin-top:20px; display:none;">
 										<form id="onepassForm" name="onepassForm" method="post">
 										<input type="hidden" id="serviceType" name="serviceType"/>
 										</form>

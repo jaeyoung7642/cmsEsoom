@@ -304,7 +304,7 @@ function getNextWeek(v,t){
 						</div>
 						<div class="col-xxl-2 col-sm-4">
 							<div>
-								<button type="submit" class="btn btn-info"> <i class="ri-equalizer-fill me-1 align-bottom"></i> 검색</button>
+								<button type="submit" class="btn btn-info" onclick="fnSearch(); return false;"> <i class="ri-equalizer-fill me-1 align-bottom"></i> 검색</button>
 								<a href="#noscript" onclick="fnInitAll(); return false;" class="btn btn-soft-primary fw-medium" title="<spring:message code="button.init" />"><i class="ri-refresh-line lign-bottom me-1"></i> <spring:message code="button.init" /></a> <!-- 초기화 -->
 							</div>
 						</div>
@@ -335,8 +335,8 @@ function getNextWeek(v,t){
 						</colgroup>
 				        <c:forEach items="${userStats}" var="resultInfo" varStatus="status">
 					      <tr>
-					        <td width="10%" height="10" class="lt_text3" nowrap>${resultInfo.statsDate}</td>
-					        <td width="90%" height="10" class="ps-2">
+					        <td>${resultInfo.statsDate}</td>
+					        <td>
 							  <img src="<c:url value='/images/egovframework/com/cmm/left_bg.gif'/>" width="<c:out value='${resultInfo.statsCo * statsInfo.maxUnit}'/>" height="10" align="left" alt="">&nbsp;&nbsp;${resultInfo.statsCo}&nbsp;명
 							</td>
 					      </tr>
@@ -364,7 +364,7 @@ function getNextWeek(v,t){
 						</colgroup>
 						        <c:forEach items="${userStats}" var="resultInfo" varStatus="status">
 						        <tr>
-						          <td>${resultInfo.statsDate} &nbsp;&nbsp;&nbsp;${resultInfo.statsCo}&nbsp;명</td>
+						          <td>${resultInfo.statsDate} &nbsp;:&nbsp;&nbsp;${resultInfo.statsCo}&nbsp;명</td>
 						        </tr>
 						        </c:forEach>
 						        <c:if test="${fn:length(userStatsList) == 0}">

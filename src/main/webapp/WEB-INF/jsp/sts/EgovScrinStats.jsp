@@ -215,12 +215,12 @@ function getNextWeek(v,t){
 								</select>
 							</div>
 						</div>
-						<div class="col-xxl-1 col-lg-1 col-sm-3">
+						<!-- <div class="col-xxl-1 col-lg-1 col-sm-3">
 							<div>
 								<button type="submit" class="btn btn-info w-100"> <i class="ri-equalizer-fill me-1 align-bottom"></i> 검색</button>
 							</div>
-						</div>
-						<div class="col-xxl-1 col-lg-1 col-sm-3">
+						</div> -->
+						<div class="col-xxl-2 col-lg-2 col-sm-6">
 							<div>
 								<button type="button" class="btn btn-soft-primary fw-medium" onclick="fnInitAll(); return false;"><i class="ri-refresh-line lign-bottom me-1"></i> 초기화</button>
 							</div>
@@ -298,9 +298,9 @@ function getNextWeek(v,t){
 							</colgroup>			        
 			        		<c:forEach items="${scrinStats}" var="resultInfo" varStatus="status">
 				      		<tr>
-				        		<td width="50" height="10" class="lt_text3" nowrap>${resultInfo.statsDate}</td>
-				        		<td width="350" height="10" class="ps-2">
-						  			<img src="<c:url value='/images/egovframework/com/cmm/left_bg.gif' />" width="<c:out value='${resultInfo.statsCo * statsInfo.maxUnit}' />" height="10" align="left" alt="">&nbsp;&nbsp;${resultInfo.statsCo}&nbsp;<spring:message code="comStsSst.scrinStats.results.unit"/> <!-- 회 -->
+				        		<td height="10" class="lt_text3" nowrap>${resultInfo.statsDate}</td>
+				        		<td height="10" class="ps-2">
+						  			<img src="<c:url value='/images/egovframework/com/cmm/left_bg.gif' />" width="<c:out value='${resultInfo.statsCo * statsInfo.maxUnit * 0.7}' />" height="10" align="left" alt="">&nbsp;&nbsp;${resultInfo.statsCo}&nbsp;<spring:message code="comStsSst.scrinStats.results.unit"/> <!-- 회 -->
 								</td>
 				      		</tr>
 				    		</c:forEach>

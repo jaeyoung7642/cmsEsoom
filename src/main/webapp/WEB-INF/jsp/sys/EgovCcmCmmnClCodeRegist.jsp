@@ -121,17 +121,6 @@ function fncShowMessg(){
 		</div>
 		<div class="col-xxl-12">
 			<div class="row">
-				<!-- 분류코드 -->
-				<c:set var="title"><spring:message code="comSymCcmCcc.cmmnClCodeVO.clCode"/> </c:set>
-				<label for="clCode" class="col-sm-2 col-form-label">${title} <span class="pilsu">*</span></label>
-				<div class="col-sm-10">
-					<form:input path="clCode" class="form-control" title="${title} ${inputTxt}" size="70" maxlength="70" />
-					<div><form:errors path="clCode" cssClass="error" /></div>     
-				</div>
-			</div>
-		</div>
-		<div class="col-xxl-12">
-			<div class="row">
 				<!-- 분류코드명 -->
 				<c:set var="title"><spring:message code="comSymCcmCcc.cmmnClCodeVO.clCodeNm"/> </c:set>
 				<label for="clCodeNm" class="col-sm-2 col-form-label">${title} <span class="pilsu">*</span></label>
@@ -147,7 +136,7 @@ function fncShowMessg(){
 				<c:set var="title"><spring:message code="comSymCcmCcc.cmmnClCodeVO.clCodeDc"/> </c:set>
 				<label for="clCodeDc" class="col-sm-2 col-form-label">${title } <span class="pilsu">*</span></label>
 				<div class="col-sm-10">
-					<form:textarea path="clCodeDc" class="form-control" title="${title} ${inputTxt}" cols="300" rows="10" />
+					<form:textarea path="clCodeDc" class="form-control" title="${title} ${inputTxt}" cols="300" rows="3" />
 					<div><form:errors path="clCodeDc" cssClass="error" /></div>  
 				</div>
 			</div>

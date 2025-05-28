@@ -101,4 +101,8 @@ public interface EgovMberManageService {
 	
 	public int duplicateDi(String di)throws Exception;
 
+	//대시보드용 esoom 20250502
+	public int selectMberTotalCnt() throws Exception;
+	public int selectMberRecentCnt() throws Exception;
+
 }

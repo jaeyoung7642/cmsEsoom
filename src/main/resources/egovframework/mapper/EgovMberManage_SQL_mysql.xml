@@ -229,6 +229,21 @@ FROM(
 			     ,  LOCK_LAST_PNTTM = NULL 
             WHERE  ESNTL_ID  = #{uniqId}
     </update>
+    
+    <select id="selectMberTotalCnt" resultType="int">
+    		SELECT
+    			COUNT(*)
+    		FROM COMTNGNRLMBER
+    		WHERE MBER_STTUS = 'P'
+    </select>
+
+    <select id="selectMberRecentCnt" resultType="int">
+    		SELECT
+    			COUNT(*)
+    		FROM COMTNGNRLMBER
+    		WHERE MBER_STTUS = 'P'
+    		AND SBSCRB_DE >= DATE_ADD(NOW(), INTERVAL -1 DAY) 
+    </select>
 	
 	<select id="duplicateDi" resultType="int">
             SELECT COUNT(1) usedCnt

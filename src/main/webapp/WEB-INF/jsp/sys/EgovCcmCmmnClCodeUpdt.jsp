@@ -131,7 +131,7 @@ function fn_egov_inqire_code() {
 		<tr>
 			<th><label for="clCodeDc">${title } <span class="pilsu">*</span></label></th>
 			<td class="nopd">
-				<form:textarea path="clCodeDc" title="${title} ${inputTxt}" cols="300" rows="20" />   
+				<form:textarea path="clCodeDc" title="${title} ${inputTxt}" cols="300" rows="3" />   
 				<div><form:errors path="clCodeDc" cssClass="error" /></div>  
 			</td>
 		</tr>

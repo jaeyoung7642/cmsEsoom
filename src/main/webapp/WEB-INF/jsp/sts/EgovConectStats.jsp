@@ -249,7 +249,7 @@ function getNextWeek(v,t){
 						</div>
 						<div class="col-xxl-2 col-sm-4">
 							<div class="input-light">
-								<button type="submit" class="btn btn-info"> <i class="ri-equalizer-fill me-1 align-bottom"></i> 검색</button>
+								<button type="submit" class="btn btn-info" onclick="fnSearch(); return false;"> <i class="ri-equalizer-fill me-1 align-bottom"></i> 검색</button>
 								<a href="#noscript" onclick="fnInitAll(); return false;" class="btn btn-soft-primary fw-medium" title="<spring:message code="button.init" />"><i class="ri-refresh-line lign-bottom me-1"></i> <spring:message code="button.init" /></a> <!-- 초기화 -->
 							</div>
 						</div>
@@ -268,60 +268,58 @@ function getNextWeek(v,t){
 	<div class="row d-lg-flex">
 		<!-- 서비스별 결과 -->
 		<c:if test='${statsInfo.statsKind == "SERVICE" }'>
-		<div class="col-xl-6">
+		<div class="col-xl-12">
 			<div class="card">
-				<div class="card-header">
-					<h4 class="card-title fw-semibold mb-0"><spring:message code="comStsUst.userStats.subTitle1" /></h4>
-				</div><!-- end card header -->
 				<div class="card-body">
-					<table class="board_list">
-						<caption></caption>
-						<colgroup>
-							<col style="width:70px" />
-							<col style="" />
-							<col style="width:45px" />
-							<col style="width:45px" />
-							<col style="width:45px" />
-							<col style="width:45px" />
-							<col style="width:45px" />
-							<col style="width:45px" />
-						</colgroup>
-						<thead>
-							<tr>
-							   <th scope="col"><spring:message code="comStsCst.conectStats.results.col1"/></th> <!-- 일자     -->
-							   <th scope="col"><spring:message code="comStsCst.conectStats.results.col2"/></th> <!-- 메소드명 -->   
-							   <th scope="col"><spring:message code="comStsCst.conectStats.results.col3"/></th> <!-- 생성     -->
-							   <th scope="col"><spring:message code="comStsCst.conectStats.results.col4"/></th> <!-- 수정     -->
-							   <th scope="col"><spring:message code="comStsCst.conectStats.results.col5"/></th> <!-- 조회     -->
-							   <th scope="col"><spring:message code="comStsCst.conectStats.results.col6"/></th> <!-- 삭제     -->
-							   <th scope="col"><spring:message code="comStsCst.conectStats.results.col7"/></th> <!-- 출력     -->
-							   <th scope="col"><spring:message code="comStsCst.conectStats.results.col8"/></th> <!-- 에러     -->
-							</tr>
-						</thead>
-						<tbody>
-							<%-- 데이터를 없을때 화면에 메세지를 출력해준다 --%>
-							<c:if test="${fn:length(conectStats) == 0}">
-							<tr>
-							<td colspan="8">
-								<spring:message code="common.nodata.msg" />
-							</td>
-							</tr>
-							</c:if>
-				
-					        <c:forEach items="${conectStats}" var="resultInfo" varStatus="status">
-						    <tr>
-						      <td>${resultInfo.statsDate}</td>
-						      <td class="lt_text6" nowrap>&nbsp;${resultInfo.conectMethod}</td>
-						      <td>${resultInfo.creatCo}</td>
-						      <td>${resultInfo.updtCo}</td>
-						      <td>${resultInfo.inqireCo}</td>
-						      <td>${resultInfo.deleteCo}</td>
-						      <td>${resultInfo.outptCo}</td>
-						      <td>${resultInfo.errorCo}</td>
-						    </tr>
-						    </c:forEach>
-						</tbody>
-					</table>
+					<div class="table-responsive table-card">
+						<table class="table table-borderless table-hover table-nowrap align-middle mb-0" summary="">
+							<colgroup>
+								<col style="width:70px" />
+								<col style="" />
+								<col style="width:45px" />
+								<col style="width:45px" />
+								<col style="width:45px" />
+								<col style="width:45px" />
+								<col style="width:45px" />
+								<col style="width:45px" />
+							</colgroup>
+							<thead class="table-light">
+								<tr class="text-muted">
+								   <th scope="col"><spring:message code="comStsCst.conectStats.results.col1"/></th> <!-- 일자     -->
+								   <th scope="col"><spring:message code="comStsCst.conectStats.results.col2"/></th> <!-- 메소드명 -->   
+								   <th scope="col"><spring:message code="comStsCst.conectStats.results.col3"/></th> <!-- 생성     -->
+								   <th scope="col"><spring:message code="comStsCst.conectStats.results.col4"/></th> <!-- 수정     -->
+								   <th scope="col"><spring:message code="comStsCst.conectStats.results.col5"/></th> <!-- 조회     -->
+								   <th scope="col"><spring:message code="comStsCst.conectStats.results.col6"/></th> <!-- 삭제     -->
+								   <th scope="col"><spring:message code="comStsCst.conectStats.results.col7"/></th> <!-- 출력     -->
+								   <th scope="col"><spring:message code="comStsCst.conectStats.results.col8"/></th> <!-- 에러     -->
+								</tr>
+							</thead>
+							<tbody>
+								<%-- 데이터를 없을때 화면에 메세지를 출력해준다 --%>
+								<c:if test="${fn:length(conectStats) == 0}">
+								<tr>
+								<td colspan="8">
+									<spring:message code="common.nodata.msg" />
+								</td>
+								</tr>
+								</c:if>
+					
+						        <c:forEach items="${conectStats}" var="resultInfo" varStatus="status">
+							    <tr>
+							      <td>${resultInfo.statsDate}</td>
+							      <td class="lt_text6" nowrap>&nbsp;${resultInfo.conectMethod}</td>
+							      <td>${resultInfo.creatCo}</td>
+							      <td>${resultInfo.updtCo}</td>
+							      <td>${resultInfo.inqireCo}</td>
+							      <td>${resultInfo.deleteCo}</td>
+							      <td>${resultInfo.outptCo}</td>
+							      <td>${resultInfo.errorCo}</td>
+							    </tr>
+							    </c:forEach>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -121,4 +121,12 @@ public class MberManageDAO extends EgovComAbstractDAO{
     	return (Integer)selectOne("mberManageDAO.duplicateDi", di);
     }
 
+    //대시보드용 esoom 20250502
+    public int selectMberTotalCnt() {
+    	return (Integer)selectOne("mberManageDAO.selectMberTotalCnt");
+    }
+    public int selectMberRecentCnt() {
+    	return (Integer)selectOne("mberManageDAO.selectMberRecentCnt");
+    }
+    
 }

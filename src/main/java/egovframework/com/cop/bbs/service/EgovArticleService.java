@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.egovframe.rte.fdl.cmmn.exception.FdlException;
 
+import egovframework.com.cop.bbs.service.BoardVO;
+
 
 public interface EgovArticleService {
 
@@ -40,5 +42,10 @@ public interface EgovArticleService {
 	List<BoardVO> selectArticleDetailCn(BoardVO boardVO);
 	
 	int selectLoginUser(BoardVO boardVO);
+
+	//대시보드용 esoom 20250502
+	int selectArticleTotalCnt();
+	int selectArticleRecentCnt();
+	List<BoardVO> selectArticleRecentList();
 
 }

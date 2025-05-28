@@ -98,5 +98,15 @@ public class EgovArticleDAO extends EgovComAbstractDAO {
 		return (Integer)selectOne("BBSArticle.selectLoginUser", boardVO);
 	}
 	
+	//대시보드용 esoom 20250502
+	public int selectArticleTotalCnt() {
+		return (Integer)selectOne("BBSArticle.selectArticleTotalCnt");
+	}
+	public int selectArticleRecentCnt() {
+		return (Integer)selectOne("BBSArticle.selectArticleRecentCnt");
+	}
+	public List<BoardVO> selectArticleRecentList() {
+		return (List<BoardVO>) list("BBSArticle.selectArticleRecentList", null);
+	}
 
 }

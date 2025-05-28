@@ -189,4 +189,13 @@ public class EgovMberManageServiceImpl extends EgovAbstractServiceImpl implement
 		return mberManageDAO.duplicateDi(di);
 	}
 
+	//대시보드용 esoom 20250502
+	@Override 
+	public int selectMberTotalCnt() {
+		return mberManageDAO.selectMberTotalCnt();
+	}
+	public int selectMberRecentCnt() {
+		return mberManageDAO.selectMberRecentCnt();
+	}
+
 }

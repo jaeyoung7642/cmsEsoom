@@ -363,25 +363,6 @@ function getNextWeek(v,t){
 						</table>
 						<!-- 막대그래프 끝 -->
 	
-						<!-- 막대그래프 시작 -->
-						<table class="e001 mb-3">
-							<colgroup>
-								<col style="width:14%" />
-								<col style="" />
-							</colgroup>
-							<c:forEach items="${bbsStatsList}" var="resultInfo" varStatus="status">
-							<tr>
-						   		<td>${resultInfo.statsDate}</td>
-						    	<td>
-									<img src="<c:url value='/images/egovframework/com/cmm/left_bg.gif' />" width="<c:out value='${resultInfo.statsCo * statsInfo.maxUnit}' />" height="10" align="left" alt="">&nbsp;&nbsp;${resultInfo.statsCo}&nbsp;개
-								</td>
-						    </tr>
-							</c:forEach>
-							<c:if test="${fn:length(bbsStatsList) == 0}">
-							<tr><td></td></tr>
-							</c:if>
-						</table>
-						<!-- 막대그래프 끝 -->
 					</div>
 					<!-- end card-body -->
 				</div>
@@ -401,7 +382,7 @@ function getNextWeek(v,t){
 							</colgroup>
 					        <c:forEach items="${bbsStatsList}" var="resultInfo" varStatus="status">
 					        <tr>
-					          <td>${resultInfo.statsDate} &nbsp;&nbsp;&nbsp;${resultInfo.statsCo}&nbsp;개</td>
+					          <td>${resultInfo.statsDate} &nbsp;:&nbsp;&nbsp;${resultInfo.statsCo}&nbsp;개</td>
 					        </tr>
 					        </c:forEach>
 					        <c:if test="${fn:length(bbsStatsList) == 0}">
@@ -418,222 +399,287 @@ function getNextWeek(v,t){
 		
 	<!-- 총조회수 탭 -->
 	<div id="tab2" style="display:none;">
+		<h5 class="card-title mb-3 fw-semibold">총조회수 통계 결과</h5>
 		<div class="row d-lg-flex">
-			<h4 class="mt-2 mb-3" style="margin:0 0 10px 0"><spring:message code="comStsBst.bbsStats.tab2" /> <spring:message code="comStsBst.bbsStats.statResult" /></h4> <!-- 총조회수 통계 결과 -->
-			<h5 class="mb-3"><spring:message code="comStsBst.bbsStats.tab2.subTitle1" /></h5> <!-- 그래프 (단위, 회) -->
+			<div class="col-xl-6">
+				<div class="card">
+					<div class="card-header">
+						<h4 class="card-title fw-semibold mb-0"><spring:message code="comStsBst.bbsStats.tab2.subTitle1" /></h4>
+					</div><!-- end card header -->
 	
-			<!-- 막대그래프 시작 -->
-			<table class="e001 mb-3">
-			<colgroup>
-				<col style="width:14%" />
-				<col style="" />
-			</colgroup>
-				<c:forEach items="${bbsStatsList}" var="resultInfo" varStatus="status">
-				<tr>
-			   		<td>${resultInfo.statsDate}</td>
-			    	<td class="ps-2">
-						<img src="<c:url value='/images/egovframework/com/cmm/left_bg.gif' />" width="<c:out value='${resultInfo.statsCo * statsInfo.maxUnit}' />" height="10" align="left" alt="">&nbsp;&nbsp;${resultInfo.statsCo}&nbsp;회
-					</td>
-			    </tr>
-				</c:forEach>
-				<c:if test="${fn:length(bbsStatsList) == 0}">
-				<tr><td></td></tr>
-				</c:if>
-			</table>
-			<!-- 막대그래프 끝 -->
-			
-			
-			<h5 class="mt-3 mb-3"><spring:message code="comStsBst.bbsStats.tab2.subTitle2" /></h5> <!-- 텍스트 (단위, 회) -->
+					<div class="card-body">
+						<!-- 막대그래프 시작 -->
+						<table class="e001 mb-3">
+							<colgroup>
+								<col style="width:14%" />
+								<col style="" />
+							</colgroup>
+							<c:forEach items="${bbsStatsList}" var="resultInfo" varStatus="status">
+							<tr>
+						   		<td>${resultInfo.statsDate}</td>
+						    	<td>
+									<img src="<c:url value='/images/egovframework/com/cmm/left_bg.gif' />" width="<c:out value='${resultInfo.statsCo * statsInfo.maxUnit}' />" height="10" align="left" alt="">&nbsp;&nbsp;${resultInfo.statsCo}&nbsp;개
+								</td>
+						    </tr>
+							</c:forEach>
+							<c:if test="${fn:length(bbsStatsList) == 0}">
+							<tr><td></td></tr>
+							</c:if>
+						</table>
+						<!-- 막대그래프 끝 -->
 	
-			<table class="e001">
-				<colgroup>
-					<col style="width:14%" />
-					<col style="" />
-				</colgroup>
-		        <c:forEach items="${bbsStatsList}" var="resultInfo" varStatus="status">
-		        <tr>
-		          <td>${resultInfo.statsDate} &nbsp;&nbsp;&nbsp;${resultInfo.statsCo}&nbsp;회</td>
-		        </tr>
-		        </c:forEach>
-		        <c:if test="${fn:length(bbsStatsList) == 0}">
-			    <tr><td></td></tr>
-			    </c:if>
-			</table>
+					</div>
+					<!-- end card-body -->
+				</div>
+			</div>
+			<!--end col-->
+			<div class="col-xl-6">
+				<div class="card">
+					<div class="card-header">
+						<h4 class="card-title fw-semibold mb-0"><spring:message code="comStsBst.bbsStats.tab2.subTitle2" /></h4>
+					</div><!-- end card header -->
+	
+					<div class="card-body">
+						<table class="e001">
+							<colgroup>
+								<col style="width:14%" />
+								<col style="" />
+							</colgroup>
+					        <c:forEach items="${bbsStatsList}" var="resultInfo" varStatus="status">
+					        <tr>
+					          <td>${resultInfo.statsDate} &nbsp;:&nbsp;&nbsp;${resultInfo.statsCo}&nbsp;개</td>
+					        </tr>
+					        </c:forEach>
+					        <c:if test="${fn:length(bbsStatsList) == 0}">
+						    <tr><td></td></tr>
+						    </c:if>
+						</table>
+					</div>
+					<!-- end card-body -->
+				</div>
+			</div>
+			<!--end col-->
 		</div>
 	</div>
 	
 	
 	<!-- 평균조회수 탭 -->
 	<div id="tab3" style="display:none;">
+		<h5 class="card-title mb-3 fw-semibold"><spring:message code="comStsBst.bbsStats.tab3" /> <spring:message code="comStsBst.bbsStats.statResult" /></h5>
 		<div class="row d-lg-flex">
-			<h4 class="mb-3" style="margin:0 0 10px 0"><spring:message code="comStsBst.bbsStats.tab3" /> <spring:message code="comStsBst.bbsStats.statResult" /></h4> <!-- 평균조회수 통계 결과 -->
-			<h5 class="mb-3"><spring:message code="comStsBst.bbsStats.tab3.subTitle1" /></h5> <!-- 그래프 (단위, 회) -->
+			<div class="col-xl-6">
+				<div class="card">
+					<div class="card-header">
+						<h4 class="card-title fw-semibold mb-0"><spring:message code="comStsBst.bbsStats.tab3.subTitle1" /></h4>
+					</div><!-- end card header -->
 	
-			<!-- 막대그래프 시작 -->
-			<table class="e001 mb10">
-			<colgroup>
-				<col style="width:14%" />
-				<col style="" />
-			</colgroup>
-				<c:forEach items="${bbsStatsList}" var="resultInfo" varStatus="status">
-				<tr>
-			   		<td>${resultInfo.statsDate}</td>
-			    	<td class="ps-2">
-						<img src="<c:url value='/images/egovframework/com/cmm/left_bg.gif' />" width="<c:out value='${resultInfo.statsCo * statsInfo.maxUnit}' />" height="10" align="left" alt="">&nbsp;&nbsp;${resultInfo.statsCo}&nbsp;회
-					</td>
-			    </tr>
-				</c:forEach>
-				<c:if test="${fn:length(bbsStatsList) == 0}">
-				<tr><td></td></tr>
-				</c:if>
-			</table>
-			<!-- 막대그래프 끝 -->
-			
-			
-			<h5 class="mt-3 mb-3"><spring:message code="comStsBst.bbsStats.tab3.subTitle2" /></h5> <!-- 텍스트 (단위, 회) -->
+					<div class="card-body">
+						<!-- 막대그래프 시작 -->
+						<table class="e001 mb-3">
+							<colgroup>
+								<col style="width:14%" />
+								<col style="" />
+							</colgroup>
+							<c:forEach items="${bbsStatsList}" var="resultInfo" varStatus="status">
+							<tr>
+						   		<td>${resultInfo.statsDate}</td>
+						    	<td>
+									<img src="<c:url value='/images/egovframework/com/cmm/left_bg.gif' />" width="<c:out value='${resultInfo.statsCo * statsInfo.maxUnit}' />" height="10" align="left" alt="">&nbsp;&nbsp;${resultInfo.statsCo}&nbsp;개
+								</td>
+						    </tr>
+							</c:forEach>
+							<c:if test="${fn:length(bbsStatsList) == 0}">
+							<tr><td></td></tr>
+							</c:if>
+						</table>
+						<!-- 막대그래프 끝 -->
 	
-			<table class="e001">
-				<colgroup>
-					<col style="width:14%" />
-					<col style="" />
-				</colgroup>
-		        <c:forEach items="${bbsStatsList}" var="resultInfo" varStatus="status">
-		        <tr>
-		          <td>${resultInfo.statsDate} &nbsp;&nbsp;&nbsp;${resultInfo.statsCo}&nbsp;회</td>
-		        </tr>
-		        </c:forEach>
-		        <c:if test="${fn:length(bbsStatsList) == 0}">
-			    <tr><td></td></tr>
-			    </c:if>
-			</table>
+					</div>
+					<!-- end card-body -->
+				</div>
+			</div>
+			<!--end col-->
+			<div class="col-xl-6">
+				<div class="card">
+					<div class="card-header">
+						<h4 class="card-title fw-semibold mb-0"><spring:message code="comStsBst.bbsStats.tab3.subTitle2" /></h4>
+					</div><!-- end card header -->
+	
+					<div class="card-body">
+						<table class="e001">
+							<colgroup>
+								<col style="width:14%" />
+								<col style="" />
+							</colgroup>
+					        <c:forEach items="${bbsStatsList}" var="resultInfo" varStatus="status">
+					        <tr>
+					          <td>${resultInfo.statsDate} &nbsp;:&nbsp;&nbsp;${resultInfo.statsCo}&nbsp;개</td>
+					        </tr>
+					        </c:forEach>
+					        <c:if test="${fn:length(bbsStatsList) == 0}">
+						    <tr><td></td></tr>
+						    </c:if>
+						</table>
+					</div>
+					<!-- end card-body -->
+				</div>
+			</div>
+			<!--end col-->
 		</div>
 	</div>
 
 		<!-- 최고/최소조회수 탭 -->
 	<div id="tab4" style="display:none;">
-		<div class="row d-lg-flex">	
-			<h4 class="mb-3" style="margin:0 0 10px 0"><spring:message code="comStsBst.bbsStats.tab4" /> <spring:message code="comStsBst.bbsStats.statResult" /></h4> <!-- 최고/최소조회수 통계 결과 -->
-			<h5 class="mb-3"><spring:message code="comStsBst.bbsStats.tab4.subTitle1" /></h5> <!-- 최고 조회 게시물 정보 -->
-		
-		
-			<table class="board_list" summary="">
-			<caption></caption>
-			<colgroup>
-				<col style="width:10%" />
-				<col style="width:10%" />
-				<col style="width:40%" />
-				<col style="width:10%" />
-			</colgroup>
-	        <thead>
-	          <tr>
-			    <th scope="col"><spring:message code="comStsBst.bbsStats.tab4.createdDate" /></th> <!-- 게시일자 -->
-	            <th scope="col"><spring:message code="comStsBst.bbsStats.tab4.number" /></th> <!-- 게시번호 -->
-	            <th scope="col"><spring:message code="comStsBst.bbsStats.tab4.title" /></th> <!-- 제목 -->
-	            <th scope="col"><spring:message code="comStsBst.bbsStats.tab4.readCount" /></th> <!-- 조회수 -->
-	          </tr>
-	        </thead>
-	        <tbody>
-	        <c:forEach items="${bbsMaxStatsList}" var="resultInfo" varStatus="status">
-		    <tr>
-		      <td>${resultInfo.statsDate}</td>
-		      <td>${resultInfo.mxmmInqireBbsId}</td>
-		      <td>${resultInfo.mxmmInqireBbsNm}</td>
-		      <td>${resultInfo.maxStatsCo}</td>
-		    </tr>
-		    </c:forEach>
-		    <%-- 데이터를 없을때 화면에 메세지를 출력해준다 --%>
-			<c:if test="${fn:length(bbsMaxStatsList) == 0}">
-				<tr>
-				<td class="lt_text3" colspan="4">
-					<spring:message code="common.nodata.msg" />
-				</td>
-				</tr>
-			</c:if>
-		    </tbody>
-	      	</table>
-			<br/>
-			<h5 class="mt-3 mb-3"><spring:message code="comStsBst.bbsStats.tab4.subTitle2" /></h5> <!-- 최소 조회 게시물 정보 -->
+		<h5 class="card-title mb-3 fw-semibold"><spring:message code="comStsBst.bbsStats.tab4" /> <spring:message code="comStsBst.bbsStats.statResult" /></h5>
+		<div class="row d-lg-flex">
+			<div class="col-xl-6">
+				<div class="card">
+					<div class="card-header">
+						<h4 class="card-title fw-semibold mb-0"><spring:message code="comStsBst.bbsStats.tab4.subTitle1" /></h4>
+					</div><!-- end card header -->
 	
-		
-			<table class="board_list" summary="">
-			<caption></caption>
-			<colgroup>
-				<col style="width:10%" />
-				<col style="width:10%" />
-				<col style="width:40%" />
-				<col style="width:10%" />
-			</colgroup>
-	        <thead>
-	          <tr>
-			    <th scope="col"><spring:message code="comStsBst.bbsStats.tab4.createdDate" /></th> <!-- 게시일자 -->
-	            <th scope="col"><spring:message code="comStsBst.bbsStats.tab4.number" /></th> <!-- 게시번호 -->
-	            <th scope="col"><spring:message code="comStsBst.bbsStats.tab4.title" /></th> <!-- 제목 -->
-	            <th scope="col"><spring:message code="comStsBst.bbsStats.tab4.readCount" /></th> <!-- 조회수 -->
-	          </tr>
-	        </thead>
-	        <tbody>
-	        <c:forEach items="${bbsMinStatsList}" var="resultInfo" varStatus="status">
-		    <tr>
-		      <td>${resultInfo.statsDate}</td>
-		      <td>${resultInfo.mummInqireBbsId}</td>
-		      <td>${resultInfo.mummInqireBbsNm}</td>
-		      <td>${resultInfo.minStatsCo}</td>
-		    </tr>
-		    </c:forEach>
-		    <%-- 데이터를 없을때 화면에 메세지를 출력해준다 --%>
-			<c:if test="${fn:length(bbsMinStatsList) == 0}">
-				<tr>
-				<td class="lt_text3" colspan="4">
-					<spring:message code="common.nodata.msg" />
-				</td>
-				</tr>
-			</c:if>
-		    </tbody>
-	      	</table>
+					<div class="card-body">
+						<div class="table-responsive table-card">
+							<table class="table table-borderless table-hover table-nowrap align-middle mb-0" summary="">
+								<colgroup>
+									<col style="width:10%" />
+									<col style="width:10%" />
+									<col style="width:40%" />
+									<col style="width:10%" />
+								</colgroup>
+						        <thead class="table-light">
+						          <tr class="text-muted">
+								    <th scope="col"><spring:message code="comStsBst.bbsStats.tab4.createdDate" /></th> <!-- 게시일자 -->
+						            <th scope="col"><spring:message code="comStsBst.bbsStats.tab4.number" /></th> <!-- 게시번호 -->
+						            <th scope="col"><spring:message code="comStsBst.bbsStats.tab4.title" /></th> <!-- 제목 -->
+						            <th scope="col"><spring:message code="comStsBst.bbsStats.tab4.readCount" /></th> <!-- 조회수 -->
+						          </tr>
+						        </thead>
+						        <tbody>
+						        <c:forEach items="${bbsMaxStatsList}" var="resultInfo" varStatus="status">
+							    <tr>
+							      <td>${resultInfo.statsDate}</td>
+							      <td>${resultInfo.mxmmInqireBbsId}</td>
+							      <td>${resultInfo.mxmmInqireBbsNm}</td>
+							      <td>${resultInfo.maxStatsCo}</td>
+							    </tr>
+							    </c:forEach>
+							    <%-- 데이터를 없을때 화면에 메세지를 출력해준다 --%>
+								<c:if test="${fn:length(bbsMaxStatsList) == 0}">
+									<tr>
+									<td class="lt_text3" colspan="4" align="center">
+										<spring:message code="common.nodata.msg" />
+									</td>
+									</tr>
+								</c:if>
+							    </tbody>
+					      	</table>
+						</div>
+					</div>
+					<!-- end card-body -->
+				</div>
+			</div>
+			<!--end col-->
+			<div class="col-xl-6">
+				<div class="card">
+					<div class="card-header">
+						<h4 class="card-title fw-semibold mb-0"><spring:message code="comStsBst.bbsStats.tab4.subTitle2" /></h4>
+					</div><!-- end card header -->
+	
+					<div class="card-body">
+						<div class="table-responsive table-card">
+							<table class="table table-borderless table-hover table-nowrap align-middle mb-0" summary="">
+							<colgroup>
+								<col style="width:10%" />
+								<col style="width:10%" />
+								<col style="width:40%" />
+								<col style="width:10%" />
+							</colgroup>
+					        <thead class="table-light">
+					          <tr class="text-muted">
+							    <th scope="col"><spring:message code="comStsBst.bbsStats.tab4.createdDate" /></th> <!-- 게시일자 -->
+					            <th scope="col"><spring:message code="comStsBst.bbsStats.tab4.number" /></th> <!-- 게시번호 -->
+					            <th scope="col"><spring:message code="comStsBst.bbsStats.tab4.title" /></th> <!-- 제목 -->
+					            <th scope="col"><spring:message code="comStsBst.bbsStats.tab4.readCount" /></th> <!-- 조회수 -->
+					          </tr>
+					        </thead>
+					        <tbody>
+					        <c:forEach items="${bbsMinStatsList}" var="resultInfo" varStatus="status">
+						    <tr>
+						      <td>${resultInfo.statsDate}</td>
+						      <td>${resultInfo.mummInqireBbsId}</td>
+						      <td>${resultInfo.mummInqireBbsNm}</td>
+						      <td>${resultInfo.minStatsCo}</td>
+						    </tr>
+						    </c:forEach>
+						    <%-- 데이터를 없을때 화면에 메세지를 출력해준다 --%>
+							<c:if test="${fn:length(bbsMinStatsList) == 0}">
+								<tr>
+								<td class="lt_text3" colspan="4" align="center">
+									<spring:message code="common.nodata.msg" />
+								</td>
+								</tr>
+							</c:if>
+						    </tbody>
+					      	</table>
+						</div>
+					</div>
+					<!-- end card-body -->
+				</div>
+			</div>
+			<!--end col-->
 		</div>
 	</div>
 		
 		
 	<!-- 최고게시자 탭 -->
 	<div id="tab5" style="display:none;">
-		<div class="row d-lg-flex">	
-			<h4 class="mb-3" style="margin:0 0 10px 0"><spring:message code="comStsBst.bbsStats.tab5" /> <spring:message code="comStsBst.bbsStats.statResult" /></h4> <!-- 최고게시자 통계 결과 -->
-			<h5 class="mb-3"><spring:message code="comStsBst.bbsStats.tab5.subTitle1" /></h5> <!-- 최고 게시자 정보 -->
-		
-		
-			<table class="board_list" summary="">
-			<caption></caption>
-			<colgroup>
-				<col style="width:10%" />
-				<col style="width:10%" />
-				<col style="width:10%" />
-			</colgroup>
-	        <thead>
-	          <tr>
-			    <th scope="col"><spring:message code="comStsBst.bbsStats.tab5.writerID" /></th> <!-- 게시자ID -->
-	            <th scope="col"><spring:message code="comStsBst.bbsStats.tab5.count" /></th> <!-- 게시건수 -->
-	            <th scope="col"><spring:message code="comStsBst.bbsStats.tab5.statDate" /></th> <!-- 집계일자 -->
-	          </tr>
-	        </thead>
-	        <tbody>
-	        <c:forEach items="${bbsMaxNtcrList}" var="resultInfo" varStatus="status">
-		    <tr>
-		      <td>${resultInfo.topNtcepersonId}</td>
-		      <td>${resultInfo.topNtcepersonCo}</td>
-		      <td>${resultInfo.statsDate}</td>
-		    </tr>
-		    </c:forEach>
-		    <%-- 데이터를 없을때 화면에 메세지를 출력해준다 --%>
-			<c:if test="${fn:length(bbsMaxNtcrList) == 0}">
-				<tr>
-				<td class="lt_text3" colspan="4">
-					<spring:message code="common.nodata.msg" />
-				</td>
-				</tr>
-			</c:if>
-		    </tbody>
-	      	</table>
-		</div>	
+		<h5 class="card-title mb-3 fw-semibold"><spring:message code="comStsBst.bbsStats.tab5" /> <spring:message code="comStsBst.bbsStats.statResult" /></h5>
+		<div class="row d-lg-flex">
+			<div class="col-xl-12">
+				<div class="card">
+					<div class="card-header">
+						<h4 class="card-title fw-semibold mb-0"><spring:message code="comStsBst.bbsStats.tab5.subTitle1" /></h4>
+					</div><!-- end card header -->
+	
+					<div class="card-body">
+						<div class="table-responsive table-card">
+							<table class="table table-borderless table-hover table-nowrap align-middle mb-0" summary="">
+								<colgroup>
+									<col style="width:10%" />
+									<col style="width:10%" />
+									<col style="width:10%" />
+								</colgroup>
+						        <thead class="table-light">
+					          		<tr class="text-muted">
+								    	<th scope="col"><spring:message code="comStsBst.bbsStats.tab5.writerID" /></th> <!-- 게시자ID -->
+						            	<th scope="col"><spring:message code="comStsBst.bbsStats.tab5.count" /></th> <!-- 게시건수 -->
+						            	<th scope="col"><spring:message code="comStsBst.bbsStats.tab5.statDate" /></th> <!-- 집계일자 -->
+						          	</tr>
+						        </thead>
+						        <tbody>
+						        <c:forEach items="${bbsMaxNtcrList}" var="resultInfo" varStatus="status">
+							    <tr>
+							      <td>${resultInfo.topNtcepersonId}</td>
+							      <td>${resultInfo.topNtcepersonCo}</td>
+							      <td>${resultInfo.statsDate}</td>
+							    </tr>
+							    </c:forEach>
+							    <%-- 데이터를 없을때 화면에 메세지를 출력해준다 --%>
+								<c:if test="${fn:length(bbsMaxNtcrList) == 0}">
+									<tr>
+									<td class="lt_text3" colspan="4" align="center">
+										<spring:message code="common.nodata.msg" />
+									</td>
+									</tr>
+								</c:if>
+							    </tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 

@@ -1,5 +1,6 @@
 package egovframework.com.sym.log.wlg.service;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -50,5 +51,10 @@ public interface EgovWebLogService {
 	 * @param WebLog
 	 */
 	public Map<?, ?> selectWebLogInf(WebLog webLog) throws Exception;
+
+	//대시보드용 esoom 20250502
+	public int selectWebLogRecentCnt() throws Exception;
+	public int selectWebLogCntByDay(String logDay);
+	public List<Map<String, Object>> getVisitorStats();
 
 }

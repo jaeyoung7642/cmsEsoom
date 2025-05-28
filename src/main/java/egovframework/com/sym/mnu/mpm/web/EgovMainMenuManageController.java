@@ -12,12 +12,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 import egovframework.com.cmm.LoginVO;
 import egovframework.com.cmm.annotation.IncludedInfo;
 import egovframework.com.sym.mnu.mpm.service.EgovMenuManageService;
 import egovframework.com.sym.mnu.mpm.service.MenuManageVO;
 import egovframework.com.utl.fcc.service.EgovStringUtil;
+import egovframework.com.cop.bbs.service.EgovArticleService;
+import egovframework.com.uss.umt.service.EgovMberManageService;
+import egovframework.com.sym.log.wlg.service.EgovWebLogService;
 
 import org.egovframe.rte.fdl.access.service.EgovUserDetailsHelper;
 import org.egovframe.rte.fdl.property.EgovPropertyService;
@@ -53,6 +55,17 @@ public class EgovMainMenuManageController {
     /** EgovMenuManageService */
 	@Resource(name = "meunManageService")
     private EgovMenuManageService menuManageService;
+	
+	/** EgovArticleService */
+	@Resource(name = "EgovArticleService")
+    private EgovArticleService egovArticleService;
+	
+	/** mberManageService */
+	@Resource(name = "mberManageService")
+	private EgovMberManageService mberManageService;
+	
+	@Resource(name="EgovWebLogService")
+	private EgovWebLogService webLogService;
 
     /** EgovFileMngService */
 	//@Resource(name="EgovFileMngService")
@@ -246,6 +259,15 @@ public class EgovMainMenuManageController {
 		LOGGER.debug("## selectMainMenuHome ## getSUserSe 1: {}", user.getUserSe());
 		LOGGER.debug("## selectMainMenuHome ## getSUserId 2: {}", user.getId());
 		LOGGER.debug("## selectMainMenuHome ## getUniqId  2: {}", user.getUniqId());
+		
+		//대시보드 수정 esoom 20250502
+		model.addAttribute("totalMberCnt", mberManageService.selectMberTotalCnt());
+		model.addAttribute("recentMberCnt", mberManageService.selectMberRecentCnt());
+		model.addAttribute("totalArticleCnt", egovArticleService.selectArticleTotalCnt());
+		model.addAttribute("recentArticleCnt", egovArticleService.selectArticleRecentCnt());
+		model.addAttribute("recentVisitCnt", webLogService.selectWebLogRecentCnt());
+		model.addAttribute("recentArticleList", egovArticleService.selectArticleRecentList());
+		model.addAttribute("visitStat", webLogService.getVisitorStats());
 
 		if (!user.getId().equals("")) {
         	// 메인 페이지 이동
