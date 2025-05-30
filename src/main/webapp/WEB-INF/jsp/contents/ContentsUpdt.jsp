@@ -135,7 +135,7 @@ function fn_egov_init(){
 				</div>
 			</div>
 		</div>
-		<div class="col-xxl-12">
+		<div class="col-xxl-12" style="display:none;">
 			<div class="row">
 				<c:set var="title">url </c:set>
 				<label for="conUrl1" class="col-sm-2 col-form-label">${title} <span class="pilsu">*</span></label>

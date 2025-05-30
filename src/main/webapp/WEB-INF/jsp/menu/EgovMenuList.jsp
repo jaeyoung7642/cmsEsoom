@@ -426,14 +426,14 @@ function setProgrmVal(val) {
 						</div>
 					</div>
 					<!--end col-->
-					<div class="col-md-6">
+					<div class="col-md-6" style="display:none;">
 						<div class="mb-3">
 							<label for="relateImageNm" class="form-label">관련이미지명</label>
 							<input type="text" class="form-control" id="relateImageNm" name="relateImageNm">
 						</div>
 					</div>
 					<!--end col-->
-					<div class="col-md-6">
+					<div class="col-md-6" style="display:none;">
 						<div class="mb-3">
 							<label for="relateImagePath" class="form-label">관련이미지경로</label>
 							<input type="text" class="form-control" id="relateImagePath" name="relateImagePath">

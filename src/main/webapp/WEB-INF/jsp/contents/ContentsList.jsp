@@ -141,13 +141,22 @@ function fn_egov_inquire_bbsdetail(bbsId) {
 
 		<div class="table-responsive table-card mb-4">
 			<table class="table align-middle table-nowrap mb-0">
+				<colgroup>
+					<col class="col-num">
+					<col class="col-md"/>
+					<col />
+					<col class="col-sm">
+					<col class="col-sm">
+					<col class="col-md">
+					<col class="col-md">
+				</colgroup>
 				<thead class="table-light border-top-0">
 					<tr>
 						<th><spring:message code="table.num" /></th><!-- 번호 -->
 						<th>페이지코드</th>
-						<th>페이지 URL</th>
 						<th class="board_th_link">페이지 명</th>
 						<th>상태</th>
+						<th>공개여부</th>
 						<th><spring:message code="table.reger" /></th><!-- 작성자명 -->
 						<th><spring:message code="table.regdate" /></th><!-- 작성시각 -->
 					</tr>
@@ -162,7 +171,6 @@ function fn_egov_inquire_bbsdetail(bbsId) {
 					<tr>
 						<td><c:out value="${(searchVO.pageIndex-1) * searchVO.pageSize + status.count}"/></td>
 						<td><c:out value='${resultInfo.conCode}'/></td>
-						<td><c:out value='${resultInfo.conUrl1}/${resultInfo.conUrl2} '/></td>
 						<td class="left"><a href="<c:url value='/selectContentsDetail.do?conId=${resultInfo.conId}'/>"><c:out value='${resultInfo.conTtl}'/></a></td>
 						<td>
 							<c:if test="${resultInfo.statAt == 'R'}">
@@ -173,6 +181,14 @@ function fn_egov_inquire_bbsdetail(bbsId) {
 							</c:if>
 							<c:if test="${resultInfo.statAt == 'T'}">
 								<span class="badge bg-warning-subtle text-warning fw-medium fs-12">임시글</span>
+							</c:if>
+						</td>
+						<td>
+							<c:if test="${resultInfo.useAt == 'Y'}">
+								<span class="badge bg-success-subtle text-success fw-medium fs-12">공개</span>
+							</c:if>
+							<c:if test="${resultInfo.useAt == 'N'}">
+								<span class="badge bg-warning-subtle text-warning fw-medium fs-12">비공개</span>
 							</c:if>
 						</td>
 						<td><c:out value='${resultInfo.frstRegisterId}'/></td>

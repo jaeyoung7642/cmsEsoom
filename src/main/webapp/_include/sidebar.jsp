@@ -49,9 +49,9 @@
                             <li class="nav-item">
                                 <a href="${pageContext.request.contextPath}/sym/mnu/mpm/EgovMenuListSelect.do" class="nav-link" data-key="t-menu-list"> 메뉴리스트 </a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a href="${pageContext.request.contextPath}/sym/mnu/mpm/EgovMenuManageSelect.do" class="nav-link" data-key="t-menu-manage"> 전체메뉴관리 </a>
-                            </li>
+                            </li> -->
                             <!-- <li class="nav-item">
                                 <a href="${pageContext.request.contextPath}/sym/mnu/mcm/EgovMenuCreatManageSelect.do" class="nav-link" data-key="t-menu-create-manage"> 그룹별 메뉴관리 </a>
                             </li> -->

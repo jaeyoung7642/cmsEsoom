@@ -284,7 +284,29 @@
 			FROM
 				CMSCONTENTS
 			WHERE
-				1=1
+				(CON_CODE, CON_ID) IN (
+			        SELECT CON_CODE, MAX(CON_ID)
+			        FROM CMSCONTENTS
+			        GROUP BY CON_CODE
+			    )
+			    <if test="searchCondition == 1">
+			    	AND USE_AT = 'Y'
+			    </if>
+			    <if test="searchCondition == 2">
+			    	AND USE_AT = 'N'
+			    </if>
+			    <if test="@egovframework.com.cmm.util.EgovMybaitsUtil@isNotEmpty(searchKeyword)">
+				    <if test="searchCnd == 0">
+			        	AND CON_TTL LIKE CONCAT ('%', #{searchKeyword},'%')
+			        </if>
+				    <if test="searchCnd == 1">
+			        	AND (CON_URL1 LIKE CONCAT ('%', #{searchKeyword},'%') OR CON_URL2 LIKE CONCAT ('%', #{searchKeyword},'%') ) 
+			        </if>
+				    <if test="searchCnd == 2">
+			        	AND NTCR_NM LIKE CONCAT ('%', #{searchKeyword},'%')
+			        </if>
+			    </if>
+
 	</select>	
  
 	<select id="selectContentsDetail" parameterType="com.esoom.cmstest.contents.service.ContentsVO" resultMap="contentsDetail">

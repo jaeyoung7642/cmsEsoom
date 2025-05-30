@@ -87,8 +87,8 @@ function fn_egov_regist_article(form) {
 	}
 	
 	if (validateForm.conUrl1.value=="" || validateForm.conUrl2.value=="") {
-		alert("url을 입력해주세요.");
-		return false;
+		//alert("url을 입력해주세요.");
+		//return false;
 	}
 	
 	if (validateForm.conCont.value=="") {
@@ -153,7 +153,7 @@ function fn_egov_regist_article(form) {
 				</div>
 			</div>
 		</div>
-		<div class="col-xxl-12">
+		<div class="col-xxl-12" style="display:none;">
 			<div class="row">
 				<c:set var="title">url </c:set>
 				<label for="conUrl1" class="col-sm-2 col-form-label">${title} <span class="pilsu">*</span></label>
