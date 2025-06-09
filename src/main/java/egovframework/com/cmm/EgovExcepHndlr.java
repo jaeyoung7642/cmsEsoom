@@ -13,22 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/*
- * Copyright 2008-2009 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-package egovframework.example.cmmn;
+package egovframework.com.cmm;
 
 
 import org.egovframe.rte.fdl.cmmn.exception.handler.ExceptionHandler;
@@ -36,8 +21,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * @Class Name : EgovSampleOthersExcepHndlr.java
- * @Description : EgovSampleOthersExcepHndlr Class
+ * @Class Name : EgovSampleExcepHndlr.java
+ * @Description : EgovSampleExcepHndlr Class
  * @Modification Information
  * @
  * @  수정일      수정자              수정내용
@@ -51,18 +36,17 @@ import org.slf4j.LoggerFactory;
  *
  *  Copyright (C) by MOPAS All right reserved.
  */
-public class EgovSampleOthersExcepHndlr implements ExceptionHandler {
+public class EgovExcepHndlr implements ExceptionHandler {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(EgovSampleOthersExcepHndlr.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(EgovExcepHndlr.class);
 
 	/**
-	* @param exception
+	* @param ex
 	* @param packageName
 	* @see 개발프레임웍크 실행환경 개발팀
 	*/
 	@Override
-	public void occur(Exception exception, String packageName) {
+	public void occur(Exception ex, String packageName) {
 		LOGGER.debug(" EgovServiceExceptionHandler run...............");
 	}
-
 }
