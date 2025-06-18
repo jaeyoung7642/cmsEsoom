@@ -26,8 +26,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springmodules.validation.commons.DefaultBeanValidator;
 
-import com.esoom.cmstest.contents.service.ContentsService;
-import com.esoom.cmstest.contents.service.ContentsVO;
+import com.esoom.cms.contents.service.ContentsService;
+import com.esoom.cms.contents.service.ContentsVO;
 
 /**
  * 메뉴목록 관리및 메뉴생성, 사이트맵 생성을 처리하는 비즈니스 구현 클래스
