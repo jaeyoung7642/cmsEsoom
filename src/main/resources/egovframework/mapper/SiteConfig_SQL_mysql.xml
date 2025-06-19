@@ -3,13 +3,13 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="SiteConfigSQL">
 
-	<resultMap id="siteConfigList" type="com.esoom.cmstest.common.ConfigVO">
+	<resultMap id="siteConfigList" type="com.esoom.cms.common.ConfigVO">
 		<result property="cfgCode" column="CFG_CODE"/>
 		<result property="cfgName" column="CFG_NAME"/>
 		<result property="cfgValue" column="CFG_VALUE"/>
 	</resultMap>
 	
-	<select id="siteConfigList" parameterType="com.esoom.cmstest.common.ConfigVO" resultMap="siteConfigList">
+	<select id="siteConfigList" parameterType="com.esoom.cms.common.ConfigVO" resultMap="siteConfigList">
 		
 			SELECT * FROM CMSCONFIG
 			WHERE
@@ -17,7 +17,7 @@
 						
 	</select>	
 	
- 	<update id="updateSiteConfig" parameterType="com.esoom.cmstest.common.ConfigVO">
+ 	<update id="updateSiteConfig" parameterType="com.esoom.cms.common.ConfigVO">
  			UPDATE CMSCONFIG SET 
 				CFG_VALUE = #{cfgValue} 
 			WHERE CFG_CODE = 'site'

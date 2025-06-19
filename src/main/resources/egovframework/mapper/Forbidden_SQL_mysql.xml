@@ -8,14 +8,14 @@
 <mapper namespace="ForbiddenSQL">
 
 	
-	<resultMap id="forbiddenList" type="com.esoom.cmstest.board.service.ForbiddenVO">
+	<resultMap id="forbiddenList" type="com.esoom.cms.board.service.ForbiddenVO">
 		<result property="fbdNo" column="FBD_NO"/>
 		<result property="fbdNm" column="FBD_NM"/>
 		<result property="fbdId" column="FBD_ID"/>
 		<result property="registPnttm" column="REGIST_PNTTM"/>
 	</resultMap>
 	
-	<select id="selectForbiddenList" parameterType="com.esoom.cmstest.board.service.ForbiddenVO" resultMap="forbiddenList">
+	<select id="selectForbiddenList" parameterType="com.esoom.cms.board.service.ForbiddenVO" resultMap="forbiddenList">
 		
 			SELECT
 				*
@@ -31,7 +31,7 @@
 						
 	</select>	
 	
-	<select id="forbiddenListCnt" parameterType="com.esoom.cmstest.board.service.ForbiddenVO" resultType="java.lang.Integer">
+	<select id="forbiddenListCnt" parameterType="com.esoom.cms.board.service.ForbiddenVO" resultType="java.lang.Integer">
 			SELECT
 				COUNT(FBD_NM)
 			FROM
@@ -43,7 +43,7 @@
 			</if>
 	</select>	
 	
-	<insert id="insertForbidden" parameterType="com.esoom.cmstest.board.service.ForbiddenVO">
+	<insert id="insertForbidden" parameterType="com.esoom.cms.board.service.ForbiddenVO">
 			
 			INSERT INTO CMSBBSFORBIDDEN
 			(
@@ -55,7 +55,7 @@
 			 )			
 		
 	</insert>
-	<delete id="deleteForbidden" parameterType="com.esoom.cmstest.board.service.ForbiddenVO">
+	<delete id="deleteForbidden" parameterType="com.esoom.cms.board.service.ForbiddenVO">
 			
 			DELETE FROM CMSBBSFORBIDDEN
  			WHERE
