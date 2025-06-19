@@ -52,8 +52,8 @@
 										<a href="#">
 											<figure class="el_thumb">
 												<picture>						     
-													<source srcset="/cmsTest/cmm/fms/imageView.do?atchFileId=<c:out value="${banner.bannerImageMFile}"/>&fileSn=0" media="(max-width: 768px)">
-													<img src="/cmsTest/cmm/fms/imageView.do?atchFileId=<c:out value="${banner.bannerImageFile}"/>&fileSn=0" width="820" height="480" />
+													<source srcset="/esoomCms/cmm/fms/imageView.do?atchFileId=<c:out value="${banner.bannerImageMFile}"/>&fileSn=0" media="(max-width: 768px)">
+													<img src="/esoomCms/cmm/fms/imageView.do?atchFileId=<c:out value="${banner.bannerImageFile}"/>&fileSn=0" width="820" height="480" />
 												</picture>
 												<figcaption class="blind">${banner.bannerNm}</figcaption>
 											</figure>
@@ -171,8 +171,8 @@
 									<a href="#">
 										<figure class="el_thumb">
 											<picture>						     
-												<source srcset="/cmsTest/cmm/fms/imageView.do?atchFileId=<c:out value="${banner.bannerImageMFile}"/>&fileSn=0" media="(max-width: 768px)">
-												<img src="/cmsTest/cmm/fms/imageView.do?atchFileId=<c:out value="${banner.bannerImageFile}"/>&fileSn=0" width="820" height="480" />
+												<source srcset="/esoomCms/cmm/fms/imageView.do?atchFileId=<c:out value="${banner.bannerImageMFile}"/>&fileSn=0" media="(max-width: 768px)">
+												<img src="/esoomCms/cmm/fms/imageView.do?atchFileId=<c:out value="${banner.bannerImageFile}"/>&fileSn=0" width="820" height="480" />
 											</picture>
 											<figcaption class="blind">${banner.bannerNm}</figcaption>
 										</figure>
@@ -719,7 +719,7 @@
 									<div class="swiper-slide item">
 										<a href="#">
 											<figure class="el_thumb">
-												<img src="/cmsTest/cmm/fms/imageView.do?atchFileId=<c:out value="${banner.bannerImageFile}"/>&fileSn=0" alt="" width="440" height="440">
+												<img src="/esoomCms/cmm/fms/imageView.do?atchFileId=<c:out value="${banner.bannerImageFile}"/>&fileSn=0" alt="" width="440" height="440">
 												<figcaption class="blind">${banner.bannerNm}</figcaption>
 											</figure>
 										</a>
@@ -777,7 +777,7 @@
 								<li class="item">
 									<a href="#">
 										<figure class="el_thumb rds">
-											<img src="/cmsTest/cmm/fms/imageView.do?atchFileId=<c:out value="${banner.bannerImageFile}"/>&fileSn=0" alt="" width="440" height="440">
+											<img src="/esoomCms/cmm/fms/imageView.do?atchFileId=<c:out value="${banner.bannerImageFile}"/>&fileSn=0" alt="" width="440" height="440">
 											<figcaption class="blind">${banner.bannerNm}</figcaption>
 										</figure>
 									</a>

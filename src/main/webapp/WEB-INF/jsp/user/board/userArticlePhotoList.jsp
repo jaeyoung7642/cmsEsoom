@@ -159,7 +159,7 @@ function selectBbsNm(bbsId) {
 							<li class="item">
 								<a href="<c:url value='/user/selectArticleDetail.do?bbsId=${resultInfo.bbsId}&nttId=${resultInfo.nttId}'/>" class="bbs_link bl_box sdw">
 									<div class="el_thumb">
-										<img src="/cmsTest/cmm/fms/imageView.do?atchFileId=<c:out value="${resultInfo.thumFileId}"/>&fileSn=0" alt="" width="340" height="250">
+										<img src="/esoomCms/cmm/fms/imageView.do?atchFileId=<c:out value="${resultInfo.thumFileId}"/>&fileSn=0" alt="" width="340" height="250">
 										<div class="mask end"><!--<span class="total">12</span>--></div>
 									</div>
 									<div class="bbs_cont">

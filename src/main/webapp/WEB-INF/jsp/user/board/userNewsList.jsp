@@ -151,7 +151,7 @@ function fn_egov_inquire_newsdetail(newsId) {
 								<%-- <a href="<c:url value='/user/selectNewsDetail.do?newsId=${resultInfo.newsId}'/>" class="bbs_link"> --%>
 								<a href="#" class="bbs_link">
 									<div class="el_thumb rds">
-										<img src="/cmsTest/cmm/fms/imageView.do?atchFileId=<c:out value="${resultInfo.atchFileId}"/>&fileSn=0" alt="" width="320" height="180">
+										<img src="/esoomCms/cmm/fms/imageView.do?atchFileId=<c:out value="${resultInfo.atchFileId}"/>&fileSn=0" alt="" width="320" height="180">
 									</div>
 									<div class="bbs_cont">
 										<p class="tit txt_line1-2 txt_20-18">${resultInfo.newsSj}</p>

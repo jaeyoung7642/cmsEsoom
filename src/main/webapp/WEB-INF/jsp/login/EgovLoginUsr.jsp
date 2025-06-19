@@ -165,8 +165,8 @@ function fnInit() {
     
     getid(document.loginForm);
     
-    //fnLoginTypeSelect("typeGnr");
-    fnLoginTypeSelect("typeUsr");
+    fnLoginTypeSelect("typeGnr");
+    //fnLoginTypeSelect("typeUsr");
 
     <c:if test="${not empty fn:trim(loginMessage) &&  loginMessage ne ''}">
     alert("loginMessage:<c:out value='${loginMessage}'/>");

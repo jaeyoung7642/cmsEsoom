@@ -17,7 +17,7 @@ File: Main Js File
 	var horizontalMenuSplit = 7; // after this number all horizontal menus will be moved in More menu options
 	var default_lang = "en"; // set Default Language
 	var language = localStorage.getItem("language");
-	var contextPath = "/cmsTest";
+	var contextPath = "/esoomCms";
 
 	function initLanguage() {
 		// Set new language

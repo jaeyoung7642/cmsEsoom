@@ -26,7 +26,7 @@ function insertComments(bbsId,nttId) {
 	var commentCn = $("#commentCn").val();
 	$.ajax({
 		type:"POST",
-		url:"/cmsTest/user/insertComments.do",
+		url:"/esoomCms/user/insertComments.do",
 		data:{
 			commentCn: commentCn,       
             bbsId : bbsId,
@@ -51,7 +51,7 @@ function deleteComments(commentNo) {
 	if (confirm("정말 삭제하시겠습니까?") == true) {
 		$.ajax({
 			type:"POST",
-			url:"/cmsTest/user/deleteComments.do",
+			url:"/esoomCms/user/deleteComments.do",
 			data:{
 				commentNo: commentNo
 			},
@@ -79,7 +79,7 @@ function updateComments(button,commentNo) {
     const updatedText = textarea.value.trim();
 	$.ajax({
 		type:"POST",
-		url:"/cmsTest/user/updateComments.do",
+		url:"/esoomCms/user/updateComments.do",
 		data:{
 			commentNo: commentNo,
 			commentCn : updatedText
@@ -134,7 +134,7 @@ function insertSatisfaction(bbsId, progrmNm){
 	}
 	$.ajax({
 		type:"POST",
-		url:"/cmsTest/user/insertSatisfaction.do",
+		url:"/esoomCms/user/insertSatisfaction.do",
 		data:{
 			stsfdg: score,       
             stsfdgCn: comment,

@@ -229,7 +229,7 @@ function press() {
 						<td>
 							<div class="d-flex align-items-center">
 								<div class="flex-shrink-0 me-3">
-									<div class="avatar-sm avatar-fit rounded"><img src="/cmsTest/cmm/fms/imageView.do?atchFileId=<c:out value="${banner.bannerImageFile}"/>&fileSn=0" height="60" /></div>
+									<div class="avatar-sm avatar-fit rounded"><img src="<c:url value='/cmm/fms/imageView.do'/>?atchFileId=<c:out value="${banner.bannerImageFile}"/>&fileSn=0" height="60" /></div>
 								</div>
 								<div class="flex-grow-1">
 									<a href="javascript:void(0);" class="fw-medium link-primary" onclick="fncSelectBanner('<c:out value="${banner.bannerId}"/>'); return false;">

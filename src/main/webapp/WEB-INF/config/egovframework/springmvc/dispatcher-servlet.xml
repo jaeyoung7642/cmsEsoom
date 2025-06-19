@@ -32,7 +32,7 @@
     <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
         <property name="paramName" value="language" />
     </bean>
-	<bean id="CommonDataInterceptor" class="com.esoom.cmstest.common.CommonDataInterceptor" />
+	<bean id="CommonDataInterceptor" class="com.esoom.cms.common.CommonDataInterceptor" />
 	
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="0"/>
 	
@@ -62,7 +62,7 @@
     <mvc:interceptor>
         <mvc:mapping path="/user/*.do"/>
         <mvc:exclude-mapping path="/"/>
-        <bean class="com.esoom.cmstest.common.CommonDataInterceptor" />
+        <bean class="com.esoom.cms.common.CommonDataInterceptor" />
     </mvc:interceptor>
 </mvc:interceptors>
 </beans>

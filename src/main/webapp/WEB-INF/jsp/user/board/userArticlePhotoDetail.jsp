@@ -131,7 +131,7 @@
 									<div class="swiper-wrapper">
 										<c:forEach items="${fileList}" var="fileList" varStatus="status">
 										<div class="swiper-slide el_img">
-											<img src="/cmsTest/cmm/fms/imageView.do?atchFileId=<c:out value="${fileList.atchFileId}"/>&fileSn=${status.index}" alt="">
+											<img src="/esoomCms/cmm/fms/imageView.do?atchFileId=<c:out value="${fileList.atchFileId}"/>&fileSn=${status.index}" alt="">
 										</div>
 										</c:forEach>
 									</div>
@@ -148,7 +148,7 @@
 									<div class="swiper-wrapper">
 										<c:set var="listSize" value="${fileList.size()}" />
 										<c:forEach items="${fileList}" var="fileList" varStatus="status">
-										<div class="swiper-slide el_thumb" style="background-image: url('/cmsTest/cmm/fms/imageView.do?atchFileId=<c:out value="${fileList.atchFileId}"/>&fileSn=${status.index}');">
+										<div class="swiper-slide el_thumb" style="background-image: url('/esoomCms/cmm/fms/imageView.do?atchFileId=<c:out value="${fileList.atchFileId}"/>&fileSn=${status.index}');">
 											<button type="button" tabindex="0" data-index="0" aria-label="${status.index}번 이미지 보기" class="thumb_btn"></button>
 											<div class="mask end">${status.index+1}/${listSize}</div>
 											<label class="frm_checkbox type1">
