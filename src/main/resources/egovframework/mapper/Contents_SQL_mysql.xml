@@ -7,14 +7,14 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ContentsSQL">
 
-	<resultMap id="seoList" type="com.esoom.cmstest.common.ConfigVO">
+	<resultMap id="seoList" type="com.esoom.cms.common.ConfigVO">
 		<result property="cfgCode" column="CFG_CODE"/>
 		<result property="cfgName" column="CFG_NAME"/>
 		<result property="cfgValue" column="CFG_VALUE"/>
 	</resultMap>
 	
 	
-	<resultMap id="contentsList" type="com.esoom.cmstest.contents.service.ContentsVO">
+	<resultMap id="contentsList" type="com.esoom.cms.contents.service.ContentsVO">
 		<result property="conId" column="CON_ID"/>
 		<result property="conCode" column="CON_CODE"/>
 		<result property="conTtl" column="CON_TTL"/>
@@ -35,7 +35,7 @@
 		<result property="lastUpdusrId" column="LAST_UPDUSR_ID"/>
 	</resultMap>
 
-	<resultMap id="contentsDetail" type="com.esoom.cmstest.contents.service.ContentsVO">
+	<resultMap id="contentsDetail" type="com.esoom.cms.contents.service.ContentsVO">
 		<result property="conId" column="CON_ID"/>
 		<result property="conCode" column="CON_CODE"/>
 		<result property="conTtl" column="CON_TTL"/>
@@ -155,7 +155,7 @@
 			SELECT IFNULL(MAX(NTT_ID),0)+1 AS NTT_ID  FROM COMTNBBS
  	</select>
  	
-	<insert id="insertContents" parameterType="com.esoom.cmstest.contents.service.ContentsVO">
+	<insert id="insertContents" parameterType="com.esoom.cms.contents.service.ContentsVO">
 			
 			INSERT INTO CMSCONTENTS
 			(CON_CODE, CON_TTL, CON_CONT, CON_URL1, CON_URL2, 
@@ -173,7 +173,7 @@
 			 )			
 		
 	</insert>
-	<insert id="updateContents" parameterType="com.esoom.cmstest.contents.service.ContentsVO">
+	<insert id="updateContents" parameterType="com.esoom.cms.contents.service.ContentsVO">
 			
 			INSERT INTO CMSCONTENTS
 			(CON_CODE, CON_TTL, CON_CONT, CON_URL1, CON_URL2, 
@@ -197,7 +197,7 @@
         SELECT generate_con_code()
     </select>
 	
-	<select id="contentsList" parameterType="com.esoom.cmstest.contents.service.ContentsVO" resultMap="contentsList">
+	<select id="contentsList" parameterType="com.esoom.cms.contents.service.ContentsVO" resultMap="contentsList">
 		
 			SELECT
 				CON_ID , CON_CODE, CON_TTL, CON_CONT, CON_URL1, CON_URL2, SEO_TTL, SEO_DESC, SEO_KWD,
@@ -233,7 +233,7 @@
 			LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 						
 	</select>	
-	<select id="contentsUpdtList" parameterType="com.esoom.cmstest.contents.service.ContentsVO" resultMap="contentsList">
+	<select id="contentsUpdtList" parameterType="com.esoom.cms.contents.service.ContentsVO" resultMap="contentsList">
 		
 			SELECT
 				CON_ID , CON_CODE, CON_TTL, CON_CONT, CON_URL1, CON_URL2, SEO_TTL, SEO_DESC, SEO_KWD,
@@ -262,7 +262,7 @@
 			LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 						
 	</select>	
-	<select id="seoList" parameterType="com.esoom.cmstest.common.ConfigVO" resultMap="seoList">
+	<select id="seoList" parameterType="com.esoom.cms.common.ConfigVO" resultMap="seoList">
 		
 			SELECT * FROM CMSCONFIG
 			WHERE
@@ -270,7 +270,7 @@
 						
 	</select>	
 	
-	<select id="contentsUpdtListCnt" parameterType="com.esoom.cmstest.contents.service.ContentsVO" resultType="java.lang.Integer">
+	<select id="contentsUpdtListCnt" parameterType="com.esoom.cms.contents.service.ContentsVO" resultType="java.lang.Integer">
 			SELECT
 				COUNT(CON_ID)
 			FROM
@@ -278,7 +278,7 @@
 			WHERE
 				1=1
 	</select>	
-	<select id="contentsListCnt" parameterType="com.esoom.cmstest.contents.service.ContentsVO" resultType="java.lang.Integer">
+	<select id="contentsListCnt" parameterType="com.esoom.cms.contents.service.ContentsVO" resultType="java.lang.Integer">
 			SELECT
 				COUNT(CON_ID)
 			FROM
@@ -309,7 +309,7 @@
 
 	</select>	
  
-	<select id="selectContentsDetail" parameterType="com.esoom.cmstest.contents.service.ContentsVO" resultMap="contentsDetail">
+	<select id="selectContentsDetail" parameterType="com.esoom.cms.contents.service.ContentsVO" resultMap="contentsDetail">
 		
 			SELECT 
 				CON_ID , CON_CODE, CON_TTL, CON_CONT, CON_URL1, CON_URL2, SEO_TTL, SEO_DESC, SEO_KWD,
@@ -372,12 +372,12 @@
  		
  	</update>
 
- 	<update id="deleteContents" parameterType="com.esoom.cmstest.contents.service.ContentsVO">
+ 	<update id="deleteContents" parameterType="com.esoom.cms.contents.service.ContentsVO">
  			DELETE FROM CMSCONTENTS
  			WHERE
  			CON_ID = #{conId}
  	</update>
- 	<update id="updateSeo" parameterType="com.esoom.cmstest.common.ConfigVO">
+ 	<update id="updateSeo" parameterType="com.esoom.cms.common.ConfigVO">
  			UPDATE CMSCONFIG SET 
 				CFG_VALUE = #{cfgValue} 
 			WHERE CFG_CODE = 'seo'
