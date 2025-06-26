@@ -334,6 +334,39 @@
                                     </ul>
                                 </div>
                             </li>
+                            <li class="nav-item">
+                                <a href="#sidebarBatch" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarBatch" data-key="t-batch">
+                                    배치관리
+                                </a>
+                                <div class="collapse menu-dropdown" id="sidebarBatch">
+                                    <ul class="nav nav-sm flex-column">
+                                        <li class="nav-item">
+                                            <a href="${pageContext.request.contextPath}/sym/bat/getBatchOpertList.do" class="nav-link" data-key="t-cmmncl-code"> 배치작업관리 </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="${pageContext.request.contextPath}/sym/bat/getBatchResultList.do" class="nav-link" data-key="t-cmmn-code"> 배치결과관리 </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="${pageContext.request.contextPath}/sym/bat/getBatchSchdulList.do" class="nav-link" data-key="t-cmmn-detail-code"> 스케줄처리 </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#sidebarBak" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarBak" data-key="t-batch">
+                                    백업관리
+                                </a>
+                                <div class="collapse menu-dropdown" id="sidebarBak">
+                                    <ul class="nav nav-sm flex-column">
+                                        <li class="nav-item">
+                                            <a href="${pageContext.request.contextPath}/sym/sym/bak/getBackupOpertList.do" class="nav-link" data-key="t-cmmncl-code"> 백업관리 </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="${pageContext.request.contextPath}/sym/sym/bak/getBackupResultList.do" class="nav-link" data-key="t-cmmn-code"> 백업결과관리 </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </li>
