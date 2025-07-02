@@ -329,12 +329,13 @@ public class ContentsController {
      * @throws Exception
      */
     @RequestMapping("/updateContentsView.do")
-    public String updateContentsView(@RequestParam("conId") int conId ,@ModelAttribute("searchVO") ContentsVO searchVO, Model model) throws Exception {
+    public String updateContentsView(@RequestParam("conId") int conId ,@RequestParam("conCode") String conCode ,@ModelAttribute("searchVO") ContentsVO searchVO, Model model) throws Exception {
     	
     	
     	ContentsVO contentsVO = new ContentsVO();
          // Primary Key 값 세팅
     	contentsVO.setConId(conId);
+    	contentsVO.setConCode(conCode);
          model.addAttribute("contentsVO", contentsService.selectContentsDetail(contentsVO));
     	
     	return "contents/ContentsUpdt";
@@ -442,9 +443,8 @@ public class ContentsController {
     public String	selectContentsUpdtDetail(ContentsVO contentsVO,
     		@ModelAttribute("searchVO") ContentsVO searchVO,
     		ModelMap model) throws Exception {
-    	
-    	ContentsVO vo = contentsService.selectContentsDetail(contentsVO);
-    	System.out.println(vo.toString());
+    	System.out.println(contentsVO.getConId()+"@@@@@@@@@@@@@@@@@@@@@@@@@");
+    	ContentsVO vo = contentsService.selectContentsUpdtDetail(contentsVO);
     	model.addAttribute("result", vo);
     	
     	return	"contents/ContentsUpdtDetail";

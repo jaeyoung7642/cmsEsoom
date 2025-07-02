@@ -50,6 +50,11 @@ public class ContentsServiceImpl extends EgovAbstractServiceImpl implements Cont
     }
     
     @Override
+    public ContentsVO selectContentsUpdtDetail(ContentsVO contentsVO) {
+    	return contentsDao.selectContentsUpdtDetail(contentsVO);
+    }
+    
+    @Override
     public Map<String, Object> selectContentsList(ContentsVO contentsVO) {
     	List<?> list = contentsDao.selectContentsList(contentsVO);
 

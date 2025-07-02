@@ -20,6 +20,8 @@ public interface ContentsService {
 	
 	ContentsVO selectContentsDetail(ContentsVO contentsVO);
 	
+	ContentsVO selectContentsUpdtDetail(ContentsVO contentsVO);
+	
 	void insertContents(ContentsVO contentsVO) throws FdlException;
 
 	void updateContents(ContentsVO contentsVO);

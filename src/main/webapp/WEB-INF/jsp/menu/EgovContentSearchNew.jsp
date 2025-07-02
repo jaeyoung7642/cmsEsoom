@@ -98,7 +98,7 @@ function choisProgramListSearch(vFileNm,url) {
 			  						<td><c:out value='${result.conCode} '/></td>
 			    					<td><c:out value='${result.conUrl1}/${result.conUrl2} '/></td>
 			    					<td>
-			      						<a href="#LINK" onclick="choisProgramListSearch('<c:out value="${result.conCode}"/>','<c:url value='/user/selectContentsDetail.do?conId=${result.conId}' />'); return false;"><c:out value="${result.conTtl}"/></a>
+			      						<a href="#LINK" onclick="choisProgramListSearch('<c:out value="${result.conCode}"/>','<c:url value='/user/selectContentsDetail.do?conId=${result.conCode}' />'); return false;"><c:out value="${result.conTtl}"/></a>
 			    					</td>
 			  					</tr>
 			 					</c:forEach>

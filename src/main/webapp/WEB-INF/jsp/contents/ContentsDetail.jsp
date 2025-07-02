@@ -142,6 +142,7 @@ currentPath = path.substring(1);
 	</div>
 
 <input name="conId" type="hidden" value="${result.conId }">
+<input name="conCode" type="hidden" value="${result.conCode }">
 </form>
 
 							</div>

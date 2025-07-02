@@ -171,7 +171,7 @@ function fn_egov_inquire_bbsdetail(bbsId) {
 					<tr>
 						<td><c:out value="${(searchVO.pageIndex-1) * searchVO.pageSize + status.count}"/></td>
 						<td><c:out value='${resultInfo.conCode}'/></td>
-						<td class="left"><a href="<c:url value='/selectContentsDetail.do?conId=${resultInfo.conId}'/>"><c:out value='${resultInfo.conTtl}'/></a></td>
+						<td class="left"><a href="<c:url value='/selectContentsDetail.do?conCode=${resultInfo.conCode}'/>"><c:out value='${resultInfo.conTtl}'/></a></td>
 						<td>
 							<c:if test="${resultInfo.statAt == 'R'}">
 								<span class="badge bg-info-subtle text-info fw-medium fs-12">예약배포</span>

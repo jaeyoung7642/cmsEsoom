@@ -52,6 +52,9 @@ public class ContentsDAO extends EgovAbstractMapper {
 	public ContentsVO selectContentsDetail(ContentsVO contentsVO) {
 		return (ContentsVO) selectOne("ContentsSQL.selectContentsDetail", contentsVO);
 	}
+	public ContentsVO selectContentsUpdtDetail(ContentsVO contentsVO) {
+		return (ContentsVO) selectOne("ContentsSQL.selectContentsUpdtDetail", contentsVO);
+	}
 	
 	public void replyArticle(Board board) {
 		insert("BBSArticle.replyArticle", board);
