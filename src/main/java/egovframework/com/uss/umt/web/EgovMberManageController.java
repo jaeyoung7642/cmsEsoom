@@ -143,7 +143,7 @@ public class EgovMberManageController {
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated) {
-			return "index";
+			return "redirect:/uat/uia/egovLoginUsr.do";
 		}
 
 		ComDefaultCodeVO vo = new ComDefaultCodeVO();
@@ -183,7 +183,7 @@ public class EgovMberManageController {
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated) {
-			return "index";
+			return "redirect:/uat/uia/egovLoginUsr.do";
 		}
 
 		beanValidator.validate(mberManageVO, bindingResult);
@@ -235,7 +235,7 @@ public class EgovMberManageController {
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated) {
-			return "index";
+			return "redirect:/uat/uia/egovLoginUsr.do";
 		}
 
 		ComDefaultCodeVO vo = new ComDefaultCodeVO();
@@ -282,7 +282,7 @@ public class EgovMberManageController {
 	    // 미인증 사용자에 대한 보안처리
 	    Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 	    if (!isAuthenticated) {
-	        return "index";
+	    	return "redirect:/uat/uia/egovLoginUsr.do";
 	    }
 	    
 	    mberManageService.updateLockIncorrect(mberManageVO);
@@ -304,7 +304,7 @@ public class EgovMberManageController {
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated) {
-			return "index";
+			return "redirect:/uat/uia/egovLoginUsr.do";
 		}
 
 		beanValidator.validate(mberManageVO, bindingResult);
@@ -336,7 +336,7 @@ public class EgovMberManageController {
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated) {
-			return "index";
+			return "redirect:/uat/uia/egovLoginUsr.do";
 		}
 
 		mberManageService.deleteMber(checkedIdForDel);
@@ -463,7 +463,7 @@ public class EgovMberManageController {
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated) {
-			return "index";
+			return "redirect:/uat/uia/egovLoginUsr.do";
 		}
 
 		String oldPassword = (String) commandMap.get("oldPassword");
@@ -523,7 +523,7 @@ public class EgovMberManageController {
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated) {
-			return "index";
+			return "redirect:/uat/uia/egovLoginUsr.do";
 		}
 
 		String userTyForPassword = (String) commandMap.get("userTyForPassword");

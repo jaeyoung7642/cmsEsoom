@@ -34,7 +34,7 @@ currentPath = path.substring(1);
 /* ********************************************************
  * 삭제처리
  ******************************************************** */
- function fn_egov_delete_news(conId){
+ function fn_egov_delete_content(conId){
 	if(confirm("<spring:message code="common.delete.msg" />")){	
 		// Delete하기 위한 키값을 셋팅
 		document.newsForm.conId.value = conId;	
@@ -136,8 +136,9 @@ currentPath = path.substring(1);
 	
 	<!-- 하단 버튼 -->
 	<div class="text-end mt-4 pt-2 gap-2">
+		<a href="<c:url value='/contentsUpdtList.do?searchCnd=2&searchKeyword=${result.conCode}'/>" class="btn btn-success w-sm">페이지변경이력</a>
 		<button type="submit" class="btn btn-primary w-sm"><spring:message code="button.update" /></button>
-		<a href="<c:url value='/deleteContents.do' />" class="btn btn-danger w-sm" onClick="fn_egov_delete_news('<c:out value="${result.conId}"/>'); return false;"  title="<spring:message code="button.delete" /> <spring:message code="input.button" />"><spring:message code="button.delete" /></a>
+		<a href="<c:url value='/deleteContents.do' />" class="btn btn-danger w-sm" onClick="fn_egov_delete_content('<c:out value="${result.conId}"/>'); return false;"  title="<spring:message code="button.delete" /> <spring:message code="input.button" />"><spring:message code="button.delete" /></a>
 		<a href="<c:url value='/contentsList.do' />" class="btn btn-success w-sm" title="<spring:message code="title.list" /> <spring:message code="input.button" />"><spring:message code="button.list" /></a>
 	</div>
 

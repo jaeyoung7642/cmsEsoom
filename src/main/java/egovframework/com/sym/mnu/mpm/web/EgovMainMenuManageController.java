@@ -242,7 +242,7 @@ public class EgovMainMenuManageController {
 
 		// 미인증 사용자에 대한 보안처리
     	if(user == null) {
-			return "index";
+    		return "redirect:/uat/uia/egovLoginUsr.do";
     	}
 
     	menuManageVO.setTmpId(user.getId());

@@ -268,31 +268,6 @@ function fnInsert(){
 		</div>
 		<div class="col-xxl-12">
 			<div class="row">
-				<!-- 비밀번호힌트 -->
-				<c:set var="title"><spring:message code="comUssUmt.userManageRegist.passHit"/></c:set>
-				<label for="passwordHint" class="col-sm-2 col-form-label">${title} <span class="pilsu">*</span></label>
-				<div class="col-sm-10">
-					<form:select path="passwordHint" class="form-select" id="passwordHint" title="${title} ${inputSelect}" style="width:auto;">
-						<form:option value="" label="--선택하세요--"/>
-						<form:options items="${passwordHint_result}" itemValue="code" itemLabel="codeNm"/>
-					</form:select>
-					<div><form:errors path="passwordHint" cssClass="error"/></div>
-				</div>
-			</div>
-		</div>
-		<div class="col-xxl-12">
-			<div class="row">
-				<!-- 비밀번호정답 -->
-				<c:set var="title"><spring:message code="comUssUmt.userManageRegist.passOk"/></c:set>
-				<label for="passwordCnsr" class="col-sm-2 col-form-label">${title} <span class="pilsu">*</span></label>
-				<div class="col-sm-10">
-					<form:input path="passwordCnsr" id="passwordCnsr" class="form-control" title="${title} ${inputTxt}" size="50" maxlength="100" />
-					<div><form:errors path="passwordCnsr" cssClass="error"/></div>
-				</div>
-			</div>
-		</div>
-		<div class="col-xxl-12">
-			<div class="row">
 				<!-- 성별구분코드 -->
 				<c:set var="title"><spring:message code="comUssUmt.userManageRegist.saxTypeCode"/></c:set>
 				<label for="sexdstnCode" class="col-sm-2 col-form-label">${title}</label>
@@ -321,34 +296,12 @@ function fnInsert(){
 		</div>
 		<div class="col-xxl-12">
 			<div class="row">
-				<!-- 팩스번호 -->
-				<c:set var="title"><spring:message code="comUssUmt.userManageRegist.fax"/></c:set>
-				<label for="mberFxnum" class="col-sm-2 col-form-label">${title}</label>
-				<div class="col-sm-10">
-					<form:input path="mberFxnum" id="mberFxnum" class="form-control" title="${title} ${inputTxt}" size="20"  maxlength="15" />
-					<div><form:errors path="mberFxnum" cssClass="error" /></div>
-				</div>
-			</div>
-		</div>
-		<div class="col-xxl-12">
-			<div class="row">
-				<!-- 헨드폰번호 -->
-				<c:set var="title"><spring:message code="comUssUmt.userManageRegist.phone"/></c:set>
-				<label for="moblphonNo" class="col-sm-2 col-form-label">${title} <span class="pilsu">*</span></label>
-				<div class="col-sm-10">
-					<form:input path="moblphonNo" id="moblphonNo" class="form-control" title="${title} ${inputTxt}" size="20" maxlength="15" />
-					<div><form:errors path="moblphonNo" cssClass="error" /></div>
-				</div>
-			</div>
-		</div>
-		<div class="col-xxl-12">
-			<div class="row">
 				<!-- 이메일주소 -->
 				<c:set var="title"><spring:message code="comUssUmt.userManageRegist.email"/></c:set>
 				<label for="mberEmailAdres" class="col-sm-2 col-form-label">${title} <span class="pilsu">*</span></label>
 				<div class="col-sm-10">
 					<form:input path="mberEmailAdres" id="mberEmailAdres" class="form-control" title="${title} ${inputTxt}" size="30" maxlength="50" />
-					<div><form:errors path="mberEmailAdres" cssClass="error" /></div>
+					<div><form:errors path="mberEmailAdres" cssClass="error" /></div> 
 				</div>
 			</div>
 		</div>
@@ -358,10 +311,23 @@ function fnInsert(){
 				<c:set var="title"><spring:message code="comUssUmt.userManageRegist.post"/></c:set>
 				<label for="zip" class="col-sm-2 col-form-label">${title} <span class="pilsu">*</span></label>
 				<div class="col-sm-10">
+					<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+					<script>
+				        function searchAddress() {
+				            new daum.Postcode({
+				                oncomplete: function(data) {
+				                    // 주소 데이터를 처리하는 코드
+				                    document.getElementById('zip').value = data.zonecode;
+				                    document.getElementById('adres').value = data.address;
+				                }
+				            }).open();
+				        }
+				    </script>
 					<form:input path="zip" id="zip" title="${title} ${inputTxt}" class="form-control" readonly="true" size="70" maxlength="6" style="width:90px;"/>
 					<!-- form:hidden path="zip" id="zip" --> 
 					<!-- <button class="btn_s2" onClick="fn_egov_ZipSearch(document.mberManageVO, document.mberManageVO.zip, document.mberManageVO.zip_view, document.mberManageVO.adres);return false;" title="<spring:message code="button.delete" /> <spring:message code="input.button" />">우번번호검색</button>  -->
 					<div><form:errors path="zip" cssClass="error" /></div>
+					<button type="button" onclick="searchAddress()">우편번호 찾기</button>
 				</div>
 			</div>
 		</div>

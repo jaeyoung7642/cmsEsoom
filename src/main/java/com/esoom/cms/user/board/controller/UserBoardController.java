@@ -187,6 +187,8 @@ public class UserBoardController {
      */
     @RequestMapping("/insertArticleView.do")
     public String insertArticleView(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model) throws Exception {
+
+    	
     	// 오늘 날짜를 구하기
         LocalDate today = LocalDate.now();
         
@@ -199,6 +201,10 @@ public class UserBoardController {
         
     	LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+		
+		if (!isAuthenticated) {
+			return "redirect:/user/loginForm.do";
+		}
 		
 		BoardMasterVO bdMstr = new BoardMasterVO();
 		BoardVO board = new BoardVO();
@@ -244,11 +250,6 @@ public class UserBoardController {
     	String returnUrl = "";
     	LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
 		
-		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();	//KISA 보안취약점 조치 (2018-12-10, 이정은)
-
-		if (!isAuthenticated) {
-			return "redirect:/user/loginForm.do";
-		}
 		boardVO.setLastUpdusrId((user == null || user.getUniqId() == null) ? "" : user.getUniqId());
 		BoardVO vo = egovArticleService.selectArticleDetail(boardVO);
 		MenuManageVO menuVO = new MenuManageVO();
@@ -335,10 +336,9 @@ public class UserBoardController {
 		LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 
-		if (!isAuthenticated) { // KISA 보안취약점 조치 (2018-12-10, 이정은)
-			return "redirect:/uat/uia/egovLoginUsr.do";
+		if (!isAuthenticated) {
+			return "redirect:/user/loginForm.do";
 		}
-
 		beanValidator.validate(board, bindingResult);
 		if (bindingResult.hasErrors()) {
 		    BoardMasterVO master = new BoardMasterVO();
@@ -409,6 +409,9 @@ public class UserBoardController {
 
 		LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+		if (!isAuthenticated) {
+			return "redirect:/user/loginForm.do";
+		}
 		MenuManageVO menuVO = new MenuManageVO();
 		List<MenuManageVO> list = menuService.menuList(menuVO);
 		List<MenuManageVO> treeList = menuService.setTreeMenu(list);
@@ -456,9 +459,9 @@ public class UserBoardController {
 		LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		
-		if(!isAuthenticated) {	//KISA 보안취약점 조치 (2018-12-10, 이정은)
-			return "redirect:/uat/uia/egovLoginUsr.do";
-        }
+		if (!isAuthenticated) {
+			return "redirect:/user/loginForm.do";
+		}
 		
 		//--------------------------------------------------------------------------------------------
     	// @ XSS 대응 권한체크 체크  START

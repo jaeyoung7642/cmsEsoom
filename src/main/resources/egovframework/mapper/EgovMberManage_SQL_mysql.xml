@@ -11,7 +11,7 @@
     
  <select id="selectMberList" parameterType="egovframework.com.uss.umt.service.UserDefaultVO" resultType="egovMap">
 SELECT 
-    uniqId, userTy, userId , userNm, emailAdres, areaNo, middleTelno, endTelno, moblphonNo, groupId, sttus, sbscrbDe ,groupNm
+    uniqId, userTy, userId , userNm, emailAdres, areaNo, middleTelno, endTelno, moblphonNo, groupId, sttus, sbscrbDe ,di,groupNm
 FROM(
     SELECT 
         a.ESNTL_ID               uniqId,
@@ -26,6 +26,7 @@ FROM(
         a.GROUP_ID              groupId,
         a.MBER_STTUS            sttus,
         a.SBSCRB_DE             sbscrbDe,
+        a.DI					di,
         b.GROUP_NM				groupNm
     FROM    COMTNGNRLMBER a,COMTNAUTHORGROUPINFO b
     WHERE a.GROUP_ID = b.GROUP_ID

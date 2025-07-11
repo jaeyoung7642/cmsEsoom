@@ -341,9 +341,15 @@ function duplicateId2(){
 											</td>
 										</tr>
 										<tr>
+											<th scope="row">상세주소<span class="req"></span></th>
+											<td>
+												<input type="text" class="frm_input max300" id="detailAdres" name="detailAdres" required>
+											</td>
+										</tr>
+										<tr>
 											<th scope="row">이메일 <span class="req"></span></th>
 											<td>
-												<input type="text" name="mberEmailAdres" id="mberEmailAdres">
+												<input type="text" class="frm_input max300" name="mberEmailAdres" id="mberEmailAdres">
 												<!-- <div class="frm_group frm_email" data-forms="optInput">
 													<input type="text" class="frm_input input1" aria-label="이메일 아이디 입력">
 													<span class="txt">@</span>
@@ -364,7 +370,7 @@ function duplicateId2(){
 									귀하의 개인정보는 동의없이 공개되지 않으며, <span class="txt_point">개인정보보호정책</span>에 의해 보호받고 있습니다.</p>
 
 								<div class="btn_area gap10 mt35">
-									<a href="#" class="el_btn btn2 light w140">취소</a>
+									<a href="<c:url value='/user/joinForm1.do'/>" class="el_btn btn2 light w140">취소</a>
 									<button type="button" class="el_btn btn2 point w140" onclick="joinCheck()">확인</button>
 								</div>	
 							</article>

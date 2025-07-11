@@ -220,6 +220,7 @@ function fnSearch(){
 						<th><spring:message code="comUssUmt.userManageList.phone" /></th><!-- 전화번호 -->
 						<th>가입일시</th><!-- 등록일 -->
 						<th><spring:message code="comUssUmt.userManageList.sbscrbSttus" /></th><!-- 가입상태 -->
+						<th>본인인증여부</th>
 
 					</tr>
 				</thead>
@@ -248,6 +249,14 @@ function fnSearch(){
 							<c:forEach var="entrprsMberSttus_result" items="${entrprsMberSttus_result}" varStatus="status">
 								<c:if test="${result.sttus == entrprsMberSttus_result.code}"><c:out value="${entrprsMberSttus_result.codeNm}"/></c:if>
 							</c:forEach>
+						</td>
+						<td>
+							<c:if test="${not empty result.di}">
+								Y
+							</c:if>
+							<c:if test="${empty result.di}">
+								N
+							</c:if>
 						</td>
 					</tr>
 					</c:forEach>

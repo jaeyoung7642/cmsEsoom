@@ -90,7 +90,7 @@ public class EgovUserManageController {
 //		// 미인증 사용자에 대한 보안처리
 //		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 //		if (!isAuthenticated) {
-//			return "index";
+//			return "redirect:/uat/uia/egovLoginUsr.do";
 //		}
 
 		/** EgovPropertyService */
@@ -136,7 +136,7 @@ public class EgovUserManageController {
 //		// 미인증 사용자에 대한 보안처리
 //		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 //		if (!isAuthenticated) {
-//			return "index";
+//			return "redirect:/uat/uia/egovLoginUsr.do";
 //		}
 		
 		/** EgovPropertyService */
@@ -187,7 +187,7 @@ public class EgovUserManageController {
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated) {
-			return "index";
+			return "redirect:/uat/uia/egovLoginUsr.do";
 		}
 
 		ComDefaultCodeVO vo = new ComDefaultCodeVO();
@@ -235,7 +235,7 @@ public class EgovUserManageController {
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated) {
-			return "index";
+			return "redirect:/uat/uia/egovLoginUsr.do";
 		}
 		
 		ComDefaultCodeVO vo = new ComDefaultCodeVO();
@@ -283,7 +283,7 @@ public class EgovUserManageController {
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated) {
-			return "index";
+			return "redirect:/uat/uia/egovLoginUsr.do";
 		}
 
 		beanValidator.validate(userManageVO, bindingResult);
@@ -316,7 +316,7 @@ public class EgovUserManageController {
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated) {
-			return "index";
+			return "redirect:/uat/uia/egovLoginUsr.do";
 		}
 		
 		beanValidator.validate(userManageVO, bindingResult);
@@ -356,7 +356,7 @@ public class EgovUserManageController {
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated) {
-			return "index";
+			return "redirect:/uat/uia/egovLoginUsr.do";
 		}
 
 		ComDefaultCodeVO vo = new ComDefaultCodeVO();
@@ -408,7 +408,7 @@ public class EgovUserManageController {
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated) {
-			return "index";
+			return "redirect:/uat/uia/egovLoginUsr.do";
 		}
 		
 		ComDefaultCodeVO vo = new ComDefaultCodeVO();
@@ -461,7 +461,7 @@ public class EgovUserManageController {
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated) {
-			return "index";
+			return "redirect:/uat/uia/egovLoginUsr.do";
 		}
 		
 		userManageService.updateLockIncorrect(userManageVO);
@@ -483,7 +483,7 @@ public class EgovUserManageController {
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated) {
-			return "index";
+			return "redirect:/uat/uia/egovLoginUsr.do";
 		}
 
 		beanValidator.validate(userManageVO, bindingResult);
@@ -519,7 +519,7 @@ public class EgovUserManageController {
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated) {
-			return "index";
+			return "redirect:/uat/uia/egovLoginUsr.do";
 		}
 		
 		beanValidator.validate(userManageVO, bindingResult);
@@ -556,7 +556,7 @@ public class EgovUserManageController {
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated) {
-			return "index";
+			return "redirect:/uat/uia/egovLoginUsr.do";
 		}
 
 		userManageService.deleteUser(checkedIdForDel);
@@ -577,7 +577,7 @@ public class EgovUserManageController {
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated) {
-			return "index";
+			return "redirect:/uat/uia/egovLoginUsr.do";
 		}
 
 		model.addAttribute("checkId", "");
@@ -598,7 +598,7 @@ public class EgovUserManageController {
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated) {
-			return "index";
+			return "redirect:/uat/uia/egovLoginUsr.do";
 		}
 
 		String checkId = (String) commandMap.get("checkId");
@@ -654,7 +654,7 @@ public class EgovUserManageController {
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated) {
-			return "index";
+			return "redirect:/uat/uia/egovLoginUsr.do";
 		}
 
 		String oldPassword = (String) commandMap.get("oldPassword");
@@ -714,7 +714,7 @@ public class EgovUserManageController {
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated) {
-			return "index";
+			return "redirect:/uat/uia/egovLoginUsr.do";
 		}
 
 		String userTyForPassword = (String) commandMap.get("userTyForPassword");

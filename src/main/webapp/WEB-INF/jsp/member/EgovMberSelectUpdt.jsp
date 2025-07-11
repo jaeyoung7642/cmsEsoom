@@ -153,31 +153,6 @@ function fnUpdate(){
 		</div>
 		<div class="col-xxl-12">
 			<div class="row">
-				<!-- 비밀번호힌트 -->
-				<c:set var="title"><spring:message code="comUssUmt.userManageRegist.passHit"/></c:set>
-				<label for="passwordHint" class="col-sm-2 col-form-label">${title} <span class="pilsu">*</span></label>
-				<div class="col-sm-10">
-					<form:select path="passwordHint" class="form-select" id="passwordHint" title="${title} ${inputSelect}" style="width:auto;">
-						<form:option value="" label="--선택하세요--"/>
-						<form:options items="${passwordHint_result}" itemValue="code" itemLabel="codeNm"/>
-					</form:select>
-					<div><form:errors path="passwordHint" cssClass="error"/></div>
-				</div>
-			</div>
-		</div>
-		<div class="col-xxl-12">
-			<div class="row">
-				<!-- 비밀번호정답 -->
-				<c:set var="title"><spring:message code="comUssUmt.userManageRegist.passOk"/></c:set>
-				<label for="passwordCnsr" class="col-sm-2 col-form-label">${title} <span class="pilsu">*</span></label>
-				<div class="col-sm-10">
-					<form:input path="passwordCnsr" id="passwordCnsr" class="form-control" title="${title} ${inputTxt}" size="50" maxlength="100" />
-					<div><form:errors path="passwordCnsr" cssClass="error"/></div>
-				</div>
-			</div>
-		</div>
-		<div class="col-xxl-12">
-			<div class="row">
 				<!-- 성별구분코드 -->
 				<c:set var="title"><spring:message code="comUssUmt.userManageRegist.saxTypeCode"/></c:set>
 				<label for="sexdstnCode" class="col-sm-2 col-form-label">${title}</label>
@@ -201,28 +176,6 @@ function fnUpdate(){
 					<div><form:errors path="areaNo" cssClass="error" /></div>
 					<div><form:errors path="middleTelno" cssClass="error" /></div>
 					<div><form:errors path="endTelno" cssClass="error" /></div>
-				</div>
-			</div>
-		</div>
-		<div class="col-xxl-12">
-			<div class="row">
-				<!-- 팩스번호 -->
-				<c:set var="title"><spring:message code="comUssUmt.userManageRegist.fax"/></c:set>
-				<label for="mberFxnum" class="col-sm-2 col-form-label">${title}</label>
-				<div class="col-sm-10">
-					<form:input path="mberFxnum" id="mberFxnum" class="form-control" title="${title} ${inputTxt}" size="20"  maxlength="15" />
-					<div><form:errors path="mberFxnum" cssClass="error" /></div>
-				</div>
-			</div>
-		</div>
-		<div class="col-xxl-12">
-			<div class="row">
-				<!-- 헨드폰번호 -->
-				<c:set var="title"><spring:message code="comUssUmt.userManageRegist.phone"/></c:set>
-				<label for="moblphonNo" class="col-sm-2 col-form-label">${title} <span class="pilsu">*</span></label>
-				<div class="col-sm-10">
-					<form:input path="moblphonNo" id="moblphonNo" class="form-control" title="${title} ${inputTxt}" size="20" maxlength="15" />
-					<div><form:errors path="moblphonNo" cssClass="error" /></div>
 				</div>
 			</div>
 		</div>

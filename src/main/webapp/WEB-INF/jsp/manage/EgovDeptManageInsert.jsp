@@ -194,9 +194,6 @@ $(document).ready(function () {
 	</div>
 
 <!-- 검색조건 유지 -->
-<input type="hidden" name="orgnztId" value="" >
-<input type="hidden" name="orgnztCT" value="" >
-<input type="hidden" name="orgnztNo" value="0" >
 <input type="hidden" name="searchCondition" value="<c:out value='${deptManageVO.searchCondition}'/>" >
 <input type="hidden" name="searchKeyword" value="<c:out value='${deptManageVO.searchKeyword}'/>" >
 <input type="hidden" name="pageIndex" value="<c:out value='${deptManageVO.pageIndex}'/>" >

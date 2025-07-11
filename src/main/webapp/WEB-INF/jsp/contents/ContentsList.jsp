@@ -41,7 +41,7 @@ function fn_egov_init(){
  ******************************************************** */
 function fn_egov_select_linkPage(pageNo){
 	document.BBSMasterForm.pageIndex.value = pageNo;
-	document.BBSMasterForm.action = "<c:url value='/cop/bbs/selectBBSMasterInfs.do'/>";
+	document.BBSMasterForm.action = "<c:url value='/contentsList.do'/>";
    	document.BBSMasterForm.submit();
 }
 /*********************************************************
@@ -50,15 +50,6 @@ function fn_egov_select_linkPage(pageNo){
 function fn_egov_search_bbssj(){
 	document.BBSMasterForm.pageIndex.value = 1;
 	document.BBSMasterForm.submit();
-}
-/* ********************************************************
- * 상세회면 처리 함수
- ******************************************************** */
-function fn_egov_inquire_bbsdetail(bbsId) {
-	// 사이트 키값(siteId) 셋팅.
-	document.BBSMasterForm.bbsId.value = bbsId;
-  	document.BBSMasterForm.action = "<c:url value='/cop/bbs/selectBBSMasterDetail.do'/>";
-  	document.BBSMasterForm.submit();
 }
 </script>
 </head>

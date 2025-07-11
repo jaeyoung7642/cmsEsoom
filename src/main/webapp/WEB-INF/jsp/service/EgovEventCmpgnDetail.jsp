@@ -148,10 +148,10 @@ currentPath = path.substring(1);
 			</tr>
 
 			<!-- 외부인사정보 -->
-			<tr>
+			<%-- <tr>
 				<th><spring:message code="comUssIonEcc.tnextrlHrVO.title" /></th>
 				<td class="left"><a href="<c:url value='/uss/ion/ecc/selectTnextrlHrList.do?eventId=${result.eventId}' />" title="<spring:message code="comUssIonEcc.tnextrlHrVO.title" /> <spring:message code="title.inquire" />"><spring:message code="comUssIonEcc.tnextrlHrVO.title" /> <spring:message code="title.inquire" /></a></td>
-			</tr>
+			</tr> --%>
 			
 		</tbody>
 	</table>
