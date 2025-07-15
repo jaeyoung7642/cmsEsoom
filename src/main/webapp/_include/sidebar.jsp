@@ -178,6 +178,9 @@
                             <li class="nav-item">
                                 <a href="${pageContext.request.contextPath}/uss/ion/ecc/selectEventCmpgnList.do" class="nav-link" data-key="t-event-cmpgn">행사/이벤트/캠페인</a>
                             </li>
+                            <li class="nav-item">
+                                <a href="${pageContext.request.contextPath}/cop/smt/sim/EgovIndvdlSchdulManageList.do" class="nav-link" data-key="t-event-cmpgn">일정관리</a>
+                            </li>
                         </ul>
                     </div>
                 </li>
