@@ -153,7 +153,7 @@ function fn_egov_main_tab(objName) {
                             <div class="col-xl-3">
                                 <div class="card card-h-100">
                                     <div class="card-body">
-                                        <button class="btn btn-primary w-100" id="btn-new-event"><i class="mdi mdi-plus"></i> Create New Event</button>
+                                        <button class="btn btn-primary w-100" id="btn-new-event"><i class="mdi mdi-plus"></i> 일정등록</button>
 
                                         <div id="external-events">
                                             <br>
@@ -262,14 +262,12 @@ function fn_egov_main_tab(objName) {
                                             <div class="row event-form">
                                                 <div class="col-12">
                                                     <div class="mb-3">
-                                                        <label class="form-label">Type</label>
-                                                        <select class="form-select d-none" name="category" id="event-category" required>
-                                                            <option value="bg-danger-subtle">Danger</option>
-                                                            <option value="bg-success-subtle">Success</option>
-                                                            <option value="bg-primary-subtle">Primary</option>
-                                                            <option value="bg-info-subtle">Info</option>
-                                                            <option value="bg-dark-subtle">Dark</option>
-                                                            <option value="bg-warning-subtle">Warning</option>
+                                                    	<!-- 일정구분 -->
+                                                        <label class="form-label"><spring:message code="comCopSmtSim.regist.schdulSe"/></label>
+                                                        <select class="form-select d-none" name="schdulSe" id="event-category" required>
+                                                        	<c:forEach items="${schdulSe}" var="schdulSe">
+                                                            <option value="${schdulSe.code}">${schdulSe.codeNm}</option>
+                                                        	</c:forEach>
                                                         </select>
                                                         <div class="invalid-feedback">Please select a valid event category</div>
                                                     </div>
@@ -277,15 +275,16 @@ function fn_egov_main_tab(objName) {
                                                 <!--end col-->
                                                 <div class="col-12">
                                                     <div class="mb-3">
-                                                        <label class="form-label">Event Name</label>
-                                                        <input class="form-control d-none" placeholder="Enter event name" type="text" name="title" id="event-title" required value="" />
+                                                    	<!-- 일정명 -->
+                                                        <label class="form-label"><spring:message code="comCopSmtSim.regist.schdulNm"/></label>
+                                                        <input class="form-control d-none" placeholder="Enter event name" type="text" name="schdulNm" id="event-title" required value="" />
                                                         <div class="invalid-feedback">Please provide a valid event name</div>
                                                     </div>
                                                 </div>
                                                 <!--end col-->
                                                 <div class="col-12">
                                                     <div class="mb-3">
-                                                        <label>Event Date</label>
+                                                        <label>날짜</label>
                                                         <div class="input-group d-none">
                                                             <input type="text" id="event-start-date" class="form-control flatpickr flatpickr-input" placeholder="Select date" readonly required>
                                                             <span class="input-group-text"><i class="ri-calendar-event-line"></i></span>
@@ -297,7 +296,7 @@ function fn_egov_main_tab(objName) {
                                                     <div class="row">
                                                         <div class="col-6">
                                                             <div class="mb-3">
-                                                                <label class="form-label">Start Time</label>
+                                                                <label class="form-label">시작시간</label>
                                                                 <div class="input-group d-none">
                                                                     <input id="timepicker1" type="text" class="form-control flatpickr flatpickr-input" placeholder="Select start time" readonly>
                                                                     <span class="input-group-text"><i class="ri-time-line"></i></span>
@@ -306,7 +305,7 @@ function fn_egov_main_tab(objName) {
                                                         </div>
                                                         <div class="col-6">
                                                             <div class="mb-3">
-                                                                <label class="form-label">End Time</label>
+                                                                <label class="form-label">종료시간</label>
                                                                 <div class="input-group d-none">
                                                                     <input id="timepicker2" type="text" class="form-control flatpickr flatpickr-input" placeholder="Select end time" readonly>
                                                                     <span class="input-group-text"><i class="ri-time-line"></i></span>
@@ -318,7 +317,7 @@ function fn_egov_main_tab(objName) {
                                                 <!--end col-->
                                                 <div class="col-12">
                                                     <div class="mb-3">
-                                                        <label for="event-location">Location</label>
+                                                        <label for="event-location">장소</label>
                                                         <div>
                                                             <input type="text" class="form-control d-none" name="event-location" id="event-location" placeholder="Event location">
                                                         </div>
@@ -328,7 +327,8 @@ function fn_egov_main_tab(objName) {
                                                 <input type="hidden" id="eventid" name="eventid" value="" />
                                                 <div class="col-12">
                                                     <div class="mb-3">
-                                                        <label class="form-label">Description</label>
+                                                    	<!-- 일정내용 -->
+                                                        <label class="form-label"><spring:message code="comCopSmtSim.regist.schdulCn"/></label>
                                                         <textarea class="form-control d-none" id="event-description" placeholder="Enter a description" rows="3" spellcheck="false"></textarea>
                                                     </div>
                                                 </div>

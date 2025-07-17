@@ -1,6 +1,7 @@
 package egovframework.com.cop.smt.sim.web;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -19,8 +20,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 import org.springmodules.validation.commons.DefaultBeanValidator;
 
 import egovframework.com.cmm.ComDefaultCodeVO;
@@ -402,6 +405,13 @@ public class EgovIndvdlSchdulManageController {
 
         List<IndvdlSchdulManageVO> resultList = egovIndvdlSchdulManageService.selectIndvdlSchdulManageList(searchVO);
         model.addAttribute("resultList", resultList);
+        
+        ComDefaultCodeVO voComCode = new ComDefaultCodeVO();
+        //공통코드  일정구분 조회
+    	voComCode = new ComDefaultCodeVO();
+    	voComCode.setCodeId("COM030");
+    	List<CmmnDetailCode> listComCode = cmmUseService.selectCmmCodeDetail(voComCode);
+    	model.addAttribute("schdulSe", listComCode);
 
 		return "cop/EgovIndvdlSchdulManageList";
 	}
@@ -842,7 +852,92 @@ public class EgovIndvdlSchdulManageController {
 
        return sOutput;
     }
+    @RequestMapping(value="/cop/smt/sim/EgovIndvdlSchdulManageListJson.do")
+    @ResponseBody
+    public ModelAndView egovIndvdlSchdulManageListJson(
+        @ModelAttribute("searchVO") ComDefaultVO searchVO,
+		@RequestParam Map<String, String> commandMap,
+		IndvdlSchdulManageVO indvdlSchdulManageVO
+    ) throws Exception {
+    	ModelAndView mav = new ModelAndView("jsonView");
+    	//일정구분 검색 유지
+    	mav.addObject("searchKeyword", commandMap.get("searchKeyword") == null ? "" : (String)commandMap.get("searchKeyword"));
+    	mav.addObject("searchCondition", commandMap.get("searchCondition") == null ? "" : (String)commandMap.get("searchCondition"));
 
+		java.util.Calendar cal = java.util.Calendar.getInstance();
+
+		String sYear = commandMap.get("year");
+		String sMonth = commandMap.get("month");
+
+		int iYear = cal.get(java.util.Calendar.YEAR);
+		int iMonth = cal.get(java.util.Calendar.MONTH);
+//		int iDate = cal.get(java.util.Calendar.DATE);
+
+                //검색 설정
+                String sSearchDate = "";
+                if(sYear == null || sMonth == null){
+                        sSearchDate += Integer.toString(iYear);
+                        sSearchDate += Integer.toString(iMonth+1).length() == 1 ? "0" + Integer.toString(iMonth+1) : Integer.toString(iMonth+1);
+                }else{
+                        iYear = Integer.parseInt(sYear);
+                        iMonth = Integer.parseInt(sMonth);
+                        sSearchDate += sYear;
+                        sSearchDate += Integer.toString(iMonth+1).length() == 1 ? "0" + Integer.toString(iMonth+1) :Integer.toString(iMonth+1);
+                }
+
+
+
+		//공통코드 일정종류
+		ComDefaultCodeVO voComCode = new ComDefaultCodeVO();
+	   	voComCode = new ComDefaultCodeVO();
+    	voComCode.setCodeId("COM030");
+    	List<CmmnDetailCode> listComCode = cmmUseService.selectCmmCodeDetail(voComCode);
+    	mav.addObject("schdulSe", listComCode);
+
+    	commandMap.put("searchMonth", sSearchDate);
+    	commandMap.put("searchMode", "MONTH");
+
+    	List<EgovMap> resultList = egovIndvdlSchdulManageService.selectIndvdlSchdulManageRetrieve(commandMap);
+        
+        List<Map<String, Object>> result = new ArrayList<>();
+        for (EgovMap m : resultList) {
+            Map<String, Object> event = new HashMap<>();
+            event.put("id", m.get("schdulId"));
+            event.put("title", m.get("schdulNm"));
+            if(m.get("schdulBgnde")!=null && !"".equals(m.get("schdulBgnde"))) {
+            	event.put("start", m.get("schdulBgnde").toString().substring(0,4)+"-"+m.get("schdulBgnde").toString().substring(4,6)+"-"+m.get("schdulBgnde").toString().substring(6,8));
+            }
+            if(m.get("schdulEndde")!=null && !"".equals(m.get("schdulEndde"))) {
+            	event.put("end", m.get("schdulEndde").toString().substring(0,4)+"-"+m.get("schdulEndde").toString().substring(4,6)+"-"+m.get("schdulEndde").toString().substring(6,8));
+            }
+
+            Map<String, Object> extendedProps = new HashMap<>();
+            extendedProps.put("description", m.get("schdulCn"));
+            extendedProps.put("location", ""); // 있으면 세팅
+            event.put("extendedProps", extendedProps);
+
+            result.add(event);
+        }
+        
+        mav.addObject("events", result);
+        return mav;
+    }
+    
+	@RequestMapping(value="/cop/smt/sim/EgovIndvdlSchdulManageMerge.do")
+	@ResponseBody
+	public String indvdlSchdulManageMerge(
+			@ModelAttribute("searchVO") ComDefaultVO searchVO,
+			@RequestParam Map<?, ?> commandMap,
+			@ModelAttribute("indvdlSchdulManageVO") IndvdlSchdulManageVO indvdlSchdulManageVO,
+			BindingResult bindingResult,
+    		ModelMap model)
+    throws Exception {
+
+		System.out.println(indvdlSchdulManageVO.toString());
+        return "redirect:/cop/smt/sim/EgovIndvdlSchdulManageList.do";
+
+
+	}
 }
 
 

@@ -457,6 +457,28 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("edit-event-btn").click();
         document.getElementById("edit-event-btn").setAttribute("hidden", true);
     });
+    document.getElementById("btn-save-event").addEventListener("click", function(e) {
+		const data = {
+	        schdulSe: document.getElementById("event-category").value,
+	        schdulNm: document.getElementById("event-title").value,
+	        schdulBgnde: document.getElementById("event-start-date").value,
+	        schdulCn: document.getElementById("event-description").value,
+	        schdulPlace: document.getElementById("event-location").value
+    	};
+		$.ajax({
+        url: "/esoomCms/cop/smt/sim/EgovIndvdlSchdulManageMerge.do", // 실제 저장 URL로 변경
+        type: "POST",
+        data: data ,
+        success: function(response) {
+            alert("등록되었습니다.");
+            calendar.refetchEvents(); // fullCalendar 쓰는 경우
+            g.hide(); // 모달 닫기
+        },
+        error: function(err) {
+            alert("저장 실패: " + err.responseText);
+        }
+    });
+	});
 });
 
 var str_dt = function(e) {

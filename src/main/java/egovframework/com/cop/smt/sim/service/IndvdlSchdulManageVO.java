@@ -496,5 +496,19 @@ public class IndvdlSchdulManageVO implements Serializable {
 		this.schdulChargerName = schdulChargerName;
 	}
 
+	@Override
+	public String toString() {
+		return "IndvdlSchdulManageVO [schdulId=" + schdulId + ", schdulSe=" + schdulSe + ", schdulDeptId="
+				+ schdulDeptId + ", schdulKindCode=" + schdulKindCode + ", schdulBgnde=" + schdulBgnde
+				+ ", schdulEndde=" + schdulEndde + ", schdulNm=" + schdulNm + ", schdulCn=" + schdulCn
+				+ ", schdulPlace=" + schdulPlace + ", schdulIpcrCode=" + schdulIpcrCode + ", schdulChargerId="
+				+ schdulChargerId + ", atchFileId=" + atchFileId + ", reptitSeCode=" + reptitSeCode
+				+ ", frstRegisterPnttm=" + frstRegisterPnttm + ", frstRegisterId=" + frstRegisterId
+				+ ", lastUpdusrPnttm=" + lastUpdusrPnttm + ", lastUpdusrId=" + lastUpdusrId + ", schdulBgndeHH="
+				+ schdulBgndeHH + ", schdulBgndeMM=" + schdulBgndeMM + ", schdulEnddeHH=" + schdulEnddeHH
+				+ ", schdulEnddeMM=" + schdulEnddeMM + ", schdulBgndeYYYMMDD=" + schdulBgndeYYYMMDD
+				+ ", schdulEnddeYYYMMDD=" + schdulEnddeYYYMMDD + ", schdulDeptName=" + schdulDeptName
+				+ ", schdulChargerName=" + schdulChargerName + "]";
+	}
 
 }

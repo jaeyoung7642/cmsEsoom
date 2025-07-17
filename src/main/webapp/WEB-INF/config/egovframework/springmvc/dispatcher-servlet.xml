@@ -22,7 +22,6 @@
         <property name="interceptors">
             <list>
                 <ref bean="localeChangeInterceptor" />
-                <ref bean="CommonDataInterceptor" />
             </list>
         </property>
     </bean>
@@ -65,4 +64,5 @@
         <bean class="com.esoom.cms.common.CommonDataInterceptor" />
     </mvc:interceptor>
 </mvc:interceptors>
+<mvc:annotation-driven/>
 </beans>
