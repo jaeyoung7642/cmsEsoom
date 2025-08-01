@@ -49,6 +49,15 @@ public class IndvdlSchdulManageDao extends EgovComAbstractDAO {
 	public List<EgovMap> selectIndvdlSchdulManageRetrieve(Map<String, String> map) throws Exception{
 		 return selectList("IndvdlSchdulManage.selectIndvdlSchdulManageRetrieve", map);
 	}
+	/**
+	 * 일정 목록을 Map(map)형식으로 조회한다.
+	 * @param Map(map) - 조회할 정보가 담긴 VO
+	 * @return List
+	 * @throws Exception
+	 */
+	public List<EgovMap> selectIndvdlSchdulUpcoming(Map<String, String> map) throws Exception{
+		return selectList("IndvdlSchdulManage.selectIndvdlSchdulUpcoming", map);
+	}
 
 
     /**

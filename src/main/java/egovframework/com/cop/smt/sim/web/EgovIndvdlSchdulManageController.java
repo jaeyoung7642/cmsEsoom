@@ -905,15 +905,24 @@ public class EgovIndvdlSchdulManageController {
             event.put("id", m.get("schdulId"));
             event.put("title", m.get("schdulNm"));
             if(m.get("schdulBgnde")!=null && !"".equals(m.get("schdulBgnde"))) {
-            	event.put("start", m.get("schdulBgnde").toString().substring(0,4)+"-"+m.get("schdulBgnde").toString().substring(4,6)+"-"+m.get("schdulBgnde").toString().substring(6,8));
+            	event.put("start", m.get("schdulBgnde").toString().substring(0,4)+"-"+m.get("schdulBgnde").toString().substring(4,6)+"-"+m.get("schdulBgnde").toString().substring(6,8)+"T"+m.get("schdulBgnde").toString().substring(8,10)+":"+m.get("schdulBgnde").toString().substring(10,12)+":00");
             }
             if(m.get("schdulEndde")!=null && !"".equals(m.get("schdulEndde"))) {
-            	event.put("end", m.get("schdulEndde").toString().substring(0,4)+"-"+m.get("schdulEndde").toString().substring(4,6)+"-"+m.get("schdulEndde").toString().substring(6,8));
+            	event.put("end", m.get("schdulEndde").toString().substring(0,4)+"-"+m.get("schdulEndde").toString().substring(4,6)+"-"+m.get("schdulEndde").toString().substring(6,8)+"T"+m.get("schdulEndde").toString().substring(8,10)+":"+m.get("schdulEndde").toString().substring(10,12)+":00");
             }
-
+            if("1".equals(m.get("schdulSe"))) {
+            	event.put("className", "bg-success-subtle");
+            }else if("2".equals(m.get("schdulSe"))) {
+            	event.put("className", "bg-info-subtle");
+            }else if("3".equals(m.get("schdulSe"))) {
+            	event.put("className", "bg-warning-subtle");
+            }else {
+            	event.put("className", "bg-danger-subtle");
+            }
             Map<String, Object> extendedProps = new HashMap<>();
             extendedProps.put("description", m.get("schdulCn"));
-            extendedProps.put("location", ""); // 있으면 세팅
+            extendedProps.put("location", m.get("schdulPlace")); // 있으면 세팅
+            extendedProps.put("schdulSe", m.get("schdulSe")); // 있으면 세팅
             event.put("extendedProps", extendedProps);
 
             result.add(event);
@@ -923,7 +932,7 @@ public class EgovIndvdlSchdulManageController {
         return mav;
     }
     
-	@RequestMapping(value="/cop/smt/sim/EgovIndvdlSchdulManageMerge.do")
+	@RequestMapping(value="/cop/smt/sim/EgovIndvdlSchdulManageInsert.do")
 	@ResponseBody
 	public String indvdlSchdulManageMerge(
 			@ModelAttribute("searchVO") ComDefaultVO searchVO,
@@ -932,12 +941,217 @@ public class EgovIndvdlSchdulManageController {
 			BindingResult bindingResult,
     		ModelMap model)
     throws Exception {
+		// 0. Spring Security 사용자권한 처리
+    	Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+    	if(!isAuthenticated) {
+        	return "isAuthenticated";
+    	}
 
-		System.out.println(indvdlSchdulManageVO.toString());
+		//로그인 객체 선언
+		LoginVO loginVO = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
+
+		//날짜두개
+		if(indvdlSchdulManageVO.getSchdulBgndeYYYMMDD().contains("to")) {
+			String BgndeYYYMMDD = indvdlSchdulManageVO.getSchdulBgndeYYYMMDD().substring(0, 10);
+			String EnddeYYYMMDD = indvdlSchdulManageVO.getSchdulBgndeYYYMMDD().substring(14);
+			if(indvdlSchdulManageVO.getSchdulBgndeHH() != null && !"".equals(indvdlSchdulManageVO.getSchdulBgndeHH())) {
+				BgndeYYYMMDD = BgndeYYYMMDD.replaceAll("-", "") + indvdlSchdulManageVO.getSchdulBgndeHH().replaceAll(":", ""); 
+			}else {
+				BgndeYYYMMDD = BgndeYYYMMDD.replaceAll("-", "") + "0000";
+			}
+			if(indvdlSchdulManageVO.getSchdulEnddeHH() != null && !"".equals(indvdlSchdulManageVO.getSchdulEnddeHH())) {
+				EnddeYYYMMDD = EnddeYYYMMDD.replaceAll("-", "") + indvdlSchdulManageVO.getSchdulEnddeHH().replaceAll(":", ""); 
+			}else {
+				EnddeYYYMMDD = EnddeYYYMMDD.replaceAll("-", "") + "2359";
+			}
+			indvdlSchdulManageVO.setSchdulBgnde(BgndeYYYMMDD);
+			indvdlSchdulManageVO.setSchdulEndde(EnddeYYYMMDD);
+		}else {//날짜한개
+			String BgndeYYYMMDD = indvdlSchdulManageVO.getSchdulBgndeYYYMMDD().replaceAll("-", "") ;
+			String EnddeYYYMMDD = indvdlSchdulManageVO.getSchdulBgndeYYYMMDD().replaceAll("-", "") ;
+			if(indvdlSchdulManageVO.getSchdulBgndeHH() != null && !"".equals(indvdlSchdulManageVO.getSchdulBgndeHH())) {
+				BgndeYYYMMDD = BgndeYYYMMDD + indvdlSchdulManageVO.getSchdulBgndeHH().replaceAll(":", ""); 
+			}else {
+				BgndeYYYMMDD = BgndeYYYMMDD + "0000";
+			}
+			if(indvdlSchdulManageVO.getSchdulEnddeHH() != null && !"".equals(indvdlSchdulManageVO.getSchdulEnddeHH())) {
+				EnddeYYYMMDD = EnddeYYYMMDD + indvdlSchdulManageVO.getSchdulEnddeHH().replaceAll(":", ""); 
+			}else {
+				EnddeYYYMMDD = EnddeYYYMMDD + "2359";
+			}
+			indvdlSchdulManageVO.setSchdulBgnde(BgndeYYYMMDD);
+			indvdlSchdulManageVO.setSchdulEndde(EnddeYYYMMDD);
+		}
+		//아이디 설정
+		indvdlSchdulManageVO.setFrstRegisterId(loginVO == null ? "" : EgovStringUtil.isNullToString(loginVO.getUniqId()));
+		indvdlSchdulManageVO.setLastUpdusrId(loginVO == null ? "" : EgovStringUtil.isNullToString(loginVO.getUniqId()));
+		//일정 담당자 자신으로 등록(2017.08.12 modify by jdh)
+		indvdlSchdulManageVO.setSchdulChargerId(loginVO == null ? "" : EgovStringUtil.isNullToString(loginVO.getUniqId()));
+
+    	egovIndvdlSchdulManageService.insertIndvdlSchdulManage(indvdlSchdulManageVO);
+    	
         return "redirect:/cop/smt/sim/EgovIndvdlSchdulManageList.do";
 
 
 	}
+	@RequestMapping(value="/cop/smt/sim/EgovIndvdlSchdulManageDelete.do")
+	@ResponseBody
+	public String EgovIndvdlSchdulManageDelete(
+			@ModelAttribute("searchVO") ComDefaultVO searchVO,
+			@RequestParam Map<?, ?> commandMap,
+			@ModelAttribute("indvdlSchdulManageVO") IndvdlSchdulManageVO indvdlSchdulManageVO,
+			BindingResult bindingResult,
+			ModelMap model)
+					throws Exception {
+		// 0. Spring Security 사용자권한 처리
+		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+		if(!isAuthenticated) {
+			return "isAuthenticated";
+		}
+		egovIndvdlSchdulManageService.deleteIndvdlSchdulManage(indvdlSchdulManageVO);
+		
+		return "redirect:/cop/smt/sim/EgovIndvdlSchdulManageList.do";
+		
+		
+	}
+	@RequestMapping(value="/cop/smt/sim/EgovIndvdlSchdulManageUpdate.do")
+	@ResponseBody
+	public String EgovIndvdlSchdulManageUpdate(
+			@ModelAttribute("searchVO") ComDefaultVO searchVO,
+			@RequestParam Map<?, ?> commandMap,
+			@ModelAttribute("indvdlSchdulManageVO") IndvdlSchdulManageVO indvdlSchdulManageVO,
+			BindingResult bindingResult,
+    		ModelMap model)
+    throws Exception {
+		// 0. Spring Security 사용자권한 처리
+    	Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+    	if(!isAuthenticated) {
+        	return "isAuthenticated";
+    	}
+
+		//로그인 객체 선언
+		LoginVO loginVO = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
+
+		//날짜두개
+		if(indvdlSchdulManageVO.getSchdulBgndeYYYMMDD().contains("to")) {
+			String BgndeYYYMMDD = indvdlSchdulManageVO.getSchdulBgndeYYYMMDD().substring(0, 10);
+			String EnddeYYYMMDD = indvdlSchdulManageVO.getSchdulBgndeYYYMMDD().substring(14);
+			if(indvdlSchdulManageVO.getSchdulBgndeHH() != null && !"".equals(indvdlSchdulManageVO.getSchdulBgndeHH())) {
+				BgndeYYYMMDD = BgndeYYYMMDD.replaceAll("-", "") + indvdlSchdulManageVO.getSchdulBgndeHH().replaceAll(":", ""); 
+			}else {
+				BgndeYYYMMDD = BgndeYYYMMDD.replaceAll("-", "") + "0000";
+			}
+			if(indvdlSchdulManageVO.getSchdulEnddeHH() != null && !"".equals(indvdlSchdulManageVO.getSchdulEnddeHH())) {
+				EnddeYYYMMDD = EnddeYYYMMDD.replaceAll("-", "") + indvdlSchdulManageVO.getSchdulEnddeHH().replaceAll(":", ""); 
+			}else {
+				EnddeYYYMMDD = EnddeYYYMMDD.replaceAll("-", "") + "2359";
+			}
+			indvdlSchdulManageVO.setSchdulBgnde(BgndeYYYMMDD);
+			indvdlSchdulManageVO.setSchdulEndde(EnddeYYYMMDD);
+		}else {//날짜한개
+			String BgndeYYYMMDD = indvdlSchdulManageVO.getSchdulBgndeYYYMMDD().replaceAll("-", "") ;
+			String EnddeYYYMMDD = indvdlSchdulManageVO.getSchdulBgndeYYYMMDD().replaceAll("-", "") ;
+			if(indvdlSchdulManageVO.getSchdulBgndeHH() != null && !"".equals(indvdlSchdulManageVO.getSchdulBgndeHH())) {
+				BgndeYYYMMDD = BgndeYYYMMDD + indvdlSchdulManageVO.getSchdulBgndeHH().replaceAll(":", ""); 
+			}else {
+				BgndeYYYMMDD = BgndeYYYMMDD + "0000";
+			}
+			if(indvdlSchdulManageVO.getSchdulEnddeHH() != null && !"".equals(indvdlSchdulManageVO.getSchdulEnddeHH())) {
+				EnddeYYYMMDD = EnddeYYYMMDD + indvdlSchdulManageVO.getSchdulEnddeHH().replaceAll(":", ""); 
+			}else {
+				EnddeYYYMMDD = EnddeYYYMMDD + "2359";
+			}
+			indvdlSchdulManageVO.setSchdulBgnde(BgndeYYYMMDD);
+			indvdlSchdulManageVO.setSchdulEndde(EnddeYYYMMDD);
+		}
+		//아이디 설정
+		indvdlSchdulManageVO.setFrstRegisterId(loginVO == null ? "" : EgovStringUtil.isNullToString(loginVO.getUniqId()));
+		indvdlSchdulManageVO.setLastUpdusrId(loginVO == null ? "" : EgovStringUtil.isNullToString(loginVO.getUniqId()));
+		//일정 담당자 자신으로 등록(2017.08.12 modify by jdh)
+		indvdlSchdulManageVO.setSchdulChargerId(loginVO == null ? "" : EgovStringUtil.isNullToString(loginVO.getUniqId()));
+
+		egovIndvdlSchdulManageService.updateIndvdlSchdulManage(indvdlSchdulManageVO);
+    	
+        return "redirect:/cop/smt/sim/EgovIndvdlSchdulManageList.do";
+
+
+	}
+	@RequestMapping(value="/cop/smt/sim/EgovIndvdlSchdulManageListUpcomingJson.do")
+    @ResponseBody
+    public ModelAndView egovIndvdlSchdulManageListUpcomingJson(
+        @ModelAttribute("searchVO") ComDefaultVO searchVO,
+		@RequestParam Map<String, String> commandMap,
+		IndvdlSchdulManageVO indvdlSchdulManageVO
+    ) throws Exception {
+    	ModelAndView mav = new ModelAndView("jsonView");
+
+		java.util.Calendar cal = java.util.Calendar.getInstance();
+
+		String sYear = commandMap.get("year");
+		String sMonth = commandMap.get("month");
+
+		int iYear = cal.get(java.util.Calendar.YEAR);
+		int iMonth = cal.get(java.util.Calendar.MONTH);
+//		int iDate = cal.get(java.util.Calendar.DATE);
+
+                //검색 설정
+                String sSearchDate = "";
+                if(sYear == null || sMonth == null){
+                        sSearchDate += Integer.toString(iYear);
+                        sSearchDate += Integer.toString(iMonth+1).length() == 1 ? "0" + Integer.toString(iMonth+1) : Integer.toString(iMonth+1);
+                }else{
+                        iYear = Integer.parseInt(sYear);
+                        iMonth = Integer.parseInt(sMonth);
+                        sSearchDate += sYear;
+                        sSearchDate += Integer.toString(iMonth+1).length() == 1 ? "0" + Integer.toString(iMonth+1) :Integer.toString(iMonth+1);
+                }
+
+
+
+		//공통코드 일정종류
+		ComDefaultCodeVO voComCode = new ComDefaultCodeVO();
+	   	voComCode = new ComDefaultCodeVO();
+    	voComCode.setCodeId("COM030");
+    	List<CmmnDetailCode> listComCode = cmmUseService.selectCmmCodeDetail(voComCode);
+    	mav.addObject("schdulSe", listComCode);
+
+    	commandMap.put("searchMonth", sSearchDate);
+    	commandMap.put("searchMode", "MONTH");
+
+    	List<EgovMap> resultList = egovIndvdlSchdulManageService.selectIndvdlSchdulUpcoming(commandMap);
+        
+        List<Map<String, Object>> result = new ArrayList<>();
+        for (EgovMap m : resultList) {
+            Map<String, Object> event = new HashMap<>();
+            event.put("id", m.get("schdulId"));
+            event.put("title", m.get("schdulNm"));
+            if(m.get("schdulBgnde")!=null && !"".equals(m.get("schdulBgnde"))) {
+            	event.put("start", m.get("schdulBgnde").toString().substring(0,4)+"-"+m.get("schdulBgnde").toString().substring(4,6)+"-"+m.get("schdulBgnde").toString().substring(6,8)+"T"+m.get("schdulBgnde").toString().substring(8,10)+":"+m.get("schdulBgnde").toString().substring(10,12)+":00");
+            }
+            if(m.get("schdulEndde")!=null && !"".equals(m.get("schdulEndde"))) {
+            	event.put("end", m.get("schdulEndde").toString().substring(0,4)+"-"+m.get("schdulEndde").toString().substring(4,6)+"-"+m.get("schdulEndde").toString().substring(6,8)+"T"+m.get("schdulEndde").toString().substring(8,10)+":"+m.get("schdulEndde").toString().substring(10,12)+":00");
+            }
+            if("1".equals(m.get("schdulSe"))) {
+            	event.put("className", "bg-success-subtle");
+            }else if("2".equals(m.get("schdulSe"))) {
+            	event.put("className", "bg-info-subtle");
+            }else if("3".equals(m.get("schdulSe"))) {
+            	event.put("className", "bg-warning-subtle");
+            }else {
+            	event.put("className", "bg-danger-subtle");
+            }
+            Map<String, Object> extendedProps = new HashMap<>();
+            extendedProps.put("description", m.get("schdulCn"));
+            extendedProps.put("location", m.get("schdulPlace")); // 있으면 세팅
+            extendedProps.put("schdulSe", m.get("schdulSe")); // 있으면 세팅
+            event.put("extendedProps", extendedProps);
+
+            result.add(event);
+        }
+        
+        mav.addObject("events", result);
+        return mav;
+    }
 }
 
 

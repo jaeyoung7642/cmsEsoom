@@ -1,6 +1,8 @@
 package egovframework.com.sym.mnu.mpm.web;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -18,11 +20,13 @@ import egovframework.com.sym.mnu.mpm.service.EgovMenuManageService;
 import egovframework.com.sym.mnu.mpm.service.MenuManageVO;
 import egovframework.com.utl.fcc.service.EgovStringUtil;
 import egovframework.com.cop.bbs.service.EgovArticleService;
+import egovframework.com.cop.smt.sim.service.EgovIndvdlSchdulManageService;
 import egovframework.com.uss.umt.service.EgovMberManageService;
 import egovframework.com.sym.log.wlg.service.EgovWebLogService;
 
 import org.egovframe.rte.fdl.access.service.EgovUserDetailsHelper;
 import org.egovframe.rte.fdl.property.EgovPropertyService;
+import org.egovframe.rte.psl.dataaccess.util.EgovMap;
 
 /**
  * 메인메뉴 해당링크 처리를 하는 비즈니스 구현 클래스
@@ -66,7 +70,8 @@ public class EgovMainMenuManageController {
 	
 	@Resource(name="EgovWebLogService")
 	private EgovWebLogService webLogService;
-
+	@Resource(name = "egovIndvdlSchdulManageService")
+	private EgovIndvdlSchdulManageService egovIndvdlSchdulManageService;
     /** EgovFileMngService */
 	//@Resource(name="EgovFileMngService")
 	//private EgovFileMngService fileMngService;
@@ -269,6 +274,36 @@ public class EgovMainMenuManageController {
 		model.addAttribute("recentArticleList", egovArticleService.selectArticleRecentList());
 		model.addAttribute("visitStat", webLogService.getVisitorStats());
 
+    	Map<String, String> hmParam = new HashMap<String, String>();
+
+		java.util.Calendar cal = java.util.Calendar.getInstance();
+		int iYear = cal.get(java.util.Calendar.YEAR);
+		int iMonth = cal.get(java.util.Calendar.MONTH);
+		String sSearchDate = "";
+		sSearchDate += Integer.toString(iYear);
+        sSearchDate += Integer.toString(iMonth+1).length() == 1 ? "0" + Integer.toString(iMonth+1) : Integer.toString(iMonth+1);
+        
+        hmParam.put("searchMonth", sSearchDate);
+        hmParam.put("searchMode", "MONTH");
+    	
+		List<EgovMap> resultList = egovIndvdlSchdulManageService.selectIndvdlSchdulManageRetrieve(hmParam);
+		for (EgovMap m : resultList) {
+            if(m.get("schdulBgnde")!=null && !"".equals(m.get("schdulBgnde"))) {
+            	m.put("dd", m.get("schdulBgnde").toString().substring(6,8));
+            	m.put("time", m.get("schdulEndde").toString().substring(8,10)+":"+m.get("schdulEndde").toString().substring(10,12));
+            }
+            if("1".equals(m.get("schdulSe"))) {
+            	m.put("className", "bg-success-subtle");
+            }else if("2".equals(m.get("schdulSe"))) {
+            	m.put("className", "bg-info-subtle");
+            }else if("3".equals(m.get("schdulSe"))) {
+            	m.put("className", "bg-warning-subtle");
+            }else {
+            	m.put("className", "bg-danger-subtle");
+            }
+        }
+		model.addAttribute("resultList", resultList);
+		
 		if (!user.getId().equals("")) {
         	// 메인 페이지 이동
 			//return "egovframework/com/EgovMainView";

@@ -10,6 +10,9 @@ File: Calendar init js
 var start_date = document.getElementById("event-start-date");
 var timepicker1 = document.getElementById("timepicker1");
 var timepicker2 = document.getElementById("timepicker2");
+var start_date2 = document.getElementById("event-start-date2");
+var timepicker3 = document.getElementById("timepicker3");
+var timepicker4 = document.getElementById("timepicker4");
 var date_range = null;
 var T_check = null;
 document.addEventListener("DOMContentLoaded", function () {
@@ -17,9 +20,14 @@ document.addEventListener("DOMContentLoaded", function () {
     var addEvent = new bootstrap.Modal(document.getElementById('event-modal'), {
         keyboard: false
     });
+    var addEvent2 = new bootstrap.Modal(document.getElementById('event-modal2'), {
+        keyboard: false
+    });
     document.getElementById('event-modal');
     var modalTitle = document.getElementById('modal-title');
+    var modalTitle2 = document.getElementById('modal-title2');
     var formEvent = document.getElementById('form-event');
+    var formEvent2 = document.getElementById('form-event2');
     var selectedEvent = null;
     var forms = document.getElementsByClassName('needs-validation');
     /* initialize the calendar */
@@ -30,197 +38,19 @@ document.addEventListener("DOMContentLoaded", function () {
     var y = date.getFullYear();
     var Draggable = FullCalendar.Draggable;
     var externalEventContainerEl = document.getElementById('external-events');
-    var defaultEvents = [{
-            id: 1,
-            title: "World Braille Day",
-            start: "2022-01-04",
-            className: "bg-info-subtle",
-            allDay: true
-
-        },
-        {
-            id: 2,
-            title: "World Leprosy Day",
-            start: "2022-01-30",
-            className: "bg-info-subtle",
-            allDay: true
-        },
-
-        {
-            id: 3,
-            title: "International Mother Language Day",
-            start: "2022-02-21",
-            className: "bg-info-subtle",
-            allDay: true
-        },
-
-        {
-            id: 4,
-            title: "International Women's Day",
-            start: "2022-03-08",
-            className: "bg-info-subtle",
-            allDay: true
-        },
-
-        {
-            id: 5,
-            title: "World Thinking Day",
-            start: "2022-02-22",
-            className: "bg-info-subtle",
-            allDay: true
-        },
-
-        {
-            id: 6,
-            title: "International Mother Language Day",
-            start: "2022-03-21",
-            className: "bg-info-subtle",
-            allDay: true
-        },
-
-        {
-            id: 7,
-            title: "World Water Day",
-            start: "2022-03-22",
-            className: "bg-info-subtle",
-            allDay: true
-        },
-
-        {
-            id: 8,
-            title: "World Health Day",
-            start: "2022-04-07",
-            className: "bg-info-subtle",
-            allDay: true
-        },
-
-
-        {
-            id: 9,
-            title: "International Special Librarians Day",
-            start: "2022-04-16",
-            className: "bg-info-subtle",
-            allDay: true
-        },
-
-        {
-            id: 10,
-            title: "Earth Day",
-            start: "2022-04-22",
-            className: "bg-info-subtle",
-            allDay: true
-        },
-        {
-            id: 153,
-            title: 'All Day Event',
-            start: new Date(y, m, 1),
-            className: 'bg-primary-subtle',
-            location: 'San Francisco, US',
-            allDay: true,
-            extendedProps: {
-                department: 'All Day Event'
-            },
-            description: 'An all-day event is an event that lasts an entire day or longer'
-        },
-        {
-            id: 136,
-            title: 'Visit Online Course',
-            start: new Date(y, m, d - 5),
-            end: new Date(y, m, d - 2),
-            allDay: true,
-            className: 'bg-warning-subtle',
-            extendedProps: {
-                department: 'Long Event'
-            },
-            description: 'Long Term Event means an incident that last longer than 12 hours.'
-        },
-        {
-            id: 999,
-            title: 'Client Meeting with Alexis',
-            start: new Date(y, m, d + 22, 20, 0),
-            end: new Date(y, m, d + 24, 16, 0),
-            allDay: true,
-            className: 'bg-danger-subtle',
-            location: 'California, US',
-            extendedProps: {
-                department: 'Meeting with Alexis'
-            },
-            description: 'A meeting is a gathering of two or more people that has been convened for the purpose of achieving a common goal through verbal interaction, such as sharing information or reaching agreement.'
-        },
-        {
-            id: 991,
-            title: 'Repeating Event',
-            start: new Date(y, m, d + 4, 16, 0),
-            end: new Date(y, m, d + 9, 16, 0),
-            allDay: true,
-            className: 'bg-primary-subtle',
-            location: 'Las Vegas, US',
-            extendedProps: {
-                department: 'Repeating Event'
-            },
-            description: 'A recurring or repeating event is simply any event that you will occur more than once on your calendar. ',
-        },
-        {
-            id: 112,
-            title: 'Meeting With Designer',
-            start: new Date(y, m, d, 12, 30),
-            allDay: true,
-            className: 'bg-success-subtle',
-            location: 'Head Office, US',
-            extendedProps: {
-                department: 'Meeting'
-            },
-            description: 'Tell how to boost website traffic'
-        },
-        {
-            id: 113,
-            title: 'Weekly Strategy Planning',
-            start: new Date(y, m, d + 9),
-            end: new Date(y, m, d + 11),
-            allDay: true,
-            className: 'bg-danger-subtle',
-            location: 'Head Office, US',
-            extendedProps: {
-                department: 'Lunch'
-            },
-            description: 'Strategies for Creating Your Weekly Schedule'
-        },
-        {
-            id: 875,
-            title: 'Birthday Party',
-            start: new Date(y, m, d + 1, 19, 0),
-            allDay: true,
-            className: 'bg-success-subtle',
-            location: 'Los Angeles, US',
-            extendedProps: {
-                department: 'Birthday Party'
-            },
-            description: 'Family slumber party – Bring out the blankets and pillows and have a family slumber party! Play silly party games, share special snacks and wind down the fun with a special movie.'
-        },
-        {
-            id: 783,
-            title: 'Click for Google',
-            start: new Date(y, m, 28),
-            end: new Date(y, m, 29),
-            allDay: true,
-            url: 'http://google.com/',
-            className: 'bg-dark-subtle',
-        },
-        {
-            id: 456,
-            title: 'Velzon Project Discussion with Team',
-            start: new Date(y, m, d + 23, 20, 0),
-            end: new Date(y, m, d + 24, 16, 0),
-            allDay: true,
-            className: 'bg-info-subtle',
-            location: 'Head Office, US',
-            extendedProps: {
-                department: 'Discussion'
-            },
-            description: 'Tell how to boost website traffic'
-        },
-    ];
-
+    var defaultEvents = [];
+	$.ajax({ 
+				url: '/esoomCms/cop/smt/sim/EgovIndvdlSchdulManageListUpcomingJson.do', 
+				type: "POST",  
+				dataType: 'json'
+			}).done(function(data) { 
+				defaultEvents = data.events;
+				upcomingEvent(defaultEvents);
+			}).fail(function(e) {  
+				alert("실패하였습니다."+e);
+			}).always(function() { 
+			            
+	        }); 
     // init draggable
     new Draggable(externalEventContainerEl, {
         itemSelector: '.external-event',
@@ -249,6 +79,19 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("edit-event-btn").setAttribute("data-id", "new-event");
         document.getElementById('edit-event-btn').click();
         document.getElementById("edit-event-btn").setAttribute("hidden", true);
+    }
+    function addNewEvent2(info) {
+        document.getElementById('form-event2').reset();
+        document.getElementById('btn-delete-event2').setAttribute('hidden', true);
+        addEvent2.show();
+        formEvent2.classList.remove("was-validated");
+        formEvent2.reset();
+        selectedEvent = null;
+        modalTitle2.innerText = 'Add Event';
+        newEventData = info;
+        document.getElementById("edit-event-btn2").setAttribute("data-id", "new-event");
+        document.getElementById('edit-event-btn2').click();
+        document.getElementById("edit-event-btn2").setAttribute("hidden", true);
     }
 
     function getInitialView() {
@@ -315,17 +158,18 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("event-description-tag").innerHTML = selectedEvent.extendedProps.description === undefined ? "No Description" : selectedEvent.extendedProps.description;
 
             // Edit Modal
+            document.getElementById("event-category").value = selectedEvent.extendedProps.schdulSe;
             document.getElementById("event-title").value = selectedEvent.title;
             document.getElementById("event-location").value = selectedEvent.extendedProps.location === undefined ? "No Location" : selectedEvent.extendedProps.location;
             document.getElementById("event-description").value = selectedEvent.extendedProps.description === undefined ? "No Description" : selectedEvent.extendedProps.description;
             document.getElementById("eventid").value = selectedEvent.id;
 
-            if (selectedEvent.classNames[0]) {
+            if (selectedEvent.extendedProps.schdulSe) {
                 eventCategoryChoice.destroy();
                 eventCategoryChoice = new Choices("#event-category", {
                     searchEnabled: false
                 });
-                eventCategoryChoice.setChoiceByValue(selectedEvent.classNames[0]);
+                eventCategoryChoice.setChoiceByValue(selectedEvent.extendedProps.schdulSe);
             }
             var st_date = selectedEvent.start;
             var ed_date = selectedEvent.end;
@@ -342,24 +186,23 @@ document.addEventListener("DOMContentLoaded", function () {
                 return [year, month, day].join('-');
             };
             var updateDay = null
-            if(ed_date != null){
+            if(ed_date.toISOString().includes("T23:59:00")){
                 var endUpdateDay = new Date(ed_date);
                 updateDay = endUpdateDay.setDate(endUpdateDay.getDate() - 1);
-            }
+            }else{
+				updateDay = new Date(ed_date);
+			}
             
-            var r_date = ed_date == null ? (str_dt(st_date)) : (str_dt(st_date)) + ' to ' + (str_dt(updateDay));
+            var r_date = ed_date == null ? (date_r(st_date)) : (date_r(st_date)) + ' to ' + (date_r(updateDay));
             var er_date = ed_date == null ? (date_r(st_date)) : (date_r(st_date)) + ' to ' + (date_r(updateDay));
-
             flatpickr(start_date, {
                 defaultDate: er_date,
-                altInput: true,
-                altFormat: "j F Y",
                 dateFormat: "Y-m-d",
                 mode: ed_date !== null ? "range" : "range",
                 onChange: function (selectedDates, dateStr, instance) {
                     var date_range = dateStr;
                     var dates = date_range.split("to");
-                    if (dates.length > 1) {
+                    /*if (dates.length > 1) {
                         document.getElementById('event-time').setAttribute("hidden", true);
                     } else {
                         document.getElementById("timepicker1").parentNode.classList.remove("d-none");
@@ -367,7 +210,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         document.getElementById("timepicker2").parentNode.classList.remove("d-none");
                         document.getElementById("timepicker2").classList.replace("d-none", "d-block");
                         document.getElementById('event-time').removeAttribute("hidden");
-                    }
+                    }*/
                 },
             });
             document.getElementById("event-start-date-tag").innerHTML = r_date;
@@ -422,6 +265,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			}).done(function(data) { 
 				console.log(data.events);
 				successCallback(data.events);
+				defaultEvents = data.events;
 			}).fail(function(e) {  
 				alert("실패하였습니다."+e);
 			}).always(function() { 
@@ -429,38 +273,85 @@ document.addEventListener("DOMContentLoaded", function () {
 	        }); 
 		},
         //events: defaultEvents,
-        eventReceive: function (info) {
-            var newid = parseInt(info.event.id);
-            var newEvent = {
-                id: newid,
-                title: info.event.title,
-                start: info.event.start,
-                allDay: info.event.allDay,
-                className: info.event.classNames[0]
-            };
-            defaultEvents.push(newEvent);
-            upcomingEvent(defaultEvents);
+        eventReceive: function (info) {//왼쪽데이터 끌어올때
+        	var schdulSe = "";
+        	if(info.event.classNames == 'bg-success-subtle'){
+				schdulSe = "1";
+			}else if(info.event.classNames == 'bg-info-subtle'){
+				schdulSe = "2";
+			}else if(info.event.classNames == 'bg-warning-subtle'){
+				schdulSe = "3";
+			}else{
+				schdulSe = "4";
+			}
+        	const data = {
+		        schdulSe: schdulSe,
+		        schdulNm: info.event.title,         // 제목
+		        schdulBgndeYYYMMDD: info.event.startStr,
+		        schdulKindCode: "2"
+		    };
+		    $.ajax({
+	        url: "/esoomCms/cop/smt/sim/EgovIndvdlSchdulManageInsert.do", // 실제 저장 URL로 변경
+	        type: "POST",
+	        data: data ,
+	        success: function(response) {
+				if(response =="isAuthenticated"){
+					location.href = "/esoomCms/uat/uia/egovLoginUsr.do";
+				}
+	            calendar.refetchEvents(); // fullCalendar 쓰는 경우
+	        },
+	        error: function(err) {
+	            alert("저장 실패: " + err.responseText);
+	        }
+	    	});
         },
-        eventDrop: function (info) {
-            var indexOfSelectedEvent = defaultEvents.findIndex(function (x) {
-                return x.id == info.event.id
-            });
-            if (defaultEvents[indexOfSelectedEvent]) {
-                defaultEvents[indexOfSelectedEvent].title = info.event.title;
-                defaultEvents[indexOfSelectedEvent].start = info.event.start;
-                defaultEvents[indexOfSelectedEvent].end = (info.event.end) ? info.event.end : null;
-                defaultEvents[indexOfSelectedEvent].allDay = info.event.allDay;
-                defaultEvents[indexOfSelectedEvent].className = info.event.classNames[0];
-                defaultEvents[indexOfSelectedEvent].description = (info.event._def.extendedProps.description) ? info.event._def.extendedProps.description : '';
-                defaultEvents[indexOfSelectedEvent].location = (info.event._def.extendedProps.location) ? info.event._def.extendedProps.location : '';
-            }
-            upcomingEvent(defaultEvents);
+        eventDrop: function (info) {//기존 데이터 움직일때
+        var date_r = function formatDate(date) {
+                var d = new Date(date),
+                    month = '' + (d.getMonth() + 1),
+                    day = '' + d.getDate(),
+                    year = d.getFullYear();
+                if (month.length < 2)
+                    month = '0' + month;
+                if (day.length < 2)
+                    day = '0' + day;
+                return [year, month, day].join('-');
+        		};
+        var r_date = info.event.end == null ? (date_r(info.event.start)) : (date_r(info.event.start)) + ' to ' + (date_r(info.event.end));
+		var gt_time = getTime2(info.event.start);
+        var ed_time = getTime2(info.event.end);
+        console.log(r_date);
+        console.log(info);
+        	const data = {
+		        schdulId: info.event.id,
+		        schdulSe: info.event.extendedProps.schdulSe,
+		        schdulNm: info.event.title,
+		        schdulBgndeYYYMMDD: r_date,
+		        schdulCn: info.event.extendedProps.description,
+		        schdulPlace: info.event.extendedProps.location,
+		        schdulBgndeHH: gt_time,
+		        schdulEnddeHH: ed_time,
+		        schdulKindCode : "2"
+	    	};
+            $.ajax({
+	        url: "/esoomCms/cop/smt/sim/EgovIndvdlSchdulManageUpdate.do", // 실제 저장 URL로 변경
+	        type: "POST",
+	        data: data ,
+	        success: function(response) {
+				if(response =="isAuthenticated"){
+					location.href = "/esoomCms/uat/uia/egovLoginUsr.do";
+				}
+	            calendar.refetchEvents(); // fullCalendar 쓰는 경우
+	        },
+	        error: function(err) {
+	            alert("저장 실패: " + err.responseText);
+	        }
+	    	});
         }
     });
 
     calendar.render();
 
-    upcomingEvent(defaultEvents);
     /*Add new event*/
     // Form to add new event
     formEvent.addEventListener('submit', function (ev) {
@@ -541,18 +432,30 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     document.getElementById("btn-delete-event").addEventListener("click", function (e) {
-        if (selectedEvent) {
-            for (var i = 0; i < defaultEvents.length; i++) {
-                if (defaultEvents[i].id == selectedEvent.id) {
-                    defaultEvents.splice(i, 1);
-                    i--;
-                }
-            }
+        $.ajax({
+	        url: "/esoomCms/cop/smt/sim/EgovIndvdlSchdulManageDelete.do", // 실제 저장 URL로 변경
+	        type: "POST",
+	        data: {schdulId : selectedEvent.id },
+	        success: function(response) {
+				if(response =="isAuthenticated"){
+					location.href = "/esoomCms/uat/uia/egovLoginUsr.do";
+				}else{
+					alert("삭제되었습니다.");
+				}
+	            calendar.refetchEvents(); // fullCalendar 쓰는 경우
+	            selectedEvent.remove();
+	            selectedEvent = null;
+	        },
+	        error: function(err) {
+	            alert("삭제 실패: " + err.responseText);
+	        }
+	    });
+        /*if (selectedEvent) {
             upcomingEvent(defaultEvents);
             selectedEvent.remove();
             selectedEvent = null;
             addEvent.hide();
-        }
+        }*/
     });
     document.getElementById("btn-new-event").addEventListener("click", function (e) {
         flatpicekrValueClear();
@@ -562,20 +465,50 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('edit-event-btn').click();
         document.getElementById("edit-event-btn").setAttribute("hidden", true);
     });
+    document.getElementById("btn-new-event2").addEventListener("click", function (e) {
+		console.log('111111111');
+        flatpicekrValueClear2();
+        flatPickrInit2();
+        addNewEvent2();
+        document.getElementById("edit-event-btn2").setAttribute("data-id", "new-event");
+        document.getElementById('edit-event-btn2').click();
+        document.getElementById("edit-event-btn2").setAttribute("hidden", true);
+    });
     document.getElementById("btn-save-event").addEventListener("click", function(e) {
 		const data = {
+	        schdulId: document.getElementById("eventid").value,
 	        schdulSe: document.getElementById("event-category").value,
 	        schdulNm: document.getElementById("event-title").value,
-	        schdulBgnde: document.getElementById("event-start-date").value,
+	        schdulBgndeYYYMMDD: document.getElementById("event-start-date").value,
 	        schdulCn: document.getElementById("event-description").value,
-	        schdulPlace: document.getElementById("event-location").value
+	        schdulPlace: document.getElementById("event-location").value,
+	        schdulBgndeHH: document.getElementById("timepicker1").value,
+	        schdulEnddeHH: document.getElementById("timepicker2").value,
+	        schdulKindCode : "2"
     	};
+    	if(document.getElementById("event-title").value == null || document.getElementById("event-title").value ==''){
+			return alert("필수값을 입력하세요.");
+		}
+    	if(document.getElementById("event-start-date").value == null || document.getElementById("event-start-date").value ==''){
+			return alert("필수값을 입력하세요.");
+		}
+		let url = "";
+		const btnText = document.getElementById("btn-save-event").innerHTML;
+		if (btnText === "Add Event") { // 등록
+	        url = "/esoomCms/cop/smt/sim/EgovIndvdlSchdulManageInsert.do";
+	    } else if (btnText === "Update Event") { // 수정
+	        url = "/esoomCms/cop/smt/sim/EgovIndvdlSchdulManageUpdate.do";
+	    } 
 		$.ajax({
-	        url: "/esoomCms/cop/smt/sim/EgovIndvdlSchdulManageMerge.do", // 실제 저장 URL로 변경
+	        url: url, // 실제 저장 URL로 변경
 	        type: "POST",
 	        data: data ,
 	        success: function(response) {
-	            alert("등록되었습니다.");
+				if(response =="isAuthenticated"){
+					location.href = "/esoomCms/uat/uia/egovLoginUsr.do";
+				}else{
+					alert("저장되었습니다.");
+				}
 	            calendar.refetchEvents(); // fullCalendar 쓰는 경우
 	            g.hide(); // 모달 닫기
 	        },
@@ -600,7 +533,7 @@ function flatPickrInit() {
             onChange: function (selectedDates, dateStr, instance) {
                 var date_range = dateStr;
                 var dates = date_range.split("to");
-                if (dates.length > 1) {
+                /*if (dates.length > 1) {
                     document.getElementById('event-time').setAttribute("hidden", true);
                 } else {
                     document.getElementById("timepicker1").parentNode.classList.remove("d-none");
@@ -608,11 +541,39 @@ function flatPickrInit() {
                     document.getElementById("timepicker2").parentNode.classList.remove("d-none");
                     document.getElementById("timepicker2").classList.replace("d-none", "d-block");
                     document.getElementById('event-time').removeAttribute("hidden");
-                }
+                }*/
             },
         });
     flatpickr(timepicker1, config);
     flatpickr(timepicker2, config);
+
+}
+function flatPickrInit2() {
+    var config = {
+        enableTime: true,
+        noCalendar: true,
+    };
+    var date_range = flatpickr(
+        start_date2, {
+            enableTime: false,
+            mode: "range",
+            minDate: "today",
+            onChange: function (selectedDates, dateStr, instance) {
+                var date_range = dateStr;
+                var dates = date_range.split("to");
+                /*if (dates.length > 1) {
+                    document.getElementById('event-time').setAttribute("hidden", true);
+                } else {
+                    document.getElementById("timepicker1").parentNode.classList.remove("d-none");
+                    document.getElementById("timepicker1").classList.replace("d-none", "d-block");
+                    document.getElementById("timepicker2").parentNode.classList.remove("d-none");
+                    document.getElementById("timepicker2").classList.replace("d-none", "d-block");
+                    document.getElementById('event-time').removeAttribute("hidden");
+                }*/
+            },
+        });
+    flatpickr(timepicker3, config);
+    flatpickr(timepicker4, config);
 
 }
 
@@ -620,6 +581,11 @@ function flatpicekrValueClear() {
     start_date.flatpickr().clear();
     timepicker1.flatpickr().clear();
     timepicker2.flatpickr().clear();
+}
+function flatpicekrValueClear2() {
+    start_date2.flatpickr().clear();
+    timepicker3.flatpickr().clear();
+    timepicker4.flatpickr().clear();
 }
 
 
@@ -643,6 +609,26 @@ function eventClicked() {
     document.getElementById("event-description-tag").classList.replace("d-none", "d-block");
     document.getElementById('btn-save-event').setAttribute("hidden", true);
 }
+function eventClicked2() {
+    document.getElementById('form-event2').classList.add("view-event");
+    document.getElementById("event-title2").classList.replace("d-block", "d-none");
+    document.getElementById("event-category2").classList.replace("d-block", "d-none");
+    document.getElementById("event-start-date2").parentNode.classList.add("d-none");
+    document.getElementById("event-start-date2").classList.replace("d-block", "d-none");
+    document.getElementById('event-time2').setAttribute("hidden", true);
+    document.getElementById("timepicker3").parentNode.classList.add("d-none");
+    document.getElementById("timepicker3").classList.replace("d-block", "d-none");
+    document.getElementById("timepicker4").parentNode.classList.add("d-none");
+    document.getElementById("timepicker4").classList.replace("d-block", "d-none");
+    document.getElementById("event-location2").classList.replace("d-block", "d-none");
+    document.getElementById("event-description2").classList.replace("d-block", "d-none");
+    document.getElementById("event-start-date-tag2").classList.replace("d-none", "d-block");
+    document.getElementById("event-timepicker1-tag2").classList.replace("d-none", "d-block");
+    document.getElementById("event-timepicker2-tag2").classList.replace("d-none", "d-block");
+    document.getElementById("event-location-tag2").classList.replace("d-none", "d-block");
+    document.getElementById("event-description-tag2").classList.replace("d-none", "d-block");
+    document.getElementById('btn-save-event2').setAttribute("hidden", true);
+}
 
 function editEvent(data) {
     var data_id = data.getAttribute("data-id");
@@ -661,6 +647,26 @@ function editEvent(data) {
         data.innerHTML = "Edit";
         data.setAttribute("data-id", 'edit-event');
         eventClicked();
+    }
+}
+function editEvent2(data) {
+	console.log('22222222222');
+    var data_id = data.getAttribute("data-id");
+    if (data_id == 'new-event') {
+        document.getElementById('modal-title2').innerHTML = "";
+        document.getElementById('modal-title2').innerHTML = "Add Event";
+        document.getElementById("btn-save-event2").innerHTML = "Add Event";
+        eventTyped2();
+    } else if (data_id == 'edit-event') {
+        data.innerHTML = "Cancel";
+        data.setAttribute("data-id", 'cancel-event');
+        document.getElementById("btn-save-event2").innerHTML = "Update Event";
+        data.removeAttribute("hidden");
+        eventTyped2();
+    } else {
+        data.innerHTML = "Edit";
+        data.setAttribute("data-id", 'edit-event');
+        eventClicked2();
     }
 }
 
@@ -683,6 +689,25 @@ function eventTyped() {
     document.getElementById("event-description-tag").classList.replace("d-block", "d-none");
     document.getElementById('btn-save-event').removeAttribute("hidden");
 }
+function eventTyped2() {
+    document.getElementById('form-event2').classList.remove("view-event");
+    document.getElementById("event-title2").classList.replace("d-none", "d-block");
+    document.getElementById("event-category2").classList.replace("d-none", "d-block");
+    document.getElementById("event-start-date2").parentNode.classList.remove("d-none");
+    document.getElementById("event-start-date2").classList.replace("d-none", "d-block");
+    document.getElementById("timepicker3").parentNode.classList.remove("d-none");
+    document.getElementById("timepicker3").classList.replace("d-none", "d-block");
+    document.getElementById("timepicker4").parentNode.classList.remove("d-none");
+    document.getElementById("timepicker4").classList.replace("d-none", "d-block");
+    document.getElementById("event-location2").classList.replace("d-none", "d-block");
+    document.getElementById("event-description2").classList.replace("d-none", "d-block");
+    document.getElementById("event-start-date-tag2").classList.replace("d-block", "d-none");
+    document.getElementById("event-timepicker1-tag2").classList.replace("d-block", "d-none");
+    document.getElementById("event-timepicker2-tag2").classList.replace("d-block", "d-none");
+    document.getElementById("event-location-tag2").classList.replace("d-block", "d-none");
+    document.getElementById("event-description-tag2").classList.replace("d-block", "d-none");
+    document.getElementById('btn-save-event2').removeAttribute("hidden");
+}
 
 // upcoming Event
 function upcomingEvent(a) {
@@ -692,6 +717,7 @@ function upcomingEvent(a) {
     document.getElementById("upcoming-event-list").innerHTML = null;
     Array.from(a).forEach(function (element) {
         var title = element.title;
+        console.log(title);
         if (element.end) {
             endUpdatedDay = new Date(element.end);
             var updatedDay = endUpdatedDay.setDate(endUpdatedDay.getDate() - 1);
@@ -760,6 +786,15 @@ function getTime(params) {
     if (params.getHours() != null) {
         var hour = params.getHours();
         var minute = (params.getMinutes()) ? params.getMinutes() : 0;
+        return hour + ":" + minute;
+    }
+}
+function getTime2(params) {
+    params = new Date(params);
+    if (params.getHours() != null) {
+        var hour = params.getHours();
+        hour = hour < 10 ? "0" + hour : hour;
+        var minute = (params.getMinutes()) ? params.getMinutes() : "00";
         return hour + ":" + minute;
     }
 }

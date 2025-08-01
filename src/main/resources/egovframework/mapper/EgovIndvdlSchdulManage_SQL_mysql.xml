@@ -137,6 +137,68 @@
 	 </if>
 		order by A.SCHDUL_BGNDE , (1+(SUBSTRING(A.SCHDUL_ENDDE,1, 8) - SUBSTRING(A.SCHDUL_BGNDE, 1, 8))) desc
 	</select>
+	<select id="selectIndvdlSchdulUpcoming" parameterType="java.util.Map" resultType="egovMap">
+	 
+		SELECT
+			A.SCHDUL_ID,
+			A.SCHDUL_SE,
+			A.SCHDUL_DEPT_ID,
+			A.SCHDUL_KND_CODE 	SCHDUL_KIND_CODE,
+			A.SCHDUL_BGNDE	SCHDUL_BGNDE,
+			A.SCHDUL_ENDDE,
+			A.SCHDUL_NM,
+			A.SCHDUL_CN,
+			A.SCHDUL_PLACE,
+			A.SCHDUL_IPCR_CODE,
+			A.SCHDUL_CHARGER_ID,
+			(SELECT USER_NM FROM COMTNEMPLYRINFO WHERE ESNTL_ID = A.SCHDUL_CHARGER_ID) SCHDUL_CHARGER_NAME,
+			A.ATCH_FILE_ID,
+			DATE_FORMAT(A.FRST_REGIST_PNTTM,'%Y-%m-%d') AS FRST_REGIST_PNTTM,
+			A.FRST_REGISTER_ID,
+			DATE_FORMAT(A.LAST_UPDT_PNTTM,'%Y-%m-%d') AS LAST_UPDT_PNTTM,
+			A.LAST_UPDUSR_ID,
+			A.REPTIT_SE_CODE
+		FROM COMTNSCHDULINFO A
+		WHERE 1=1
+		AND A.SCHDUL_KND_CODE = '2'
+	 
+	 <if test='searchMode != null and searchMode != ""'>
+	 <if test='searchMode == "MONTH"'>
+
+		 <if test='searchMonth != null and searchMonth != ""'>
+			<![CDATA[
+		 	 AND (#{searchMonth} BETWEEN SUBSTRING(A.SCHDUL_BGNDE, 1, 6)  AND SUBSTRING(A.SCHDUL_ENDDE, 1, 6) )
+			]]>
+		 </if>
+
+	 </if>
+	 <if test='searchMode == "WEEK"'>
+		<![CDATA[
+		AND (
+		 ( SUBSTRING(A.SCHDUL_BGNDE,1,8) >= #{schdulBgnde} AND SUBSTRING(A.SCHDUL_BGNDE,1,8) <= #{schdulEndde})
+		OR
+		 ( SUBSTRING(A.SCHDUL_ENDDE,1,8) > #{schdulBgnde} AND SUBSTRING(A.SCHDUL_BGNDE,1,8) <= #{schdulEndde})
+		)
+		]]>
+	 </if>
+	 <if test='searchMode == "DAILY"'>
+		<![CDATA[
+	 	 AND (#{searchDay} BETWEEN SUBSTRING(A.SCHDUL_BGNDE, 1, 8)  AND SUBSTRING(A.SCHDUL_ENDDE, 1, 8) )
+		]]>
+	 </if>
+	 </if>
+
+	 <if test='searchKeyword != null and searchKeyword != ""'>
+	 	
+	 			<if test='searchCondition == "SCHDUL_SE"'>
+	 				AND SCHDUL_SE LIKE CONCAT ('%', #{searchKeyword},'%')
+	 			</if>
+	 	
+	 </if>
+	 	AND SUBSTRING(A.SCHDUL_BGNDE, 1, 8) >= DATE_FORMAT(NOW(), '%Y%m%d')
+		order by A.SCHDUL_BGNDE , (1+(SUBSTRING(A.SCHDUL_ENDDE,1, 8) - SUBSTRING(A.SCHDUL_BGNDE, 1, 8))) desc
+		LIMIT 6
+	</select>
 
 	<!-- 개인일정정보::상세보기 -->
 	<select id="selectIndvdlSchdulManageDetailVO" resultMap="IndvdlSchdulManage">

@@ -223,6 +223,183 @@ function chk_all(val) {
                             </div>
                         </div><!-- end card -->
                     </div><!-- end col -->
+                    <div class="col-xxl-4">
+                            <div class="card">
+                                <div class="card-header border-0">
+                                    <h4 class="card-title mb-0">Upcoming Schedules</h4>
+                                </div><!-- end cardheader -->
+                                <div class="card-body pt-0">
+                                    <div class="upcoming-scheduled">
+                                        <input type="text" class="form-control" data-provider="flatpickr" data-date-format="d M, Y" data-deafult-date="today" data-inline-date="true">
+                                    </div>
+
+                                    <h6 class="text-uppercase fw-semibold mt-4 mb-3 text-muted">Events:</h6>
+                                    <c:forEach items="${resultList}" var="resultList" varStatus="status">
+                                    	<div class="mini-stats-wid d-flex align-items-center mt-3">
+                                        <div class="flex-shrink-0 avatar-sm">
+                                            <span class="mini-stat-icon avatar-title rounded-circle text-success ${resultList.className} fs-4">
+                                                ${resultList.dd}
+                                            </span>
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h6 class="mb-1">${resultList.schdulNm}</h6>
+                                            <p class="text-muted mb-0">${resultList.schdulCn}</p>
+                                        </div>
+                                        <div class="flex-shrink-0">
+                                            <p class="text-muted mb-0">${resultList.time}</span></p>
+                                        </div>
+                                    </div><!-- end -->
+                                    </c:forEach>
+
+                                    <div class="mt-3 text-center">
+                                        <a href="javascript:void(0);" class="text-muted text-decoration-underline">View all Events</a>
+                                    </div>
+
+                                </div><!-- end cardbody -->
+                            </div><!-- end card -->
+                        </div><!-- end col -->
+                        
+                        <div class="col-xl-5">
+                            <div class="card card-height-100">
+                                <div class="card-header align-items-center d-flex">
+                                    <h4 class="card-title mb-0 flex-grow-1 py-1">My Tasks</h4>
+                                    <div class="flex-shrink-0">
+                                        <div class="dropdown card-header-dropdown">
+                                            <a class="text-reset dropdown-btn" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <span class="text-muted">All Tasks <i class="mdi mdi-chevron-down ms-1"></i></span>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-end">
+                                                <a class="dropdown-item" href="#">All Tasks</a>
+                                                <a class="dropdown-item" href="#">Completed </a>
+                                                <a class="dropdown-item" href="#">Inprogress</a>
+                                                <a class="dropdown-item" href="#">Pending</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- end card header -->
+                                <div class="card-body">
+                                    <div class="table-responsive table-card">
+                                        <table class="table table-borderless table-nowrap table-centered align-middle mb-0">
+                                            <thead class="table-light text-muted">
+                                                <tr>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Dedline</th>
+                                                    <th scope="col">Status</th>
+                                                    <th scope="col">Assignee</th>
+                                                </tr>
+                                            </thead><!-- end thead -->
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input fs-15" type="checkbox" value="" id="checkTask1">
+                                                            <label class="form-check-label ms-1" for="checkTask1">
+                                                                Create new Admin Template
+                                                            </label>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-muted">03 Nov 2021</td>
+                                                    <td><span class="badge bg-success-subtle text-success">Completed</span></td>
+                                                    <td>
+                                                        <a href="javascript: void(0);" class="d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Mary Stoner">
+                                                            <img src="assets/images/users/avatar-2.jpg" alt="" class="rounded-circle avatar-xxs material-shadow">
+                                                        </a>
+                                                    </td>
+                                                </tr><!-- end -->
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input fs-15" type="checkbox" value="" id="checkTask2">
+                                                            <label class="form-check-label ms-1" for="checkTask2">
+                                                                Marketing Coordinator
+                                                            </label>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-muted">17 Nov 2021</td>
+                                                    <td><span class="badge bg-warning-subtle text-warning">Progress</span></td>
+                                                    <td>
+                                                        <a href="javascript: void(0);" class="d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Den Davis">
+                                                            <img src="assets/images/users/avatar-7.jpg" alt="" class="rounded-circle avatar-xxs material-shadow">
+                                                        </a>
+                                                    </td>
+                                                </tr><!-- end -->
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input fs-15" type="checkbox" value="" id="checkTask3">
+                                                            <label class="form-check-label ms-1" for="checkTask3">
+                                                                Administrative Analyst
+                                                            </label>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-muted">26 Nov 2021</td>
+                                                    <td><span class="badge bg-success-subtle text-success">Completed</span></td>
+                                                    <td>
+                                                        <a href="javascript: void(0);" class="d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Alex Brown">
+                                                            <img src="assets/images/users/avatar-6.jpg" alt="" class="rounded-circle avatar-xxs material-shadow">
+                                                        </a>
+                                                    </td>
+                                                </tr><!-- end -->
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input fs-15" type="checkbox" value="" id="checkTask4">
+                                                            <label class="form-check-label ms-1" for="checkTask4">
+                                                                E-commerce Landing Page
+                                                            </label>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-muted">10 Dec 2021</td>
+                                                    <td><span class="badge bg-danger-subtle text-danger">Pending</span></td>
+                                                    <td>
+                                                        <a href="javascript: void(0);" class="d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Prezy Morin">
+                                                            <img src="assets/images/users/avatar-5.jpg" alt="" class="rounded-circle avatar-xxs material-shadow">
+                                                        </a>
+                                                    </td>
+                                                </tr><!-- end -->
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input fs-15" type="checkbox" value="" id="checkTask5">
+                                                            <label class="form-check-label ms-1" for="checkTask5">
+                                                                UI/UX Design
+                                                            </label>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-muted">22 Dec 2021</td>
+                                                    <td><span class="badge bg-warning-subtle text-warning">Progress</span></td>
+                                                    <td>
+                                                        <a href="javascript: void(0);" class="d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Stine Nielsen">
+                                                            <img src="assets/images/users/avatar-1.jpg" alt="" class="rounded-circle avatar-xxs material-shadow">
+                                                        </a>
+                                                    </td>
+                                                </tr><!-- end -->
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input fs-15" type="checkbox" value="" id="checkTask6">
+                                                            <label class="form-check-label ms-1" for="checkTask6">
+                                                                Projects Design
+                                                            </label>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-muted">31 Dec 2021</td>
+                                                    <td><span class="badge bg-danger-subtle text-danger">Pending</span></td>
+                                                    <td>
+                                                        <a href="javascript: void(0);" class="d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Jansh William">
+                                                            <img src="assets/images/users/avatar-4.jpg" alt="" class="rounded-circle avatar-xxs material-shadow">
+                                                        </a>
+                                                    </td>
+                                                </tr><!-- end -->
+                                            </tbody><!-- end tbody -->
+                                        </table><!-- end table -->
+                                    </div>
+                                    <div class="mt-3 text-center">
+                                        <a href="javascript:void(0);" class="text-muted text-decoration-underline">Load More</a>
+                                    </div>
+                                </div><!-- end card body -->
+                            </div><!-- end card -->
+                        </div><!-- end col -->
                 </div>
 
 				<div class="row" style="display:none;">

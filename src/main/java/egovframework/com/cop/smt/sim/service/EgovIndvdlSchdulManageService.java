@@ -40,6 +40,13 @@ public interface EgovIndvdlSchdulManageService {
 	 * @throws Exception
 	 */
 	public List<EgovMap> selectIndvdlSchdulManageRetrieve(Map<String, String> map) throws Exception;
+	/**
+	 * 일정 목록을 Map(map)형식으로 조회한다.
+	 * @param Map(map) - 조회할 정보가 담긴 Map
+	 * @return List
+	 * @throws Exception
+	 */
+	public List<EgovMap> selectIndvdlSchdulUpcoming(Map<String, String> map) throws Exception;
 
 
     /**
