@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?><!--
-	수정일      수정자                          수정내용
+	수정일                 수정자                          수정내용
   =========     =======    =================================================
-  2011.9.2   	정진오     	 	FRST_REGIST_PNTTM컬럼에 FRST_REGISTER_PNTTM Alias 추가
-								IndvdlSchdulManage.selectIndvdlSchdulManageRetrieve에 SCHDUL_CHARGER_NAME 추가(주별, 일별 목록 조회시 필요)
+  2011.9.2   	정진오     	 	DeptSchdulManage.selectDeptSchdulManageRetrieve에 SCHDUL_CHARGER_NAME 추가(Daily 조회시 필요)
   2011.9.7		이기하			DeptSchdulManage.insertDeptSchdulManage에 schdulChargerName -> schdulChargerId 컬럼변경
   								DeptSchdulManage.updateDeptSchdulManage에 schdulChargerName -> schdulChargerId 컬럼변경
-  2011.10.05    서준식               보안 취약점 점검사항 반영 $->#변경
-  2018.10.15  	이정은               메인페이지/일정관리조회 - 오늘날짜 일정 안나오는 오류 처리
+  								DeptSchdulManage.selectDeptSchdulManageDetail에 EMPLYR_ID -> ESNTL_ID 컬럼변경
+  2011.10.05    서준식               보안 취약점 점검사항 반영 $->#변경	
+  2018.10.15  이정은               메인페이지/일정관리조회 - 오늘날짜 일정 안나오는 오류 처리
 -->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="IndvdlSchdulManage">
+<mapper namespace="DeptSchdulManage">
 
-	<resultMap id="IndvdlSchdulManage" type="egovframework.com.cop.smt.sim.service.IndvdlSchdulManageVO">
+	<resultMap id="DeptSchdulManage" type="egovframework.com.cop.smt.sdm.service.DeptSchdulManageVO">
 		<result property="schdulId" column="SCHDUL_ID"/>
 		<result property="schdulSe" column="SCHDUL_SE"/>
 		<result property="schdulDeptId" column="SCHDUL_DEPT_ID"/>
@@ -36,16 +36,73 @@
 		<result property="lastUpdusrId" column="LAST_UPDUSR_ID"/>
 	</resultMap>
 
+
+	<!-- 부서검색  -->
+	<select id="selectDeptSchdulAuthorGroupPopup" parameterType="comDefaultVO" resultType="egovMap">
+	 
+		SELECT
+			ORGNZT_ID,
+			ORGNZT_NM,
+			ORGNZT_DC
+		FROM COMTNORGNZTINFO
+		WHERE 1=1
+	 
+	<if test='searchKeyword != null and searchKeyword != ""'>
+		
+			<if test='searchCondition == "ORGNZT_NM"'>
+	 			AND ORGNZT_NM LIKE CONCAT('%', #{searchKeyword} ,'%')
+	 		</if>
+	 		<if test='searchCondition == "ORGNZT_DC"'>
+	 			AND ORGNZT_DC LIKE CONCAT('%', #{searchKeyword} ,'%')
+	 		</if>
+	 	
+	 </if>
+	</select>
+
+      <!-- 아이디 검색  -->
+	<select id="selectDeptSchdulEmpLyrPopup" parameterType="comDefaultVO" resultType="egovMap">
+	 
+		SELECT
+			EMPLYR_ID,
+			USER_NM,
+			ESNTL_ID,
+			SEXDSTN_CODE,
+			BRTHDY,
+			HOUSE_ADRES,
+			DETAIL_ADRES,
+			EMAIL_ADRES,
+			OFFM_TELNO
+		FROM COMTNEMPLYRINFO
+		WHERE 1=1
+	 
+	 <if test='searchKeyword != null and searchKeyword != ""'>
+	 	
+	 		<if test='searchCondition == "USER_NM"'>
+	 			AND USER_NM LIKE CONCAT('%', #{searchKeyword} ,'%')
+	 		</if>
+	 		<if test='searchCondition == "EMPLYR_ID"'>
+	 			AND EMPLYR_ID LIKE CONCAT('%', #{searchKeyword} ,'%')
+	 		</if>
+	 		<if test='searchCondition == "OFFM_TELNO"'>
+	 			AND OFFM_TELNO LIKE CONCAT('%', #{searchKeyword} ,'%')
+	 		</if>
+	 	
+	 </if>
+	 <if test='searchKeyword == null or searchKeyword == ""'>
+	  LIMIT 0,  100
+	 </if>
+	</select>
+	
 	<!-- 메인페이지/일정관리조회 -->
-	<select id="selectIndvdlSchdulManageMainList" parameterType="java.util.Map" resultType="egovMap">
+	<select id="selectDeptSchdulManageMainList" parameterType="java.util.Map" resultType="egovMap">
 	<![CDATA[
 		SELECT
 			DATE_FORMAT(sysdate(),'%Y-%m-%d') TO_DAY,
 			A.SCHDUL_ID,
 			A.SCHDUL_SE,
 			A.SCHDUL_DEPT_ID,
-			A.SCHDUL_KND_CODE	SCHDUL_KIND_CODE,
-			A.SCHDUL_BGNDE 	SCHDUL_BGNDE,
+			A.SCHDUL_KND_CODE SCHDUL_KIND_CODE,
+			A.SCHDUL_BGNDE SCHDUL_BGNDE,
 			A.SCHDUL_ENDDE,
 			A.SCHDUL_NM,
 			A.SCHDUL_CN,
@@ -53,14 +110,14 @@
 			A.SCHDUL_IPCR_CODE,
 			A.SCHDUL_CHARGER_ID,
 			A.ATCH_FILE_ID,
-			DATE_FORMAT(A.FRST_REGIST_PNTTM,'%Y-%m-%d') AS FRST_REGISTER_PNTTM,
+			DATE_FORMAT(A.FRST_REGIST_PNTTM,'%Y-%m-%d') AS FRST_REGIST_PNTTM,
 			A.FRST_REGISTER_ID,
 			DATE_FORMAT(A.LAST_UPDT_PNTTM,'%Y-%m-%d') AS LAST_UPDT_PNTTM,
 			A.LAST_UPDUSR_ID,
 			A.REPTIT_SE_CODE
 		FROM COMTNSCHDULINFO A
 		WHERE 1=1
-		AND A.SCHDUL_KND_CODE = '2'
+		AND A.SCHDUL_KND_CODE = '1'
 		AND (A.SCHDUL_CHARGER_ID = #{uniqId} OR A.FRST_REGISTER_ID = #{uniqId})
 
 		
@@ -73,18 +130,18 @@
 
 		ORDER BY A.FRST_REGIST_PNTTM DESC
 		LIMIT 0, 4
-		]]>
+	]]>
 	</select>
 
-	<!-- 개인일정정보::목록조회 -->
-	<select id="selectIndvdlSchdulManageRetrieve" parameterType="java.util.Map" resultType="egovMap">
-	 
+	<!-- 부서일정정보::목록조회 -->
+	<select id="selectDeptSchdulManageRetrieve" parameterType="java.util.Map" resultType="egovMap">
+	 <![CDATA[
 		SELECT
 			A.SCHDUL_ID,
 			A.SCHDUL_SE,
 			A.SCHDUL_DEPT_ID,
-			A.SCHDUL_KND_CODE 	SCHDUL_KIND_CODE,
-			A.SCHDUL_BGNDE	SCHDUL_BGNDE,
+			A.SCHDUL_KND_CODE	SCHDUL_KIND_CODE,
+			A.SCHDUL_BGNDE SCHDUL_BGNDE,
 			A.SCHDUL_ENDDE,
 			A.SCHDUL_NM,
 			A.SCHDUL_CN,
@@ -100,107 +157,47 @@
 			A.REPTIT_SE_CODE
 		FROM COMTNSCHDULINFO A
 		WHERE 1=1
-	 
+		AND A.SCHDUL_KND_CODE = '1'
+	]]>
+
 	 <if test='searchMode != null and searchMode != ""'>
 	 <if test='searchMode == "MONTH"'>
 
 		 <if test='searchMonth != null and searchMonth != ""'>
-			<![CDATA[
+		 	<![CDATA[
 		 	 AND (#{searchMonth} BETWEEN SUBSTRING(A.SCHDUL_BGNDE, 1, 6)  AND SUBSTRING(A.SCHDUL_ENDDE, 1, 6) )
-			]]>
+		 	]]>
 		 </if>
 
 	 </if>
 	 <if test='searchMode == "WEEK"'>
-		<![CDATA[
+	 <![CDATA[
 		AND (
-		 ( SUBSTRING(A.SCHDUL_BGNDE,1,8) >= #{schdulBgnde} AND SUBSTRING(A.SCHDUL_BGNDE,1,8) <= #{schdulEndde})
+		 ( SUBSTRING(A.SCHDUL_BGNDE,1,8) > #{schdulBgnde} AND SUBSTRING(A.SCHDUL_BGNDE,1,8) <= #{schdulEndde})
 		OR
 		 ( SUBSTRING(A.SCHDUL_ENDDE,1,8) > #{schdulBgnde} AND SUBSTRING(A.SCHDUL_BGNDE,1,8) <= #{schdulEndde})
 		)
-		]]>
+	]]>
 	 </if>
 	 <if test='searchMode == "DAILY"'>
-		<![CDATA[
+	 <![CDATA[
 	 	 AND (#{searchDay} BETWEEN SUBSTRING(A.SCHDUL_BGNDE, 1, 8)  AND SUBSTRING(A.SCHDUL_ENDDE, 1, 8) )
-		]]>
+	  ]]>
 	 </if>
 	 </if>
 
 	 <if test='searchKeyword != null and searchKeyword != ""'>
 	 	
-	 			<if test='searchCondition == "SCHDUL_SE"'>
-	 				AND SCHDUL_SE LIKE CONCAT ('%', #{searchKeyword},'%')
-	 			</if>
-	 	
-	 </if>
-		order by A.SCHDUL_BGNDE , (1+(SUBSTRING(A.SCHDUL_ENDDE,1, 8) - SUBSTRING(A.SCHDUL_BGNDE, 1, 8))) desc
-	</select>
-	<select id="selectIndvdlSchdulUpcoming" parameterType="java.util.Map" resultType="egovMap">
-	 
-		SELECT
-			A.SCHDUL_ID,
-			A.SCHDUL_SE,
-			A.SCHDUL_DEPT_ID,
-			A.SCHDUL_KND_CODE 	SCHDUL_KIND_CODE,
-			A.SCHDUL_BGNDE	SCHDUL_BGNDE,
-			A.SCHDUL_ENDDE,
-			A.SCHDUL_NM,
-			A.SCHDUL_CN,
-			A.SCHDUL_PLACE,
-			A.SCHDUL_IPCR_CODE,
-			A.SCHDUL_CHARGER_ID,
-			(SELECT USER_NM FROM COMTNEMPLYRINFO WHERE ESNTL_ID = A.SCHDUL_CHARGER_ID) SCHDUL_CHARGER_NAME,
-			A.ATCH_FILE_ID,
-			DATE_FORMAT(A.FRST_REGIST_PNTTM,'%Y-%m-%d') AS FRST_REGIST_PNTTM,
-			A.FRST_REGISTER_ID,
-			DATE_FORMAT(A.LAST_UPDT_PNTTM,'%Y-%m-%d') AS LAST_UPDT_PNTTM,
-			A.LAST_UPDUSR_ID,
-			A.REPTIT_SE_CODE
-		FROM COMTNSCHDULINFO A
-		WHERE 1=1
-		AND A.SCHDUL_KND_CODE = '2'
-	 
-	 <if test='searchMode != null and searchMode != ""'>
-	 <if test='searchMode == "MONTH"'>
-
-		 <if test='searchMonth != null and searchMonth != ""'>
-			<![CDATA[
-		 	 AND (#{searchMonth} BETWEEN SUBSTRING(A.SCHDUL_BGNDE, 1, 6)  AND SUBSTRING(A.SCHDUL_ENDDE, 1, 6) )
-			]]>
-		 </if>
-
-	 </if>
-	 <if test='searchMode == "WEEK"'>
-		<![CDATA[
-		AND (
-		 ( SUBSTRING(A.SCHDUL_BGNDE,1,8) >= #{schdulBgnde} AND SUBSTRING(A.SCHDUL_BGNDE,1,8) <= #{schdulEndde})
-		OR
-		 ( SUBSTRING(A.SCHDUL_ENDDE,1,8) > #{schdulBgnde} AND SUBSTRING(A.SCHDUL_BGNDE,1,8) <= #{schdulEndde})
-		)
-		]]>
-	 </if>
-	 <if test='searchMode == "DAILY"'>
-		<![CDATA[
-	 	 AND (#{searchDay} BETWEEN SUBSTRING(A.SCHDUL_BGNDE, 1, 8)  AND SUBSTRING(A.SCHDUL_ENDDE, 1, 8) )
-		]]>
-	 </if>
+			<if test='searchCondition == "SCHDUL_SE"'>
+ 				AND SCHDUL_SE LIKE CONCAT ('%', #{searchKeyword},'%')
+ 			</if> 	
+		order by A.SCHDUL_BGNDE , (1+(SUBSTRING(A.SCHDUL_ENDDE,1, 8) - SUBSTRING(A.SCHDUL_BGNDE, 1, 8))) DESC
 	 </if>
 
-	 <if test='searchKeyword != null and searchKeyword != ""'>
-	 	
-	 			<if test='searchCondition == "SCHDUL_SE"'>
-	 				AND SCHDUL_SE LIKE CONCAT ('%', #{searchKeyword},'%')
-	 			</if>
-	 	
-	 </if>
-	 	AND SUBSTRING(A.SCHDUL_BGNDE, 1, 8) >= DATE_FORMAT(NOW(), '%Y%m%d')
-		order by A.SCHDUL_BGNDE , (1+(SUBSTRING(A.SCHDUL_ENDDE,1, 8) - SUBSTRING(A.SCHDUL_BGNDE, 1, 8))) desc
-		LIMIT 6
 	</select>
 
-	<!-- 개인일정정보::상세보기 -->
-	<select id="selectIndvdlSchdulManageDetailVO" resultMap="IndvdlSchdulManage">
+	<!-- 부서일정정보::상세보기 -->
+	<select id="selectDeptSchdulManageDetailVO" resultMap="DeptSchdulManage">
 		SELECT
 			A.SCHDUL_ID,
 			A.SCHDUL_SE,
@@ -226,15 +223,15 @@
 		AND SCHDUL_ID = #{schdulId}
 	</select>
 
-	<!-- 개인일정정보::목록조회_게시물정보 -->
-	<select id="selectIndvdlSchdulManage" parameterType="comDefaultVO" resultType="egovMap">
+	<!-- 부서일정정보::목록조회_게시물정보 -->
+	<select id="selectDeptSchdulManage" parameterType="comDefaultVO" resultType="egovMap">
 	 
 		SELECT
 			A.SCHDUL_ID,
 			A.SCHDUL_SE,
 			A.SCHDUL_DEPT_ID,
-			A.SCHDUL_KND_CODE	SCHDUL_KIND_CODE,
-			A.SCHDUL_BGNDE	SCHDUL_BGNDE,
+			A.SCHDUL_KND_CODE SCHDUL_KIND_CODE,
+			A.SCHDUL_BGNDE SCHDUL_BGNDE,
 			A.SCHDUL_ENDDE,
 			A.SCHDUL_NM,
 			A.SCHDUL_CN,
@@ -251,9 +248,9 @@
 		WHERE 1=1
 	 
 	 <if test='searchKeyword != null and searchKeyword != ""'>
-	 		<if test='searchCondition == "SCHDUL_SE"'>
-	 			AND SCHDUL_SE LIKE CONCAT ('%', #{searchKeyword},'%')
-	 		</if>
+	 	
+ 				AND SCHDUL_NM LIKE CONCAT ('%', #{searchKeyword},'%')
+	 	
 	 </if>
 	 
 		ORDER BY A.FRST_REGIST_PNTTM DESC
@@ -261,32 +258,34 @@
 	
 	</select>
 
-	<!-- 개인일정정보::목록조회_게시물 총개수  -->
-	<select id="selectIndvdlSchdulManageCnt" parameterType="comDefaultVO" resultType="int">
+	<!-- 부서일정정보::목록조회_게시물 총개수  -->
+	<select id="selectDeptSchdulManageCnt" parameterType="comDefaultVO" resultType="int">
 		SELECT
 		COUNT(*) totcnt
 		FROM COMTNSCHDULINFO
 		WHERE 1=1
 	 <if test='searchKeyword != null and searchKeyword != ""'>
-	 		
- 			<if test='searchCondition == "SCHDUL_SE"'>
- 				AND SCHDUL_SE LIKE CONCAT ('%', #{searchKeyword},'%')
- 			</if>
-
+	 	
+ 				AND SCHDUL_NM LIKE CONCAT ('%', #{searchKeyword},'%')
+	 	
 	 </if>
 	</select>
 
 
-	<!-- 개인일정정보::삭제  -->
+	<!-- 부서일정정보::삭제  -->
 	<delete id="deleteDiaryManage">
-			DELETE FROM COMTNDIARYINFO WHERE SCHDUL_ID = #{schdulId}
+			DELETE FROM COMTNDIARYINFO
+			WHERE SCHDUL_ID = #{schdulId}
 	</delete>
-	<delete id="deleteIndvdlSchdulManage">
-			DELETE FROM COMTNSCHDULINFO WHERE SCHDUL_ID = #{schdulId}
+	<delete id="deleteDeptSchdulManage">
+		
+			DELETE FROM COMTNSCHDULINFO
+			WHERE SCHDUL_ID = #{schdulId}
+		
 	</delete>
 
-	<!-- 개인일정정보::수정  -->
-	<update id="updateIndvdlSchdulManage">
+	<!-- 부서일정정보::수정  -->
+	<update id="updateDeptSchdulManage">
 		UPDATE COMTNSCHDULINFO
 		SET
 			SCHDUL_SE=#{schdulSe},
@@ -305,15 +304,15 @@
 		WHERE SCHDUL_ID = #{schdulId}
 	</update>
 
-	<!-- 개인일정정보::상세보기 -->
-	<select id="selectIndvdlSchdulManageDetail" resultType="egovMap">
+	<!-- 부서일정정보::상세보기 -->
+	<select id="selectDeptSchdulManageDetail" parameterType="egovframework.com.cop.smt.sdm.service.DeptSchdulManageVO" resultType="egovMap">
 		SELECT
 			A.SCHDUL_ID,
 			A.SCHDUL_SE,
 			A.SCHDUL_DEPT_ID,
 			(SELECT ORGNZT_NM FROM COMTNORGNZTINFO WHERE ORGNZT_ID = A.SCHDUL_DEPT_ID) SCHDUL_DEPT_NAME,
-			A.SCHDUL_KND_CODE	SCHDUL_KIND_CODE,
-			A.SCHDUL_BGNDE	SCHDUL_BGNDE,
+			A.SCHDUL_KND_CODE 	SCHDUL_KIND_CODE,
+			A.SCHDUL_BGNDE SCHDUL_BGNDE,
 			A.SCHDUL_ENDDE,
 			A.SCHDUL_NM,
 			A.SCHDUL_CN,
@@ -329,11 +328,12 @@
 			A.REPTIT_SE_CODE
 		FROM COMTNSCHDULINFO A
 		WHERE 1=1
- 		AND SCHDUL_ID = #{schdulId}
+		AND SCHDUL_ID = #{schdulId}
 	</select>
 
-	<!-- 개인일정정보::입력  -->
-	<insert id="insertIndvdlSchdulManage">
+	<!-- 부서일정정보::입력  -->
+	<insert id="insertDeptSchdulManage">
+	 
 
 		INSERT INTO COMTNSCHDULINFO (
 			SCHDUL_ID,

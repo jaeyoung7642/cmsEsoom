@@ -221,3 +221,17 @@ File: Custom Css File
 /*첨부파일*/
 .avatar-sm img {width:100%; height:100%; object-fit:cover;}
 
+/*일정관리 모달*/
+#event-modal2 .event-details {
+  display: none;
+}
+#event-modal2 .view-event .event-form {
+  display: none;
+}
+#event-modal2 .view-event #event-category-tag {
+  display: none;
+}
+#event-modal2 .view-event .event-details {
+  display: block;
+}
+

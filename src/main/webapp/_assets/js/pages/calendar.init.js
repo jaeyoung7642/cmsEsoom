@@ -76,9 +76,6 @@ document.addEventListener("DOMContentLoaded", function () {
         selectedEvent = null;
         modalTitle.innerText = 'Add Event';
         newEventData = info;
-        document.getElementById("edit-event-btn").setAttribute("data-id", "new-event");
-        document.getElementById('edit-event-btn').click();
-        document.getElementById("edit-event-btn").setAttribute("hidden", true);
     }
     function addNewEvent2(info) {
         document.getElementById('form-event2').reset();
@@ -89,9 +86,6 @@ document.addEventListener("DOMContentLoaded", function () {
         selectedEvent = null;
         modalTitle2.innerText = 'Add Event';
         newEventData = info;
-        document.getElementById("edit-event-btn2").setAttribute("data-id", "new-event");
-        document.getElementById('edit-event-btn2').click();
-        document.getElementById("edit-event-btn2").setAttribute("hidden", true);
     }
 
     function getInitialView() {
@@ -141,6 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
             upcomingEvent(defaultEvents);
         },
         eventClick: function (info) {
+			if(info.event.extendedProps.schdulKindCode==2){
             document.getElementById("edit-event-btn").removeAttribute("hidden");
             document.getElementById('btn-save-event').setAttribute("hidden", true);
             document.getElementById("edit-event-btn").setAttribute("data-id", "edit-event");
@@ -253,6 +248,124 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // formEvent.classList.add("view-event");
             document.getElementById('btn-delete-event').removeAttribute('hidden');
+			}else{
+			document.getElementById("edit-event-btn2").removeAttribute("hidden");
+            document.getElementById('btn-save-event2').setAttribute("hidden", true);
+            document.getElementById("edit-event-btn2").setAttribute("data-id", "edit-event");
+            document.getElementById("edit-event-btn2").innerHTML = "Edit";
+            eventClicked2();
+            flatPickrInit2();
+            flatpicekrValueClear2();
+            addEvent2.show();
+            formEvent2.reset();
+            selectedEvent = info.event;
+
+            // First Modal
+            document.getElementById("modal-title2").innerHTML = "";
+            document.getElementById("event-location-tag2").innerHTML = selectedEvent.extendedProps.location === undefined ? "No Location" : selectedEvent.extendedProps.location;
+            document.getElementById("event-description-tag2").innerHTML = selectedEvent.extendedProps.description === undefined ? "No Description" : selectedEvent.extendedProps.description;
+
+            // Edit Modal
+            document.getElementById("event-category2").value = selectedEvent.extendedProps.schdulSe;
+            document.getElementById("event-title2").value = selectedEvent.title;
+            document.getElementById("event-location2").value = selectedEvent.extendedProps.location === undefined ? "No Location" : selectedEvent.extendedProps.location;
+            document.getElementById("event-description2").value = selectedEvent.extendedProps.description === undefined ? "No Description" : selectedEvent.extendedProps.description;
+            document.getElementById("eventid2").value = selectedEvent.id;
+            document.getElementById("schdulDeptName").value = selectedEvent.id;
+            document.getElementById("schdulDeptId").value = selectedEvent.id;
+            document.getElementById("schdulChargerName").value = selectedEvent.id;
+            document.getElementById("schdulChargerId").value = selectedEvent.id;
+
+            if (selectedEvent.extendedProps.schdulSe) {
+                eventCategoryChoice.destroy();
+                eventCategoryChoice = new Choices("#event-category", {
+                    searchEnabled: false
+                });
+                eventCategoryChoice.setChoiceByValue(selectedEvent.extendedProps.schdulSe);
+            }
+            var st_date = selectedEvent.start;
+            var ed_date = selectedEvent.end;
+
+            var date_r = function formatDate(date) {
+                var d = new Date(date),
+                    month = '' + (d.getMonth() + 1),
+                    day = '' + d.getDate(),
+                    year = d.getFullYear();
+                if (month.length < 2)
+                    month = '0' + month;
+                if (day.length < 2)
+                    day = '0' + day;
+                return [year, month, day].join('-');
+            };
+            var updateDay = null
+            if(ed_date.toISOString().includes("T23:59:00")){
+                var endUpdateDay = new Date(ed_date);
+                updateDay = endUpdateDay.setDate(endUpdateDay.getDate() - 1);
+            }else{
+				updateDay = new Date(ed_date);
+			}
+            
+            var r_date = ed_date == null ? (date_r(st_date)) : (date_r(st_date)) + ' to ' + (date_r(updateDay));
+            var er_date = ed_date == null ? (date_r(st_date)) : (date_r(st_date)) + ' to ' + (date_r(updateDay));
+            flatpickr(start_date, {
+                defaultDate: er_date,
+                dateFormat: "Y-m-d",
+                mode: ed_date !== null ? "range" : "range",
+                onChange: function (selectedDates, dateStr, instance) {
+                    var date_range = dateStr;
+                    var dates = date_range.split("to");
+                    /*if (dates.length > 1) {
+                        document.getElementById('event-time').setAttribute("hidden", true);
+                    } else {
+                        document.getElementById("timepicker1").parentNode.classList.remove("d-none");
+                        document.getElementById("timepicker1").classList.replace("d-none", "d-block");
+                        document.getElementById("timepicker2").parentNode.classList.remove("d-none");
+                        document.getElementById("timepicker2").classList.replace("d-none", "d-block");
+                        document.getElementById('event-time').removeAttribute("hidden");
+                    }*/
+                },
+            });
+            document.getElementById("event-start-date-tag2").innerHTML = r_date;
+
+            var gt_time = getTime(selectedEvent.start);
+            var ed_time = getTime(selectedEvent.end);
+
+            if (gt_time == ed_time) {
+                document.getElementById('event-time2').setAttribute("hidden", true);
+                flatpickr(document.getElementById("timepicker3"), {
+                    enableTime: true,
+                    noCalendar: true,
+                    dateFormat: "H:i",
+                });
+                flatpickr(document.getElementById("timepicker4"), {
+                    enableTime: true,
+                    noCalendar: true,
+                    dateFormat: "H:i",
+                });
+            } else {
+                document.getElementById('event-time2').removeAttribute("hidden");
+                flatpickr(document.getElementById("timepicker3"), {
+                    enableTime: true,
+                    noCalendar: true,
+                    dateFormat: "H:i",
+                    defaultDate: gt_time
+                });
+
+                flatpickr(document.getElementById("timepicker4"), {
+                    enableTime: true,
+                    noCalendar: true,
+                    dateFormat: "H:i",
+                    defaultDate: ed_time
+                });
+                document.getElementById("event-timepicker1-tag2").innerHTML = tConvert(gt_time);
+                document.getElementById("event-timepicker2-tag2").innerHTML = tConvert(ed_time);
+            }
+            newEventData = null;
+            modalTitle2.innerText = selectedEvent.title;
+
+            // formEvent.classList.add("view-event");
+            document.getElementById('btn-delete-event2').removeAttribute('hidden');
+			}
         },
         dateClick: function (info) {
             addNewEvent(info);
@@ -466,7 +579,6 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("edit-event-btn").setAttribute("hidden", true);
     });
     document.getElementById("btn-new-event2").addEventListener("click", function (e) {
-		console.log('111111111');
         flatpicekrValueClear2();
         flatPickrInit2();
         addNewEvent2();
@@ -494,6 +606,51 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 		let url = "";
 		const btnText = document.getElementById("btn-save-event").innerHTML;
+		if (btnText === "Add Event") { // 등록
+	        url = "/esoomCms/cop/smt/sim/EgovIndvdlSchdulManageInsert.do";
+	    } else if (btnText === "Update Event") { // 수정
+	        url = "/esoomCms/cop/smt/sim/EgovIndvdlSchdulManageUpdate.do";
+	    } 
+		$.ajax({
+	        url: url, // 실제 저장 URL로 변경
+	        type: "POST",
+	        data: data ,
+	        success: function(response) {
+				if(response =="isAuthenticated"){
+					location.href = "/esoomCms/uat/uia/egovLoginUsr.do";
+				}else{
+					alert("저장되었습니다.");
+				}
+	            calendar.refetchEvents(); // fullCalendar 쓰는 경우
+	            g.hide(); // 모달 닫기
+	        },
+	        error: function(err) {
+	            alert("저장 실패: " + err.responseText);
+	        }
+	    });
+	});
+    document.getElementById("btn-save-event2").addEventListener("click", function(e) {
+		const data = {
+	        schdulId: document.getElementById("eventid").value,
+	        schdulSe: document.getElementById("event-category2").value,
+	        schdulNm: document.getElementById("event-title2").value,
+	        schdulBgndeYYYMMDD: document.getElementById("event-start-date2").value,
+	        schdulCn: document.getElementById("event-description2").value,
+	        schdulPlace: document.getElementById("event-location2").value,
+	        schdulBgndeHH: document.getElementById("timepicker3").value,
+	        schdulEnddeHH: document.getElementById("timepicker4").value,
+	        schdulDeptId: document.getElementById("schdulDeptId").value,
+	        schdulChargerId: document.getElementById("schdulChargerId").value,
+	        schdulKindCode : "1"
+    	};
+    	if(document.getElementById("event-title2").value == null || document.getElementById("event-title2").value ==''){
+			return alert("필수값을 입력하세요.");
+		}
+    	if(document.getElementById("event-start-date2").value == null || document.getElementById("event-start-date2").value ==''){
+			return alert("필수값을 입력하세요.");
+		}
+		let url = "";
+		const btnText = document.getElementById("btn-save-event2").innerHTML;
 		if (btnText === "Add Event") { // 등록
 	        url = "/esoomCms/cop/smt/sim/EgovIndvdlSchdulManageInsert.do";
 	    } else if (btnText === "Update Event") { // 수정
@@ -650,7 +807,6 @@ function editEvent(data) {
     }
 }
 function editEvent2(data) {
-	console.log('22222222222');
     var data_id = data.getAttribute("data-id");
     if (data_id == 'new-event') {
         document.getElementById('modal-title2').innerHTML = "";
@@ -707,6 +863,8 @@ function eventTyped2() {
     document.getElementById("event-location-tag2").classList.replace("d-block", "d-none");
     document.getElementById("event-description-tag2").classList.replace("d-block", "d-none");
     document.getElementById('btn-save-event2').removeAttribute("hidden");
+    document.getElementById("schdulDeptName").classList.replace("d-none", "d-block");
+    document.getElementById("schdulChargerName").classList.replace("d-none", "d-block");
 }
 
 // upcoming Event

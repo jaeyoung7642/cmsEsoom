@@ -402,7 +402,6 @@ public class EgovIndvdlSchdulManageController {
     		ModelMap model)
     throws Exception {
 
-
         List<IndvdlSchdulManageVO> resultList = egovIndvdlSchdulManageService.selectIndvdlSchdulManageList(searchVO);
         model.addAttribute("resultList", resultList);
         
@@ -921,8 +920,9 @@ public class EgovIndvdlSchdulManageController {
             }
             Map<String, Object> extendedProps = new HashMap<>();
             extendedProps.put("description", m.get("schdulCn"));
-            extendedProps.put("location", m.get("schdulPlace")); // 있으면 세팅
-            extendedProps.put("schdulSe", m.get("schdulSe")); // 있으면 세팅
+            extendedProps.put("location", m.get("schdulPlace")); 
+            extendedProps.put("schdulSe", m.get("schdulSe")); 
+            extendedProps.put("schdulKindCode", m.get("schdulKindCode")); 
             event.put("extendedProps", extendedProps);
 
             result.add(event);
@@ -1068,7 +1068,9 @@ public class EgovIndvdlSchdulManageController {
 		indvdlSchdulManageVO.setFrstRegisterId(loginVO == null ? "" : EgovStringUtil.isNullToString(loginVO.getUniqId()));
 		indvdlSchdulManageVO.setLastUpdusrId(loginVO == null ? "" : EgovStringUtil.isNullToString(loginVO.getUniqId()));
 		//일정 담당자 자신으로 등록(2017.08.12 modify by jdh)
-		indvdlSchdulManageVO.setSchdulChargerId(loginVO == null ? "" : EgovStringUtil.isNullToString(loginVO.getUniqId()));
+		if("".equals(indvdlSchdulManageVO.getSchdulChargerId()) || indvdlSchdulManageVO.getSchdulChargerId() == null) {
+			indvdlSchdulManageVO.setSchdulChargerId(loginVO == null ? "" : EgovStringUtil.isNullToString(loginVO.getUniqId()));
+		}
 
 		egovIndvdlSchdulManageService.updateIndvdlSchdulManage(indvdlSchdulManageVO);
     	
@@ -1144,6 +1146,7 @@ public class EgovIndvdlSchdulManageController {
             extendedProps.put("description", m.get("schdulCn"));
             extendedProps.put("location", m.get("schdulPlace")); // 있으면 세팅
             extendedProps.put("schdulSe", m.get("schdulSe")); // 있으면 세팅
+            extendedProps.put("schdulKindCode", m.get("schdulKindCode")); 
             event.put("extendedProps", extendedProps);
 
             result.add(event);

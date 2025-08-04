@@ -421,7 +421,7 @@ function chk_all(val) {
 			<!-- 부서일정관리  -->
 			<h3 class="m_tit01 mt15">부서일정관리</h3><!--  -->
 			<div style="height:150px">
-			<c:import charEncoding="utf-8" url="/cop/smt/sdm/EgovDeptSchdulManageMainList.do" ></c:import>
+			<%-- <c:import charEncoding="utf-8" url="/cop/smt/sdm/EgovDeptSchdulManageMainList.do" ></c:import> --%>
 			</div>
 			
 			<!-- 나의일정관리 -->

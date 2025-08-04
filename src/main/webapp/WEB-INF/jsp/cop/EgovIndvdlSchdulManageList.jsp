@@ -117,6 +117,28 @@ function fn_egov_main_tab(objName) {
 		document.getElementById("SchdulView").src="<c:url value='/cop/smt/sim/EgovIndvdlSchdulManageDailyList.do' />";
 	}
 }
+/* ********************************************************
+* 주관 부서 팝업창열기
+******************************************************** */
+function fn_egov_schdulDept_DeptSchdulManage(){
+
+	var arrParam = new Array(1);
+	arrParam[0] = self;
+	arrParam[1] = "typeDeptSchdule";
+
+	window.showModalDialog("<c:url value='/cop/smt/sdm/EgovDeptSchdulManageAuthorGroupPopup.do' />", arrParam ,"dialogWidth=780px;dialogHeight=500px;resizable=yes;center=yes");
+}
+
+/* ********************************************************
+* 아이디  팝업창열기
+******************************************************** */
+function fn_egov_schdulCharger_DeptSchdulManagee(){
+	var arrParam = new Array(1);
+	arrParam[0] = window;
+	arrParam[1] = "typeDeptSchdule";
+
+ 	window.showModalDialog("<c:url value='/cop/smt/sdm/EgovDeptSchdulManageEmpLyrPopup.do' />", arrParam,"dialogWidth=780px;dialogHeight=600px;resizable=yes;center=yes");
+}
 </script>
 </head>
 <body onLoad="fnInit()">
@@ -418,6 +440,24 @@ function fn_egov_main_tab(objName) {
                                                     </div>
                                                 </div>
                                                 <!--end col-->
+                                                <!-- 부서 -->
+												<div class="col-12">
+                                                    <div class="mb-3">
+                                                   		<label class="form-label"><spring:message code="comCopSmtSim.regist.schdulDeptName"/></label>
+                                                   		<input class="form-control d-none" type="text" name="schdulDeptName" id="schdulDeptName" required readonly value="" />
+														<a href="#" onClick="fn_egov_schdulDept_DeptSchdulManage()"><img src="<c:url value='/images/egovframework/com/cmm/btn/btn_search.gif'/>" align="middle" style="border:0px" alt="${title} <spring:message code="input.button"/>" title="${title} <spring:message code="input.button"/>"></a>
+														<input type="hidden" id="schdulDeptId" name="schdulDeptId" value="" />
+													</div>
+                                                </div>
+                                                <!-- 담당자 -->
+												<div class="col-12">
+                                                    <div class="mb-3">	
+                                                   	 	<label class="form-label"><spring:message code="comCopSmtSim.regist.schdulChargerName"/></label>
+                                                   		<input class="form-control d-none" type="text" name="schdulChargerName" id="schdulChargerName" required readonly value="" />
+														<a href="#" onClick="fn_egov_schdulCharger_DeptSchdulManagee()"><img src="<c:url value='/images/egovframework/com/cmm/btn/btn_search.gif'/>" align="middle" style="border:0px" alt="${title} <spring:message code="input.button"/>" title="${title} <spring:message code="input.button"/>"></a>
+														<input type="hidden" id="schdulChargerId" name="schdulChargerId" value="" />
+													</div>
+                                                </div>
                                                 <div class="col-12">
                                                     <div class="mb-3">
                                                         <label>날짜</label>
@@ -428,7 +468,7 @@ function fn_egov_main_tab(objName) {
                                                     </div>
                                                 </div>
                                                 <!--end col-->
-                                                <div class="col-12" id="event-time">
+                                                <div class="col-12" id="event-time2">
                                                     <div class="row">
                                                         <div class="col-6">
                                                             <div class="mb-3">
@@ -530,7 +570,7 @@ function fn_egov_main_tab(objName) {
 <script src="${pageContext.request.contextPath}/_assets/libs/feather-icons/feather.min.js"></script>
 <script src="${pageContext.request.contextPath}/_assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
 <script src="${pageContext.request.contextPath}/_assets/js/plugins.js"></script>
-
+<script type="text/javascript" src="<c:url value='/js/egovframework/com/cmm/showModalDialog.js'/>" ></script>
 <!-- calendar min js -->
 <script src="${pageContext.request.contextPath}/_assets/libs/fullcalendar/index.global.min.js"></script>
 
