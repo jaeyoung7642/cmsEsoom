@@ -923,6 +923,10 @@ public class EgovIndvdlSchdulManageController {
             extendedProps.put("location", m.get("schdulPlace")); 
             extendedProps.put("schdulSe", m.get("schdulSe")); 
             extendedProps.put("schdulKindCode", m.get("schdulKindCode")); 
+            extendedProps.put("schdulDeptId", m.get("schdulDeptId")); 
+            extendedProps.put("schdulDeptName", m.get("schdulDeptName")); 
+            extendedProps.put("schdulChargerId", m.get("schdulChargerId")); 
+            extendedProps.put("schdulChargerName", m.get("schdulChargerName")); 
             event.put("extendedProps", extendedProps);
 
             result.add(event);
@@ -986,7 +990,9 @@ public class EgovIndvdlSchdulManageController {
 		indvdlSchdulManageVO.setFrstRegisterId(loginVO == null ? "" : EgovStringUtil.isNullToString(loginVO.getUniqId()));
 		indvdlSchdulManageVO.setLastUpdusrId(loginVO == null ? "" : EgovStringUtil.isNullToString(loginVO.getUniqId()));
 		//일정 담당자 자신으로 등록(2017.08.12 modify by jdh)
-		indvdlSchdulManageVO.setSchdulChargerId(loginVO == null ? "" : EgovStringUtil.isNullToString(loginVO.getUniqId()));
+		if("".equals(indvdlSchdulManageVO.getSchdulChargerId()) || indvdlSchdulManageVO.getSchdulChargerId() == null) {
+			indvdlSchdulManageVO.setSchdulChargerId(loginVO == null ? "" : EgovStringUtil.isNullToString(loginVO.getUniqId()));
+		}
 
     	egovIndvdlSchdulManageService.insertIndvdlSchdulManage(indvdlSchdulManageVO);
     	
@@ -1147,6 +1153,10 @@ public class EgovIndvdlSchdulManageController {
             extendedProps.put("location", m.get("schdulPlace")); // 있으면 세팅
             extendedProps.put("schdulSe", m.get("schdulSe")); // 있으면 세팅
             extendedProps.put("schdulKindCode", m.get("schdulKindCode")); 
+            extendedProps.put("schdulDeptId", m.get("schdulDeptId")); 
+            extendedProps.put("schdulDeptName", m.get("schdulDeptName")); 
+            extendedProps.put("schdulChargerId", m.get("schdulChargerId")); 
+            extendedProps.put("schdulChargerName", m.get("schdulChargerName"));
             event.put("extendedProps", extendedProps);
 
             result.add(event);

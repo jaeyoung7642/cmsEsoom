@@ -76,6 +76,10 @@ document.addEventListener("DOMContentLoaded", function () {
         selectedEvent = null;
         modalTitle.innerText = 'Add Event';
         newEventData = info;
+        eventTyped();
+        if(info != null){
+			flatpickr('#event-start-date').setDate(info.dateStr);
+		}
     }
     function addNewEvent2(info) {
         document.getElementById('form-event2').reset();
@@ -271,10 +275,10 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("event-location2").value = selectedEvent.extendedProps.location === undefined ? "No Location" : selectedEvent.extendedProps.location;
             document.getElementById("event-description2").value = selectedEvent.extendedProps.description === undefined ? "No Description" : selectedEvent.extendedProps.description;
             document.getElementById("eventid2").value = selectedEvent.id;
-            document.getElementById("schdulDeptName").value = selectedEvent.id;
-            document.getElementById("schdulDeptId").value = selectedEvent.id;
-            document.getElementById("schdulChargerName").value = selectedEvent.id;
-            document.getElementById("schdulChargerId").value = selectedEvent.id;
+            document.getElementById("schdulDeptName").value = selectedEvent.extendedProps.schdulDeptName;
+            document.getElementById("schdulDeptId").value = selectedEvent.extendedProps.schdulDeptId;
+            document.getElementById("schdulChargerName").value = selectedEvent.extendedProps.schdulChargerName;
+            document.getElementById("schdulChargerId").value = selectedEvent.extendedProps.schdulChargerId;
 
             if (selectedEvent.extendedProps.schdulSe) {
                 eventCategoryChoice.destroy();
@@ -307,7 +311,7 @@ document.addEventListener("DOMContentLoaded", function () {
             
             var r_date = ed_date == null ? (date_r(st_date)) : (date_r(st_date)) + ' to ' + (date_r(updateDay));
             var er_date = ed_date == null ? (date_r(st_date)) : (date_r(st_date)) + ' to ' + (date_r(updateDay));
-            flatpickr(start_date, {
+            flatpickr(start_date2, {
                 defaultDate: er_date,
                 dateFormat: "Y-m-d",
                 mode: ed_date !== null ? "range" : "range",
@@ -570,6 +574,32 @@ document.addEventListener("DOMContentLoaded", function () {
             addEvent.hide();
         }*/
     });
+    document.getElementById("btn-delete-event2").addEventListener("click", function (e) {
+        $.ajax({
+	        url: "/esoomCms/cop/smt/sim/EgovIndvdlSchdulManageDelete.do", // 실제 저장 URL로 변경
+	        type: "POST",
+	        data: {schdulId : selectedEvent.id },
+	        success: function(response) {
+				if(response =="isAuthenticated"){
+					location.href = "/esoomCms/uat/uia/egovLoginUsr.do";
+				}else{
+					alert("삭제되었습니다.");
+				}
+	            calendar.refetchEvents(); // fullCalendar 쓰는 경우
+	            selectedEvent.remove();
+	            selectedEvent = null;
+	        },
+	        error: function(err) {
+	            alert("삭제 실패: " + err.responseText);
+	        }
+	    });
+        /*if (selectedEvent) {
+            upcomingEvent(defaultEvents);
+            selectedEvent.remove();
+            selectedEvent = null;
+            addEvent.hide();
+        }*/
+    });
     document.getElementById("btn-new-event").addEventListener("click", function (e) {
         flatpicekrValueClear();
         flatPickrInit();
@@ -631,7 +661,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
     document.getElementById("btn-save-event2").addEventListener("click", function(e) {
 		const data = {
-	        schdulId: document.getElementById("eventid").value,
+	        schdulId: document.getElementById("eventid2").value,
 	        schdulSe: document.getElementById("event-category2").value,
 	        schdulNm: document.getElementById("event-title2").value,
 	        schdulBgndeYYYMMDD: document.getElementById("event-start-date2").value,
