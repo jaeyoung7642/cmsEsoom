@@ -415,6 +415,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				if(response =="isAuthenticated"){
 					location.href = "/esoomCms/uat/uia/egovLoginUsr.do";
 				}
+				info.event.remove();  
 	            calendar.refetchEvents(); // fullCalendar 쓰는 경우
 	        },
 	        error: function(err) {
@@ -437,8 +438,6 @@ document.addEventListener("DOMContentLoaded", function () {
         var r_date = info.event.end == null ? (date_r(info.event.start)) : (date_r(info.event.start)) + ' to ' + (date_r(info.event.end));
 		var gt_time = getTime2(info.event.start);
         var ed_time = getTime2(info.event.end);
-        console.log(r_date);
-        console.log(info);
         	const data = {
 		        schdulId: info.event.id,
 		        schdulSe: info.event.extendedProps.schdulSe,
