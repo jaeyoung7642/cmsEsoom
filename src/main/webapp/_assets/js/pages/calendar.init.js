@@ -562,6 +562,8 @@ document.addEventListener("DOMContentLoaded", function () {
 	            calendar.refetchEvents(); // fullCalendar 쓰는 경우
 	            selectedEvent.remove();
 	            selectedEvent = null;
+	            addEvent.hide();
+	            upcomingEvent(defaultEvents);
 	        },
 	        error: function(err) {
 	            alert("삭제 실패: " + err.responseText);
@@ -588,6 +590,8 @@ document.addEventListener("DOMContentLoaded", function () {
 	            calendar.refetchEvents(); // fullCalendar 쓰는 경우
 	            selectedEvent.remove();
 	            selectedEvent = null;
+	            addEvent.hide();
+	            upcomingEvent(defaultEvents);
 	        },
 	        error: function(err) {
 	            alert("삭제 실패: " + err.responseText);
