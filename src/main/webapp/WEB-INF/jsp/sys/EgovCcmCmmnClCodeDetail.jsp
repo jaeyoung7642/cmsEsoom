@@ -27,6 +27,8 @@
 <head>
 <c:import url="/_include/head.jsp" />
 <script type="text/javascript">
+var path = "<c:url value='/sym/ccm/ccc/SelectCcmCmmnClCodeList.do' />";
+currentPath = path.substring(1); 
 /* ********************************************************
  * 삭제처리
  ******************************************************** */

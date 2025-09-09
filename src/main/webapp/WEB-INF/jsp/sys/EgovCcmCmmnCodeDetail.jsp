@@ -27,6 +27,8 @@
 <head>
 <c:import url="/_include/head.jsp" />
 <script type="text/javascript">
+var path = "<c:url value='/sym/ccm/cca/SelectCcmCmmnCodeList.do' />";
+currentPath = path.substring(1); 
 /* ********************************************************
  * 삭제처리
  ******************************************************** */
@@ -41,7 +43,7 @@
 </script>
 </head>
 <body>
-
+<noscript class="noScriptTitle"><spring:message code="common.noScriptTitle.msg" /></noscript><!-- 자바스크립트를 지원하지 않는 브라우저에서는 일부 기능을 사용하실 수 없습니다. -->
 	<c:import url="/_include/topbar.jsp" />
 	<c:import url="/_include/sidebar.jsp" />
 	

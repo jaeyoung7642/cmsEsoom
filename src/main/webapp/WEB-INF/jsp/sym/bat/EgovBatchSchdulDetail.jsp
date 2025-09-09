@@ -28,7 +28,8 @@
 <link href="<c:url value="/css/egovframework/com/com.css"/>" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/egovframework/com/button.css"/>" rel="stylesheet" type="text/css">
 <script type="text/javaScript" language="javascript">
-
+var path = "<c:url value='/sym/bat/getBatchSchdulList.do' />";
+currentPath = path.substring(1);
 
 /* ********************************************************
  * 목록 으로 가기

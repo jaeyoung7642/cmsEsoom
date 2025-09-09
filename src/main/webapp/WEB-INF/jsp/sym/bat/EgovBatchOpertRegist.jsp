@@ -30,7 +30,8 @@
 <script type="text/javascript" src="<c:url value='/js/egovframework/com/sym/cal/EgovCalPopup.js' />"></script>
 <validator:javascript formName="batchOpert" staticJavascript="false" xhtml="true" cdata="false"/>
 <script type="text/javaScript" language="javascript">
-
+var path = "<c:url value='/sym/bat/getBatchOpertList.do' />";
+currentPath = path.substring(1);
 /* ********************************************************
  * 목록 으로 가기
  ******************************************************** */

@@ -31,6 +31,8 @@
 <script type="text/javascript" src="<c:url value="/validator.do"/>"></script>
 <validator:javascript formName="cmmnCodeVO" staticJavascript="false" xhtml="true" cdata="false"/>
 <script type="text/javascript">
+var path = "<c:url value='/sym/ccm/cca/SelectCcmCmmnCodeList.do' />";
+currentPath = path.substring(1); 
 /* ********************************************************
  * 초기화
  ******************************************************** */

@@ -36,7 +36,8 @@
 <script src="<c:url value='/js/egovframework/com/cmm/jqueryui.js' />"></script>
 <script type="text/javascript" src="<c:url value='/js/egovframework/com/cmm/utl/EgovCmmUtl.js' />"></script>
 <script type="text/javaScript" language="javascript">
-
+var path= "<c:url value='/sym/sym/bak/getBackupOpertList.do' />";
+currentPath = path.substring(1);
 /* ********************************************************
  * 초기화
  ******************************************************** */
@@ -291,6 +292,7 @@ function fn_egov_clearExecutSchdulValue(bYyyyMMdd, bMonth, bDay, bDfk, bHHmmss) 
 </script>
 </head>
 <body onLoad="fn_egov_init();">
+<noscript class="noScriptTitle"><spring:message code="common.noScriptTitle.msg" /></noscript>
 <c:import url="/_include/topbar.jsp" />
 	<c:import url="/_include/sidebar.jsp" />
 <c:set var="vexecutSchdulHour"><spring:message code="comSymSymBak.backupOpertUpdt.executSchdulHour"/></c:set>

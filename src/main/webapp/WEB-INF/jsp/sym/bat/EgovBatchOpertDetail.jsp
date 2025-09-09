@@ -28,7 +28,8 @@
 <link href="<c:url value="/css/egovframework/com/com.css"/>" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/egovframework/com/button.css"/>" rel="stylesheet" type="text/css">
 <script type="text/javaScript" language="javascript">
-
+var path = "<c:url value='/sym/bat/getBatchOpertList.do' />";
+currentPath = path.substring(1);
 
 /* ********************************************************
  * 목록 으로 가기
@@ -61,7 +62,7 @@ function fn_egov_update_view(){
 </head>
 
 <body >
-
+<noscript class="noScriptTitle"><spring:message code="common.noScriptTitle.msg" /></noscript>
 	<c:import url="/_include/topbar.jsp" />
 	<c:import url="/_include/sidebar.jsp" />
 	

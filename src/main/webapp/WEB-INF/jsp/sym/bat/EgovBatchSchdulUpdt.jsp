@@ -34,7 +34,8 @@
 <script type="text/javascript" src="<c:url value='/js/egovframework/com/cmm/utl/EgovCmmUtl.js' />"></script>
 <validator:javascript formName="batchSchdul" staticJavascript="false" xhtml="true" cdata="false"/>
 <script type="text/javaScript" language="javascript">
-
+var path = "<c:url value='/sym/bat/getBatchSchdulList.do' />";
+currentPath = path.substring(1);
 function initCalendar(){
 
 	$("#executSchdulDeNm").datepicker( 

@@ -181,6 +181,12 @@
                             <li class="nav-item">
                                 <a href="${pageContext.request.contextPath}/cop/smt/sim/EgovIndvdlSchdulManageList.do" class="nav-link" data-key="t-event-cmpgn">일정관리</a>
                             </li>
+                            <li class="nav-item">
+                                <a href="${pageContext.request.contextPath}/uss/ion/mtg/selectMtgPlaceManageList.do" class="nav-link" data-key="t-event-cmpgn">회의실관리</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="${pageContext.request.contextPath}/uss/ion/mtg/selectMtgPlaceResveManageList.do" class="nav-link" data-key="t-event-cmpgn">회의실예약관리</a>
+                            </li>
                         </ul>
                     </div>
                 </li>
