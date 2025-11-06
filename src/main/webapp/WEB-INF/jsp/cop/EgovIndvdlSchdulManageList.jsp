@@ -524,35 +524,6 @@ function fn_egov_schdulCharger_DeptSchdulManagee(){
                 </div> <!-- end row-->
 
 
-
-
-
-
-
-
-				<!-- 기존 달력 -->
-				<DIV class="calendar">
-					<div class="sort_area_top">
-					<div class="view_type_top">
-						<ul>
-							<li><a href="javascript:fn_egov_main_tab('tabMonth');" id="tabMonth"><spring:message code="comCopSmtSim.Gbn.Monthly" /></a></li><!-- 월간 -->
-							<li><a href="javascript:fn_egov_main_tab('tabWeek');" id="tabWeek"><spring:message code="comCopSmtSim.Gbn.Weekly" /></a></li><!-- 주간 -->
-							<li><a href="javascript:fn_egov_main_tab('tabDay');"id="tabDay"><spring:message code="comCopSmtSim.Gbn.Daily" /></a></li><!-- 일간 -->
-							</ul>
-						</div>
-					</div>
-				
-				<iframe id="SchdulView" width="100%" height="800" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" title="${pageTitle}">
-				</iframe>
-				<form name="IndvdlSchdulManageVO" id="IndvdlSchdulManageVO" action="?" method="post">
-				<input type="hidden" name="schdulId" id="schdulId" value="" />
-				<input type="hidden" name="schdulBgnde" id="schdulBgnde" value="" />
-				<input type="hidden" name="schdulEndde" id="schdulEndde" value="" />
-				<div style="visibility:hidden;display:none;"><input name="iptSubmit" type="submit" value="전송" title="전송"></div>
-				</form>
-				
-				
-				</DIV>
 			<!-- ********** 여기까지 내용 *************** -->
 			</div>
 		<!-- container-fluid -->
