@@ -25,6 +25,7 @@ public class CommonDataInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
+		System.out.println("CommonDataInterceptor 호출됨: " + request.getRequestURI());
 		HttpSession session = request.getSession();
 		ConfigVO configVO = new ConfigVO();
 		List<ConfigVO> siteList = siteConfigService.siteConfigList(configVO);
@@ -39,6 +40,7 @@ public class CommonDataInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
+		System.out.println("CommonDataInterceptor 호출됨: " + request.getRequestURI());
 		if(modelAndView == null) {
 			modelAndView = new ModelAndView();
 		}

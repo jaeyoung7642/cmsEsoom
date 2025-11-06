@@ -198,10 +198,12 @@ public class EgovGroupManageController {
 			                   BindingResult bindingResult,
                                Model model) throws Exception {
     	// 첨부파일 관련 ID 생성 start....
+    	System.out.println("ddddddddddddddddddddddddddddd");
 		String _atchFileId = groupManage.getGroupImg();
 		System.out.println("_atchFileId============="+_atchFileId);
 		final Map<String, MultipartFile> files = multiRequest.getFileMap();
 		if(!files.isEmpty()){
+			System.out.println("???????????????????????");
 			if("".equals(_atchFileId)){
 				List<FileVO> _result = fileUtil.parseFileInf(files, "GROUP_", 0, _atchFileId, "","group");
 				_atchFileId = fileMngService.insertFileInfs(_result);
@@ -218,6 +220,14 @@ public class EgovGroupManageController {
     	beanValidator.validate(groupManage, bindingResult); //validation 수행
     	
     	if (bindingResult.hasErrors()) { 
+    		System.out.println("=== Field Errors ===");
+    	    bindingResult.getFieldErrors().forEach(error -> {
+    	        System.out.println("Field: " + error.getField());
+    	        System.out.println("Rejected Value: " + error.getRejectedValue());
+    	        System.out.println("Code: " + error.getCode());
+    	        System.out.println("DefaultMessage: " + error.getDefaultMessage());
+    	        System.out.println("-----------------------");
+    	    });
 			return "member/EgovGroupUpdate";
 		} else {
     	    egovGroupManageService.updateGroup(groupManage);

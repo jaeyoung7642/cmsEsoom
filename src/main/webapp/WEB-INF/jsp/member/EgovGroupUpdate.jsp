@@ -44,6 +44,7 @@ function fncGroupUpdate() {
 	var form = document.getElementById("groupManage");
 	if(confirm("<spring:message code="common.save.msg" />")){ //저장하시겠습니까?
         if(!validateGroupManage(form)){
+        	alert('dddd');
             return false;
         }else{
         	form.submit();
@@ -98,6 +99,7 @@ function fncGroupDelete() {
 
 <form:form modelAttribute="groupManage" method="post" action="${pageContext.request.contextPath}/sec/gmt/EgovGroupUpdate.do" onSubmit="fncGroupUpdate(); return false;" enctype="multipart/form-data">
 	<input type="hidden" name="posblAtchFileNumber" id="posblAtchFileNumber" value="1" /> 
+	<input type="hidden" name="groupNm" value="${groupManage.groupNm}" /> 
 	<div class="row align-items-center g-3 mb-3">
 		<div class="col-xxl-12">
 			<div class="row align-items-center">

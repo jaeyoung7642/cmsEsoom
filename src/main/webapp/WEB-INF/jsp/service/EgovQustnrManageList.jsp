@@ -249,7 +249,7 @@ function fn_egov_statistics_QustnrQestnManag(qestnrId, qestnrTmplatId){
 								<input name="qestnrId" type="hidden" value="${resultInfo.qestnrId}">
 								<input name="qestnrTmplatId" type="hidden" value="${resultInfo.qestnrTmplatId}">
 								<input name="searchMode" type="hidden" value="Y">
-								<button type="submit" class="btn btn-soft-secondary btn-sm fw-medium" onclick="fn_egov_list_QustnrQestnManag('${resultInfo.qestnrId}','${resultInfo.qestnrTmplatId}','QRM'); return false;"><spring:message code='comUssOlpQmc.value.view'/> <i class="ri-arrow-right-up-line ms-1"></i></button> 
+								<button type="submit" class="btn btn-soft-secondary btn-sm fw-medium" onclick="fn_egov_list_QustnrQestnManag('${resultInfo.qestnrId}','${resultInfo.qestnrTmplatId}','QQM'); return false;"><spring:message code='comUssOlpQmc.value.view'/> <i class="ri-arrow-right-up-line ms-1"></i></button> 
 							</form>
 						</td>
 						<!-- 설문조사 -->

@@ -149,7 +149,7 @@ function fn_egov_inquire_newsdetail(newsId) {
 							<c:forEach items="${resultList}" var="resultInfo" varStatus="status">
 							<li class="row">
 								<%-- <a href="<c:url value='/user/selectNewsDetail.do?newsId=${resultInfo.newsId}'/>" class="bbs_link"> --%>
-								<a href="#" class="bbs_link">
+								<a href="${resultInfo.newsUrl}" class="bbs_link" target="_blank">
 									<div class="el_thumb rds">
 										<img src="/esoomCms/cmm/fms/imageView.do?atchFileId=<c:out value="${resultInfo.atchFileId}"/>&fileSn=0" alt="" width="320" height="180">
 									</div>

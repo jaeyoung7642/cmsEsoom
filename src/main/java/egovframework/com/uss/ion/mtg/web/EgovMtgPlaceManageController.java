@@ -448,7 +448,7 @@ public class EgovMtgPlaceManageController {
 
     	if (bindingResult.hasErrors()) {
     		model.addAttribute("mtgPlaceManageVO", mtgPlaceManageVO);
-			return "forward:/uss/ion/mtg/selectMtgPlaceResveManage.do";
+			return "redirect:/uss/ion/mtg/selectMtgPlaceResveManage.do";
 		} else {
 
 	    	LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
@@ -458,7 +458,7 @@ public class EgovMtgPlaceManageController {
 
 	    	egovMtgPlaceManageService.insertMtgPlaceResve(mtgPlaceResve);
 
-	    	return "forward:/uss/ion/mtg/selectMtgPlaceResveManageList.do";
+	    	return "redirect:/uss/ion/mtg/selectMtgPlaceResveManageList.do";
 		}
 	}
 
@@ -486,7 +486,7 @@ public class EgovMtgPlaceManageController {
 	    	status.setComplete();
 	    	egovMtgPlaceManageService.updtMtgPlaceResve(mtgPlaceResve);
 
-	    	return "forward:/uss/ion/mtg/selectMtgPlaceResveManageList.do";
+	    	return "redirect:/uss/ion/mtg/selectMtgPlaceResveManageList.do";
 		}
 	}
 
@@ -502,7 +502,7 @@ public class EgovMtgPlaceManageController {
 
     	egovMtgPlaceManageService.deleteMtgPlaceResve(mtgPlaceResve);
     	status.setComplete();
-    	return "forward:/uss/ion/mtg/selectMtgPlaceResveManageList.do";
+    	return "redirect:/uss/ion/mtg/selectMtgPlaceResveManageList.do";
 	}
 
 

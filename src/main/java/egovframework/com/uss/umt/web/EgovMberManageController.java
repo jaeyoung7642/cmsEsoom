@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springmodules.validation.commons.DefaultBeanValidator;
 
 
@@ -276,7 +277,7 @@ public class EgovMberManageController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/uss/umt/EgovMberLockIncorrect.do")
-	public String updateLockIncorrect(MberManageVO mberManageVO, Model model) throws Exception {
+	public String updateLockIncorrect(MberManageVO mberManageVO, Model model,RedirectAttributes redirectAttributes) throws Exception {
 
 	    
 	    // 미인증 사용자에 대한 보안처리
@@ -286,6 +287,7 @@ public class EgovMberManageController {
 	    }
 	    
 	    mberManageService.updateLockIncorrect(mberManageVO);
+	    redirectAttributes.addAttribute("selectedId", mberManageVO.getUniqId());
 	    
 	    return "redirect:/uss/umt/EgovMberSelectUpdtView.do";
 	}
