@@ -76,6 +76,7 @@ public class EgovWebLogController {
 
 		paginationInfo.setTotalRecordCount(totCnt);
 		model.addAttribute("paginationInfo", paginationInfo);
+		model.addAttribute("searchVO", webLog);
 
 		return "sys/EgovWebLogList";
 	}

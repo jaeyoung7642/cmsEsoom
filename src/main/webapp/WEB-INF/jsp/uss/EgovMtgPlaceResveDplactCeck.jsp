@@ -77,6 +77,14 @@
 <caption><spring:message code="comUssIonMtg.mtgPlaceResveDplactCeck.doubleCheck" /></caption>
   <tr>
     <td width="100%">
+    	<c:if test="${openH == 0}">
+    		<b>
+			<font size="4">
+			회의실 개방시간이 아닙니다.
+			</font>
+			</b>
+		</c:if>
+		<c:if test="${openH > 0}">    	
     	<c:if test="${dplactCeck > 0}">
 			<b>
 			<font size="4">
@@ -92,6 +100,7 @@
 			</font>
 			</b>
         </c:if> 
+        </c:if>
     </td>    
   </tr> 
 </table>

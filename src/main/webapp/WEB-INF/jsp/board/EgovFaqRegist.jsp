@@ -141,17 +141,6 @@ function fn_egov_regist_faq(form){
 				</div>
 			</div>
 		</div>
-		<div class="col-xxl-12">
-			<div class="row">
-				<!-- 첨부파일  -->
-				<c:set var="title"><spring:message code="comUssOlhFaq.faqVO.atchFile"/></c:set>
-				<label for="menuUrl" class="col-sm-2 col-form-label">${title}</label>
-				<div class="col-sm-10">
-					<input name="file_1" id="egovComFileUploader" type="file" class="form-control" multiple/><!-- 첨부파일명 입력 -->
-					<div id="egovComFileList"></div>
-				</div>
-			</div>
-		</div>
 		<div class="text-end">
 			<input type="submit" class="btn btn-primary" value='<spring:message code="button.create" />' />
 			<a href="<c:url value='/uss/olh/faq/selectFaqList.do' />" class="btn btn-success"><spring:message code="button.list"/></a>

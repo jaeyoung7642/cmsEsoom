@@ -108,4 +108,10 @@ public interface EgovMtgPlaceManageService {
 	 * @return int - 중복건수
 	 */
 	public int mtgPlaceResveDplactCeck(MtgPlaceManageVO mtgPlaceManageVO) throws Exception;
+	/**
+	 * 회의실 개방시간 체크.
+	 * @param mtgPlaceManageVO - 회의실관리 VO
+	 * @return int - 
+	 */
+	public int timeChkMtgPlaceResve(MtgPlaceManageVO mtgPlaceManageVO) throws Exception;
 }

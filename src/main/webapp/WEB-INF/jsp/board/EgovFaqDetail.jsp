@@ -91,11 +91,6 @@ currentPath = path.substring(1);
 					<th><spring:message code="comUssOlhFaq.faqVO.qestnSj" /></th>
 					<td class="left"><c:out value="${result.qestnSj}"/></td>
 				</tr>
-				<!-- 조회수 -->
-				<tr>
-					<th><spring:message code="comUssOlhFaq.faqVO.inqireCo" /></th>
-					<td class="left"><c:out value="${result.inqireCo}"/></td>
-				</tr>
 				<!-- 질문 내용 -->
 				<tr>
 					<th><spring:message code="comUssOlhFaq.faqVO.qestnCn" /></th>
@@ -115,17 +110,6 @@ currentPath = path.substring(1);
 					<th><spring:message code="table.regdate" /></th>
 					<td class="left"><c:out value="${result.frstRegisterPnttm}"/></td>
 				</tr>
-				<!-- 첨부파일  -->
-				<c:if test="${not empty result.atchFileId}">
-				<tr>
-					<th><spring:message code="comUssOlhFaq.faqVO.atchFile" /></th>
-					<td>
-						<c:import url="/cmm/fms/selectFileInfs.do" charEncoding="utf-8">
-						<c:param name="param_atchFileId" value="${egovc:encrypt(result.atchFileId)}" />
-					</c:import>
-					</td>
-				</tr>
-			  	</c:if>
 				
 			</tbody>
 		</table>

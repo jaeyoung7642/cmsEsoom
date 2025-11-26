@@ -116,7 +116,7 @@ function fn_egov_detail_webLog(requstId) {
 </style>
 </head>
 
-<body onload="fn_egov_init(); fn_egov_init_date();" >
+<body onload="fn_egov_init();" >
 <!-- javascript warning tag  -->
 <noscript class="noScriptTitle"><spring:message code="common.noScriptTitle.msg" /></noscript>
 
@@ -150,7 +150,7 @@ function fn_egov_detail_webLog(requstId) {
 					<div class="col-lg-12">
 						<div class="card">
 							<div class="card-header">
-								<form name="WebLogForm" action="<c:url value='/sym/log/wlg/SelectWebLogList.do'/>" method="post" onSubmit="fn_egov_search_webLog(); return false;"> 
+								<form name="WebLogForm" action="<c:url value='/sym/log/wlg/SelectWebLogList.do'/>" method="post" onSubmit="fn_egov_search_webLog();"> 
 									<div class="row justify-content-between align-items-center g-3">
 										<div class="col-xl">
 										</div>
@@ -159,15 +159,16 @@ function fn_egov_detail_webLog(requstId) {
 											<div class="row g-2">
 												<div class="col-lg-6 d-flex align-items-center gap-1 gap-sm-2">
 													<span class="text-muted fw-medium flex-shrink-0"><spring:message code="comSymLogWlg.webLog.occrrncDe" /> : </span><!-- 발생일자 -->
-													<input type="text" name="searchBgnDe" id="searchBgnDe" class="form-control" data-provider="flatpickr" aria-label="검색시작일">
+													<input type="text" name="searchBgnDe" id="searchBgnDe" class="form-control" value="${searchVO.searchBgnDe}" data-provider="flatpickr" aria-label="검색시작일">
 													<span>~</span>
-													<input type="text" name="searchEndDe" id="searchEndDe" class="form-control" data-provider="flatpickr"  aria-label="검색종료일">
+													<input type="text" name="searchEndDe" id="searchEndDe" class="form-control" value="${searchVO.searchEndDe}" data-provider="flatpickr"  aria-label="검색종료일">
 												</div>
 												<div class="col-lg-6">
 													<div class="search-box">
 														<input type="text" name="searchWrd" class="form-control search" value="<c:out value="${searchVO.searchWrd}"/>"  title="<spring:message code="title.search" /> <spring:message code="input.input" />" placeholder="URL" aria-label="URL">
 														<i class="ri-search-line search-icon"></i>
 													</div>
+													<button type="button" class="btn btn-info" onclick="fn_egov_search_webLog(); return false;">검색</button>
 												</div>
 											</div>
 										</div>

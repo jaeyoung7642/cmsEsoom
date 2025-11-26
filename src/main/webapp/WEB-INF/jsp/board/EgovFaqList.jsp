@@ -140,14 +140,12 @@ function fn_egov_inquire_faqdetail(faqId) {
 				<colgroup>
 					<col style="width: 9%;">
 					<col style="width: 40%;">
-					<col style="width: 9%;">
 					<col style="width: 13%;">
 				</colgroup>
 				<thead class="table-light border-top-0">
 					<tr>
 						<th><spring:message code="table.num" /></th><!-- 번호 -->
 						<th class="board_th_link"><spring:message code="comUssOlhFaq.faqVO.qestnSj" /></th><!-- 질문제목 -->
-						<th><spring:message code="comUssOlhFaq.faqVO.inqireCo" /></th><!-- 조회수 -->
 						<th><spring:message code="table.regdate" /></th><!-- 등록일자 -->
 					</tr>
 				</thead>
@@ -161,7 +159,6 @@ function fn_egov_inquire_faqdetail(faqId) {
 					<tr>
 						<td><c:out value="${(searchVO.pageIndex-1) * searchVO.pageSize + status.count}"/></td>
 						<td class="left"><a href="<c:url value='/uss/olh/faq/selectFaqDetail.do?faqId=${resultInfo.faqId}'/>" onClick="fn_egov_inquire_faqdetail('<c:out value="${resultInfo.faqId}"/>');return false;"><c:out value='${fn:substring(resultInfo.qestnSj, 0, 40)}'/></a></td>
-						<td><c:out value='${resultInfo.inqireCo}'/></td>
 						<td><c:out value='${resultInfo.frstRegisterPnttm}'/></td>
 					</tr>
 					</c:forEach>

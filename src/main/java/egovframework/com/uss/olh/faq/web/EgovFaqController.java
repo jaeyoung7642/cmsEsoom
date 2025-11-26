@@ -169,19 +169,19 @@ public class EgovFaqController {
 			return "egovframework/com/uss/olh/wor/EgovFaqRegist";
 		}
 
-		// 첨부파일 관련 첨부파일ID 생성
-		List<FileVO> _result = null;
-		String _atchFileId = "";
-
-		final Map<String, MultipartFile> files = multiRequest.getFileMap();
-
-		if (!files.isEmpty()) {
-			_result = fileUtil.parseFileInf(files, "FAQ_", 0, "", "","faq");
-			_atchFileId = fileMngService.insertFileInfs(_result); //파일이 생성되고나면 생성된 첨부파일 ID를 리턴한다.
-		}
-
-		// 리턴받은 첨부파일ID를 셋팅한다..
-		faqVO.setAtchFileId(_atchFileId); // 첨부파일 ID
+//		// 첨부파일 관련 첨부파일ID 생성
+//		List<FileVO> _result = null;
+//		String _atchFileId = "";
+//
+//		final Map<String, MultipartFile> files = multiRequest.getFileMap();
+//
+//		if (!files.isEmpty()) {
+//			_result = fileUtil.parseFileInf(files, "FAQ_", 0, "", "","faq");
+//			_atchFileId = fileMngService.insertFileInfs(_result); //파일이 생성되고나면 생성된 첨부파일 ID를 리턴한다.
+//		}
+//
+//		// 리턴받은 첨부파일ID를 셋팅한다..
+//		faqVO.setAtchFileId(_atchFileId); // 첨부파일 ID
 
 		// 로그인VO에서  사용자 정보 가져오기
 		LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
@@ -240,24 +240,24 @@ public class EgovFaqController {
 			return "egovframework/com/uss/olh/wor/EgovFaqUpdt";
 		}
 
-		// 첨부파일 관련 ID 생성 start....
-		String atchFileId = faqVO.getAtchFileId();
-
-		final Map<String, MultipartFile> files = multiRequest.getFileMap();
-	    if (!files.isEmpty()) {
-			if ("".equals(atchFileId)) {
-			    List<FileVO> result = fileUtil.parseFileInf(files, "FAQ_", 0, atchFileId, "","faq");
-			    atchFileId = fileMngService.insertFileInfs(result);
-			    faqVO.setAtchFileId(atchFileId);
-			} else {
-			    FileVO fvo = new FileVO();
-			    fvo.setAtchFileId(atchFileId);
-			    int cnt = fileMngService.getMaxFileSN(fvo);
-			    List<FileVO> _result = fileUtil.parseFileInf(files, "FAQ_", cnt, atchFileId, "","faq");
-			    fileMngService.updateFileInfs(_result);
-			}
-	    }
-		// 첨부파일 관련 ID 생성 end...
+//		// 첨부파일 관련 ID 생성 start....
+//		String atchFileId = faqVO.getAtchFileId();
+//		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+atchFileId);
+//		final Map<String, MultipartFile> files = multiRequest.getFileMap();
+//	    if (!files.isEmpty()) {
+//			if ("".equals(atchFileId)) {
+//			    List<FileVO> result = fileUtil.parseFileInf(files, "FAQ_", 0, atchFileId, "","faq");
+//			    atchFileId = fileMngService.insertFileInfs(result);
+//			    faqVO.setAtchFileId(atchFileId);
+//			} else {
+//			    FileVO fvo = new FileVO();
+//			    fvo.setAtchFileId(atchFileId);
+//			    int cnt = fileMngService.getMaxFileSN(fvo);
+//			    List<FileVO> _result = fileUtil.parseFileInf(files, "FAQ_", cnt, atchFileId, "","faq");
+//			    fileMngService.updateFileInfs(_result);
+//			}
+//	    }
+//		// 첨부파일 관련 ID 생성 end...
 
 		// 로그인VO에서  사용자 정보 가져오기
 		LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();

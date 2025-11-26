@@ -119,6 +119,11 @@ currentPath = path.substring(1);
 </script>
 </head>
 <body onLoad="initCalendar();">
+<c:if test="${not empty msg}">
+    <script>
+        alert("${msg}");
+    </script>
+</c:if>
 <noscript class="noScriptTitle"><spring:message code="common.noScriptTitle.msg" /></noscript>
 
 	<c:import url="/_include/topbar.jsp" />

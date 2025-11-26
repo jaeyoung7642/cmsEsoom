@@ -32,7 +32,7 @@
         <property name="paramName" value="language" />
     </bean>
 	<bean id="CommonDataInterceptor" class="com.esoom.cms.common.CommonDataInterceptor" />
-	
+	<bean id="loginInterceptor" class="egovframework.com.uat.uia.web.LoginInterceptor" />
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="0"/>
 	
     <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="1"
@@ -63,6 +63,18 @@
         <mvc:exclude-mapping path="/"/>
         <bean class="com.esoom.cms.common.CommonDataInterceptor" />
     </mvc:interceptor>
+    
+    <mvc:interceptor>
+       <!-- 로그인 체크 적용할 URL -->
+       <mvc:mapping path="/**/*.do"/>
+       
+       <!-- 로그인 페이지나 로그인 처리 액션은 체크 제외 -->
+       <mvc:exclude-mapping path="/uat/uia/egovLoginUsr.do"/>
+       <mvc:exclude-mapping path="/uat/uia/actionLogin.do"/>
+       <mvc:exclude-mapping path="/user/*.do"/>
+       
+       <bean class="egovframework.com.uat.uia.web.LoginInterceptor" />
+   </mvc:interceptor>
 </mvc:interceptors>
 <mvc:annotation-driven/>
 </beans>

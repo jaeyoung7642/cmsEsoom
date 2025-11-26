@@ -349,16 +349,32 @@
     </delete>  
 
     <select id="mtgPlaceResveDplactCeck" parameterType="egovframework.com.uss.ion.mtg.service.MtgPlaceManageVO" resultType="int">
-        
-			SELECT count(resve_id) from COMTNMTGPLACERESVE
-			WHERE  RESVE_DE      = #{resveDe} 
-			AND    MTGRUM_ID  = #{mtgPlaceId} 
-			AND    (resve_begin_tm BETWEEN cast(#{resveBeginTm} as signed)+1 and cast(#{resveEndTm} as signed)-1
-			       or RESVE_END_TM BETWEEN cast(#{resveBeginTm} as signed)+1 and cast(#{resveEndTm} as signed)-1 )
-        
-		 <if test="resveId != null and resveId != ''"><![CDATA[AND
-		  RESVE_ID <> #{resveId}    ]]>
-		 </if>	       
-    </select>
+	    SELECT COUNT(RESVE_ID)
+	    FROM COMTNMTGPLACERESVE
+	    WHERE RESVE_DE = #{resveDe}
+	      AND MTGRUM_ID = #{mtgPlaceId}
+	      <![CDATA[
+	      AND (
+	            CAST(#{resveBeginTm} AS SIGNED) < CAST(RESVE_END_TM AS SIGNED)
+	        AND CAST(#{resveEndTm}   AS SIGNED) > CAST(RESVE_BEGIN_TM AS SIGNED)
+	          )
+	      ]]>
+	    <if test="resveId != null and resveId != ''">
+	      <![CDATA[
+	        AND RESVE_ID <> #{resveId}
+	      ]]>
+	    </if>
+	</select>
+	
+	<select id="timeChkMtgPlaceResve" parameterType="egovframework.com.uss.ion.mtg.service.MtgPlaceManageVO" resultType="int">
+	    SELECT COUNT(*)
+	    FROM COMTNMTGPLACEMANAGE
+	    WHERE MTGRUM_ID = #{mtgPlaceId}
+	    <![CDATA[
+	      AND CAST(#{resveBeginTm} AS SIGNED) >= CAST(OPN_BEGIN_TM AS SIGNED)
+	      AND CAST(#{resveEndTm}   AS SIGNED) <= CAST(OPN_END_TM   AS SIGNED)
+	    ]]>
+
+	</select>
 
 </mapper>

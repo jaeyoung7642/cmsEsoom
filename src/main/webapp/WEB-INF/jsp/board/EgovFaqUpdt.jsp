@@ -56,10 +56,10 @@ function fn_egov_init() {
  ******************************************************** */
 function fn_egov_updt_faq(form) {
 	
-	var resultExtension = EgovMultiFilesChecker.checkExtensions("egovComFileUploader", ".gif.jpg.jpeg.png.xls.xlsx"); // 결과가 false인경우 허용되지 않음
+	/* var resultExtension = EgovMultiFilesChecker.checkExtensions("egovComFileUploader", ".gif.jpg.jpeg.png.xls.xlsx"); // 결과가 false인경우 허용되지 않음
 	if (!resultExtension) return true;
 	var resultSize = EgovMultiFilesChecker.checkFileSize("egovComFileUploader", 1048576); // 파일당 1M까지 허용 (1K=1024), 결과가 false인경우 허용되지 않음
-	if (!resultSize) return true;
+	if (!resultSize) return true; */
 	
 	if (!validateFaqVO(form)) {
 		return false;
@@ -149,17 +149,6 @@ function fn_egov_inqire_faqlist() {
 				<div class="col-sm-10">
 					<form:textarea path="answerCn" title="${title} ${inputTxt}" cssClass="form-control" cols="300" rows="10" />
 	      			<form:errors path="answerCn" cssClass="error" />
-				</div>
-			</div>
-		</div>
-		<div class="col-xxl-12">
-			<div class="row">
-				<!-- 첨부파일  -->
-				<c:set var="title"><spring:message code="comUssOlhFaq.faqVO.atchFile"/></c:set>
-				<label for="menuUrl" class="col-sm-2 col-form-label">${title}</label>
-				<div class="col-sm-10">
-					<input name="file_1" id="egovComFileUploader" type="file" class="form-control" multiple/><!-- 첨부파일명 입력 -->
-					<div id="egovComFileList"></div>
 				</div>
 			</div>
 		</div>

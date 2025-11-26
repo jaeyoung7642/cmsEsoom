@@ -147,5 +147,8 @@ public class MtgPlaceManageDAO extends EgovComAbstractDAO {
 	public int mtgPlaceResveDplactCeck(MtgPlaceManageVO mtgPlaceManageVO) throws Exception {
 		return (Integer)selectOne("mtgPlaceManageDAO.mtgPlaceResveDplactCeck", mtgPlaceManageVO);
 	}
+	public int timeChkMtgPlaceResve(MtgPlaceManageVO mtgPlaceManageVO) throws Exception {
+		return (Integer)selectOne("mtgPlaceManageDAO.timeChkMtgPlaceResve", mtgPlaceManageVO);
+	}
 	
 }

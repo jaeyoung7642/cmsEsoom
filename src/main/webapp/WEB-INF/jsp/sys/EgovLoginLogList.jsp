@@ -159,15 +159,16 @@ function fn_egov_detail_loginLog(logId) {
 											<div class="row g-2">
 												<div class="col-lg-6 d-flex align-items-center gap-1 gap-sm-2">
 													<span class="text-muted fw-medium flex-shrink-0"><spring:message code="comSymLogWlg.webLog.occrrncDe" /> : </span><!-- 발생일자 -->
-													<input type="text" name="searchBgnDe" id="searchBgnDe" class="form-control" data-provider="flatpickr" aria-label="검색시작일">
+													<input type="text" name="searchBgnDe" id="searchBgnDe" value="${searchVO.searchBgnDe}" class="form-control" data-provider="flatpickr" aria-label="검색시작일">
 													<span>~</span>
-													<input type="text" name="searchEndDe" id="searchEndDe" class="form-control" data-provider="flatpickr"  aria-label="검색종료일">
+													<input type="text" name="searchEndDe" id="searchEndDe" value="${searchVO.searchEndDe}" class="form-control" data-provider="flatpickr"  aria-label="검색종료일">
 												</div>
 												<div class="col-lg-6">
 													<div class="search-box">
 														<input type="text" name="searchWrd" class="form-control search" value="<c:out value="${searchVO.searchWrd}"/>"  title="<spring:message code="title.search" /> <spring:message code="input.input" />" placeholder="접속방식" aria-label="접속방식">
 														<i class="ri-search-line search-icon"></i>
 													</div>
+													<button type="button" class="btn btn-info" onclick="fn_egov_search_loginLog(); return false;">검색</button>
 												</div>
 											</div>
 										</div>

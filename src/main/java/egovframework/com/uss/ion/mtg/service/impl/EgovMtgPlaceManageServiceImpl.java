@@ -202,5 +202,8 @@ public class EgovMtgPlaceManageServiceImpl extends EgovAbstractServiceImpl imple
 		mtgPlaceManageVO.setResveDe(EgovStringUtil.removeMinusChar(mtgPlaceManageVO.getResveDe()));
 		return mtgPlaceManageDAO.mtgPlaceResveDplactCeck(mtgPlaceManageVO);
 	}
-
+	@Override
+	public int timeChkMtgPlaceResve(MtgPlaceManageVO mtgPlaceManageVO) throws Exception {
+		return mtgPlaceManageDAO.timeChkMtgPlaceResve(mtgPlaceManageVO);
+	}
 }

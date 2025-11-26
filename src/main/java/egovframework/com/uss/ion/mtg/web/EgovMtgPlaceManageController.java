@@ -20,6 +20,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springmodules.validation.commons.DefaultBeanValidator;
 
+import com.mysql.cj.protocol.x.SyncFlushDeflaterOutputStream;
+
 import egovframework.com.cmm.ComDefaultCodeVO;
 import egovframework.com.cmm.LoginVO;
 import egovframework.com.cmm.annotation.IncludedInfo;
@@ -34,6 +36,8 @@ import egovframework.com.uss.ion.mtg.service.MtgPlaceManageVO;
 import egovframework.com.uss.ion.mtg.service.MtgPlaceResve;
 import egovframework.com.utl.fcc.service.EgovDateUtil;
 import egovframework.com.utl.fcc.service.EgovStringUtil;
+
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * 개요
@@ -379,7 +383,6 @@ public class EgovMtgPlaceManageController {
     	String sTempResveBeginTm = mtgPlaceManageVO.getResveBeginTm();
     	String sTempResveEndTm = mtgPlaceManageVO.getResveEndTm();
     	MtgPlaceManageVO mtgPlaceManageVO_Temp = new MtgPlaceManageVO();
-
     	mtgPlaceManageVO_Temp = egovMtgPlaceManageService.selectMtgPlaceResve(mtgPlaceManageVO);
         mtgPlaceManageVO_Temp.setResveDe(sTempResveDe);
     	mtgPlaceManageVO_Temp.setResveBeginTm(sTempResveBeginTm);
@@ -440,22 +443,30 @@ public class EgovMtgPlaceManageController {
      @RequestMapping(value="/uss/ion/mtg/insertMtgPlaceResve.do")
 	 public String insertMtgPlaceResveManage(@ModelAttribute("mtgPlaceManageVO") MtgPlaceManageVO mtgPlaceManageVO,
 									         @ModelAttribute("mtgPlaceResve") MtgPlaceResve mtgPlaceResve,
+									         RedirectAttributes redirectAttributes,
 											 BindingResult bindingResult,
 			                                 SessionStatus status,
 						                     ModelMap model) throws Exception {
 
     	beanValidator.validate(mtgPlaceResve, bindingResult); //validation 수행
-
     	if (bindingResult.hasErrors()) {
-    		model.addAttribute("mtgPlaceManageVO", mtgPlaceManageVO);
+//    		model.addAttribute("mtgPlaceManageVO", mtgPlaceManageVO);
+    		redirectAttributes.addFlashAttribute("mtgPlaceManageVO", mtgPlaceManageVO);
 			return "redirect:/uss/ion/mtg/selectMtgPlaceResveManage.do";
 		} else {
-
+			int cnt = egovMtgPlaceManageService.timeChkMtgPlaceResve(mtgPlaceManageVO);
+			if(cnt == 0) {
+//				model.addAttribute("mtgPlaceManageVO", mtgPlaceManageVO);
+//				model.addAttribute("msg", "회의실 개방시간이 아닙니다.");
+				redirectAttributes.addFlashAttribute("msg", "회의실 개방시간이 아닙니다.");
+			    redirectAttributes.addFlashAttribute("mtgPlaceManageVO", mtgPlaceManageVO);
+				return "redirect:/uss/ion/mtg/selectMtgPlaceResveManage.do";
+			}
 	    	LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
 	    	status.setComplete();
 	    	mtgPlaceResve.setResveManId(user == null ? "" : EgovStringUtil.isNullToString(user.getUniqId()));
 	    	mtgPlaceResve.setFrstRegisterId(user == null ? "" : EgovStringUtil.isNullToString(user.getUniqId()));
-
+	    	
 	    	egovMtgPlaceManageService.insertMtgPlaceResve(mtgPlaceResve);
 
 	    	return "redirect:/uss/ion/mtg/selectMtgPlaceResveManageList.do";
@@ -525,8 +536,11 @@ public class EgovMtgPlaceManageController {
     	mtgPlaceManageVO.setResveBeginTm(sTempResveBeginTm);
     	mtgPlaceManageVO.setResveEndTm(sTempResveEndTm);
     	mtgPlaceManageVO.setResveId(sTempResveId);
+    	int openH = egovMtgPlaceManageService.timeChkMtgPlaceResve(mtgPlaceManageVO);
+		
     	int dplactCeckCnt = egovMtgPlaceManageService.mtgPlaceResveDplactCeck(mtgPlaceManageVO);
     	model.addAttribute("dplactCeck", dplactCeckCnt);
+    	model.addAttribute("openH", openH);
 		return "uss/EgovMtgPlaceResveDplactCeck";
 	}
 
